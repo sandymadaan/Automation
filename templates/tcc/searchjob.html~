@@ -1,0 +1,13 @@
+<html lang="en">
+<head>
+    <title>Search{% if query %} Results{% endif %}</title>
+</head>
+<body>
+  <h1>Search</h1>
+  <form action="" method="GET">
+    <label for="q">Type the job_id you want to search: </label>
+    <input type="text" name="q" value="{{ query|escape }}">
+    <input type="submit" value="Search">
+  </form>
+</body>
+</html>

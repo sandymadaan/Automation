@@ -1,0 +1,8 @@
+<html>
+
+	
+<body>
+<p>Site succesfully added to map, </p>
+<input type="button" value="Continue adding job" onClick="javascript:history.go(-1);">
+</body>
+</html>

@@ -1,0 +1,25 @@
+<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/profile/css/souvenir.css" />
+<script type="text/javascript" src="{{ MEDIA_URL }}/profile/css/tablecloth/tablecloth/tablecloth.js"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}/profile/css/gs_sortable.js"></script>
+<script type="text/javascript">
+<!--
+var TSort_Data = new Array ('my_table','','', 's', 'i', 's');
+tsRegister();
+// -->
+</script> 
+<table id="my_table"> 
+<caption>SOUVENIR RECORD</caption>
+<thead><tr><th>SR.No<th>PHOTO<th>NAME<th>ROLL NO<th>BRANCH</tr></thead>
+
+{% if fulldetail  %}
+    {% for part in fulldetail %}
+        {% if part.firstname %}
+        <tr><td>{% if y %} y {% endif %} </td><td>{% if part.photo %} <img src="{{ part.photo.url }}" height="50" />{% endif %}<td><a href="{{IP_ADDRESS}}/django/souvenir/detail/?class_roll_no={{ part.class_roll_no}}" >{{ part.firstname }} {{ part.middlename }} {{ part.lastname }}</a><td>{{ part.class_roll_no}}</a> <td>{{ part.branch }}</tr>
+{% endif %}
+    {% endfor %}
+    
+{% else %}
+    <p> Data is Not available.</p>
+{% endif %}
+</td></tr>
+</table>

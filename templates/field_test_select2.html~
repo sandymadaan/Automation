@@ -1,0 +1,59 @@
+<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>jQuery Related Selects</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+<script src="http://localhost/src/jquery.relatedselects.min.js" type="text/javascript"></script>
+
+<style type="text/css">
+body { font:12px helvetica, arial, sans-serif; }
+</style>
+
+<script type="text/javascript">
+ $(document).ready(
+                     function() {
+                         $("select#field").change(function() {
+                             if ($(this).val() == 'Z') {
+                                 $("select#test").html("<option>Select a test</option>");
+                                 $("select#test").attr('disabled', true);
+                             }
+                             else {
+                                 var url = "/field/" + $(this).val() + "/all_json_tests";
+                                 var field = $(this).val();
+                                 $.getJSON(url, function(tests) {
+                                     var options = '<option value="Z">Select a test</option>';
+                                     for (var i = 0; i < tests.length; i++) {
+                                        options += '<option value="' + tests[i].pk + '">' + tests[i].fields['name'] + '</option>';
+                                     }
+                                     $("select#test").html(options);
+                                     $("select#test option:first").attr('selected', 'selected');
+                                     $("select#test").attr('disabled', false);
+                                 });
+                             }
+                         });
+
+
+                         $("select#test").change(function(vent) {
+                             if ($(this).val() == -1) {
+                                 return;
+                             }
+                             myAwesomeFunctionToCallWhenAtestIsSelected();
+                         });
+                     });
+    }
+
+</script>
+<form action="" method="get" accept-charset="utf-8">
+    <select name="field" id="field">
+        <option value="Z">Select a field</option>
+        {% for field in field_list %}
+            <option value="{{ field.id}}">{{ field.name }}</option>
+        {% endfor %}
+    </select>
+    <select name="test" id="test" disabled="true">
+        <option>Select a test</option>
+    </select>
+</form>
+   

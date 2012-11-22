@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load i18n %}
+<html>
+<head>
+    <title>Gndec Ludhiana</title>
+</head>
+{% block content %}
+<script type="text/javascript" >
+    function showfield(name){
+    if(name=='cheque' || 'dd')document.getElementById('div1').style.display="block";
+    else document.getElementById('div1').style.display="none";
+    }
+    function hidefield() {
+    document.getElementById('div1').style.display='none';
+    }
+    
+    </script>
+<h1>Add Field Job</h1>
+ <table>
+<tr><td><label for="id_search">Type of work:</label></td><td><select name="form" ONCHANGE="location =
+this.options[this.selectedIndex].value;">
+{% for reports in report %}
+  <option value="/automation/tcc11_12/select/?id={{reports.id}}">{{reports.name}}</option>
+	{% endfor %}
+</select></td></tr>
+<br>
+ <tr><td><label for="id_search">Material:</label></td><td><select name="form" ONCHANGE="location =
+this.options[this.selectedIndex].value;">
+{% for field in field_list %}
+	{% if field.
+  <option value="/automation/tcc11_12/save/?q={{field.id}}">{{field.name}}</option>
+	{% endfor %}
+</select></td></tr>
+ <tr><td><b><center><a href="/automation/tcc11_12/map" >Mark site on map</a> </td></tr>
+<br>
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post">
+	{% csrf_token %}
+           <table>
+	<tr><td><label for="id_site">Site:</label></td><td><input id="id_site" type="site" name="site"  maxlength="600" /></td></tr>
+	 <tr><td><label for="id_test">Test:</label></td><td><select name="test">
+		<option value="">Select test</option>	
+{% if test %}
+       {% for tests in test%}
+        	   
+		<option value="{{tests.id }}">{{ tests.name }}</option>
+
+		
+       {% endfor %}      
+       {% endif  %}
+	<tr><td><label for="id_other">Your option:</label></td><td><input id="id_other" type="other" name="other"  maxlength="600" /></td></tr>
+	<tr><td><label for="id_work">Type of Work:</label></td><td><select name="type_of_work">
+{% for typeofwork in work %}
+    <option value="{{typeofwork.id }}">{{ typeofwork.name }}</option>
+{% endfor %}
+</select></td></tr>
+	<tr><td><label for="id_pay">Mode of Payment:</label></td><td>
+<select name="pay" id="pay" onchange="showfield(this.options[this.selectedIndex].value)">
+<option value="">---</option>
+<option value="CASH">Cash</option>
+<option value="ONLINE">Online</option>
+<option value="cheque" >Cheque</option>
+<option value="dd" >DD</option>
+</select></td></tr> </table>
+<div id="div1" style="display:none">Enter Cheque/DD No. : <input type="text" name="check_number" /> </br>Enter Cheque/DD Date : <input type="text" name="check_dd_date" /> </div>
+
+       
+        <input type="submit" value="Submit">
+    </form>
+</html>
+{% endblock %}

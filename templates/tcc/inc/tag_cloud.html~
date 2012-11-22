@@ -1,0 +1,11 @@
+<html>
+<h2>Blog Tags</h2>
+<div class="tag-cloud">
+{% load tag_cloud %}
+{% tag_cloud_for_model models.Material as tags with steps=6 min_count=1 distribution=log %}
+{% for tag in tags %}
+<span class="tag-{{tag.font_size}}"><a href="{{ LOCAL_URL }}/automation/tcc11_12/tag/{{tag.name|slugify}}/">{{tag.name}}</a></span> 
+{% endfor %}
+</div><!-- tag-cloud end -->
+<p><em>View the <a href="{{ LOCAL_URL }}/automation/tcc11_12/tags/">whole tag cloud</a></em></p>
+</html>

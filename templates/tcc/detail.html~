@@ -1,0 +1,21 @@
+<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/profile/css/rai.css" />
+<script type="text/javascript" src="{{MEDIA_URL}}/profile/css/tablecloth/tablecloth/tablecloth.js"></script>
+
+
+    
+{% load i18n %}
+
+{% block content %}
+<h1>PERFORMA for {{user.username}}</h1>
+<br>
+<table > 
+     <tr><td>Name :</td><td>{{performa.name}}</td></tr>
+	 <tr><td>Address :</td><td>{{performa.address_1}},{{performa.address_2}}<br>{{performa.city}}({{performa.pin_code}})<br>{{performa.state}}<br>{{performa.country}} </td></tr>
+	 <tr><td>Contact No :</td><td>{{performa.contact_no }}</td></tr>
+	 <tr><td>Website :</td><td>{{performa.website}}</td></tr>
+	 <tr><td>Email_id :</td><td>{{user.email}}</td></tr>
+	 <tr><td>Type of Organisation :</td><td>{{performa.type_of_organisation}}</td></tr>
+     
+     
+</table>	 
+{% endblock %}

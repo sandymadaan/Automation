@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n %}
+<html>
+<head>
+    <title>Gndec Ludhiana</title>
+</head>
+{% block content %}
+
+<br>
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post">
+	{% csrf_token %}
+        <table>
+			<tr><th><label for="id_date">Date:</label></th><td><input type="text" name="date" id="id_date" /></td></tr>
+            <tr><th><label for="id_field">Material:</label></th><td><select name="field">
+    {% for field in fields %}
+        {% ifequal field.id selected_field.id %}
+            <option value="{{field.id}}" selected="selected"> {{field.name}}</option>
+        {% else %}
+            <option value="{{field}}">{{field.name}}</option>
+        {% endifequal %}
+    {% endfor %}
+</select></td></tr>
+			<tr><th><label for="id_site">Site:</label></th><td><input type="text" name="site" id="id_site" /></td></tr>
+			<tr><th><label for="id_type_of_work">Type of work:</label></th><td><input id="id_type_of_work" type="text" name="type_of_work" maxlength="20" /></td></tr>
+			<tr><th><label for="id_letter_no">Letter No:</label></th><td><input type="text" name="letter_no" id="id_letter_no" /></td></tr>
+			<tr><th><label for="id_letter_date">Letter date:</label></th><td><input id="id_letter_date" type="text" name="letter_date" /></td></tr>
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+
+</html>
+{% endblock %}

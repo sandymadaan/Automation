@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+<html>
+<head>
+    <title>Gndec Ludhiana</title>
+</head>
+{% block content %}
+<br>
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post">
+	{% csrf_token %}
+        {% for test in tests %}
+
+<input type="checkbox" name="test" id="{{test.id}}" value={{test.name}} />
+<label for="{{test.id}}"><b>{{test.name}}</b></label><br />
+
+{% endfor %}
+
+        <input type="submit" value="Submit">
+    </form>
+
+</html>
+{% endblock %}

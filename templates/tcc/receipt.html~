@@ -1,0 +1,23 @@
+<html>
+<head><title>Receipt</title></head>
+<center><h3><b>RECEIPT</h3>  </b></center>
+<br/>
+
+
+<div align="left"> Receipt No. : {{job_no}}</div>
+<br/><br/><br/>
+
+{% for totals in total %}
+<div align="left">Received a sum of Rs.{{totals.net_total}} (Rupees  {{ net_total_eng }}only) from  <i> {{ clients}} by {% for jobs in job %}{{ jobs.type}}{% endfor %} {{suspence.type}} {{ suspence.check_number}}
+ {{suspence.check_dd_date }} on account of {% for mates in mate %}
+{{mates.name}}{% endfor %}.</div>
+
+{% endfor %}
+<br/><br/>
+<div align="right"><b> Cashier</b></div>
+<br>
+<br>
+</body>
+</html>
+
+
