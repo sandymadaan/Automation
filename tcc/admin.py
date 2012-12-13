@@ -1,12 +1,19 @@
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# ***models.py***
+# This file display usage information that admin requires to edit or add
+# in database tables, classes, forms and mappers.
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+#::::::::::::::IMPORT THE HEADER FILE HERE::::::::::::::::::::::::::::::#
 from django.contrib import admin
 from Automation.tcc.models import *
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#
 
+#:::::::::::::::DEFINE THE ADMIN CLASSES HERE:::::::::::::::::::::::::::#
 class JobAdmin(admin.ModelAdmin):
     list_display = ('job_no', 'client','site' )
     search_fields = ('job_no',)
     list_filter = ['job_no']
-
-
 
 class ClientAdmin(admin.ModelAdmin):
     list_display = ('id', 'name','address_1','address_2','state','city' )

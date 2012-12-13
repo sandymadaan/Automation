@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load i18n %}
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html lang="en">
 <head>
     <title>Search{% if query %} Results{% endif %}</title>
@@ -9,8 +8,11 @@
 <body>
   <h1 class="changeBlue">Search a Client</h1>
   <form action="." method="GET">
-    <label for="q">Search: </label>
+    <label for="q">Name: </label>
     <input type="text" name="q" value="{{ query|escape }}">
+	<label for="add">Address: </label>
+    <input type="text" name="add" value="{{ addquery|escape }}">
+   
     <input type="submit" value="Search">
   </form>
 
@@ -24,7 +26,7 @@
         <li>Address : {{client.address_1}},{{client.city}}</li>
         <li>Type of Organisation : {{client.type_of_organisation}}</li>
         <b><a href="/automation/tcc11_12/addjob/?id={{ client.id }}">ADD JOB</a></b>
-	<b><a href="/automation/tcc11_12/prevwork/?id={{ client.id }}">View Previous Work</a></b>
+	<b><a href="/automation/tcc11_12/prevwork/?id={{ client.id }}">View Previous Work</a></b><br / ><br />
       {% endfor %}
       </ul>
     {% else %}

@@ -4,15 +4,12 @@
 <br/>
 
 
-<div align="left"> Receipt No. : {{job_no}}</div>
+<div align="left"> Receipt No. : {{job.job_no}}</div>
 <br/><br/><br/>
 
-{% for totals in total %}
-<div align="left">Received a sum of Rs.{{totals.net_total}} (Rupees  {{ net_total_eng }}only) from  <i> {{ clients}} by {% for jobs in job %}{{ jobs.pay}}{% endfor %} {{suspence.type}} {{ suspence.check_number}}
- {{suspence.check_dd_date }} on account of {% for mates in mate %}
-{{mates.name}}{% endfor %}.</div>
 
-{% endfor %}
+<div align="left">Received a sum of Rs.{{bill.net_total}} (Rupees  {{ net_total_eng }}only) from  <i> {{ client}} by {{ job.pay}}  {{ job.check_number}},{{job.check_dd_date }} on account of {% for mates in mate %}{{mates.name}},{% endfor %}.</div>
+
 <br/><br/>
 <div align="right"><b> Cashier</b></div>
 <br>

@@ -7,7 +7,7 @@
 			<td></td>
 			<td> </td>
 			<td> </td>
-			<td><b><center><a href="{{ LOCAL_URL }}/automation/tcc11_12/report/?id={{ amts.id }}" target="window">Report {{ forloop.counter}}</a></center></b></a> </td>
+			<td><b><center><a href="{{ LOCAL_URL }}/automation/tcc11_12/report/?id={{ amts }}" target="window">Report {{ forloop.counter}}</a></center></b></a> </td>
 </tr>
   {% endfor %}
 {%endif %}

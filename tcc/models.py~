@@ -1,24 +1,25 @@
-"""
-Automation Model Module
- 
-This contains all of the definitions for the model of the Testing & Consultancy Cell Automation,
-including the tables, classes and mappers.
- 
-"""
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# ***models.py***
+# This file contains all the defination for models of Automation software. 
+# including tables, classes, forms and mappers.
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+#::::::::::::::IMPORT THE HEADER FILE HERE:::::::::::::::::::::::::::::#
 from django.db import models
 from django.forms import ModelForm, TextInput, ModelChoiceField
-import datetime
 from django import forms
-from Automation.tcc.choices import *
+from django.contrib.sessions.models import Session
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.db.models import Max ,Q, Sum
+import datetime
 from django.forms.fields import DateField, ChoiceField, MultipleChoiceField
 from tagging.fields import TagField
 from tagging.models import Tag
-from django.contrib.sessions.models import Session
+from Automation.tcc.choices import *
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#
 
+#::::::::::::::::::::::DEFINE THE MODELS HERE:::::::::::::::::::::::::::#
 class Report(models.Model):
 	"""
 	Define Client Report Form to reterive any Report Information,
@@ -38,7 +39,7 @@ class UserProfile(models.Model):
 	address_1 =models.CharField(max_length=255)
 	address_2 =models.CharField(max_length=255)
 	city =models.CharField(max_length=255)
-	pin_code = models.IntegerField(null=False)
+	pin_code = models.IntegerField(null=True)
 	state=models.CharField(max_length=30,choices=STATES_CHOICES,default='Punjab')
 	website =models.URLField()
 	contact_no =models.CharField(max_length=25)
@@ -59,24 +60,43 @@ class UserProfileForm(ModelForm):
              'city' : TextInput(attrs={'size':60}),
              'pin_code' : TextInput(attrs={'size':60}),
              'website' : TextInput(attrs={'size':60}),
-	     'state': Select(attrs={'size':'60'}),
 	     'contact_no' : TextInput(attrs={'size':60}),
                   }
 	
-
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        created = UserProfile.objects.get_or_create(user=instance)
-post_save.connect(create_user_profile, sender=User)
- 
 
 class Auto_number(models.Model):
 	id = models.AutoField(primary_key=True)
 	job_no = models.IntegerField(unique = True)
 
+class Organisation(models.Model):
+	name = models.CharField(max_length=50)
+	address = models.CharField(max_length=150)
+	phone = models.CharField(max_length=20)
+	director = models.CharField(max_length=50) 
+	logo_upload = models.ImageField(upload_to='logo')
+
+	def __unicode__(self):
+        	return self.name
+
+class Department(models.Model):
+	organisation = models.ForeignKey(Organisation)
+	name = models.CharField(max_length=50)
+	address = models.CharField(max_length=150)
+	phone = models.CharField(max_length=20, blank=True)
+	dean = models.CharField(max_length=50, blank=True)
+	faxno = models.IntegerField( blank=True, null=True)
+	email_1 = models.CharField(max_length=75,blank=True)
+	email_2 = models.CharField(max_length=75,blank=True)
+	url = models.CharField(max_length=50,blank=True)
+	about = models.CharField(max_length=150,blank=True)
+
+	def __unicode__(self):
+        	return self.name
+
 class Lab(models.Model):
 	code = models.CharField(max_length=5)
 	name = models.CharField(max_length=300)
+	department = models.ForeignKey(Department)
 	tags = TagField()
 
 	def __unicode__(self):
@@ -84,11 +104,6 @@ class Lab(models.Model):
 
 	def get_tags(self):
         	return Tag.objects.get_for_object(self) 
-
-
-class DynamicChoiceField(forms.ChoiceField): 
-    def clean(self, value): 
-        return value
 
 
 class Material(models.Model):
@@ -103,10 +118,6 @@ class Material(models.Model):
 
 	def get_tags(self):
         	return Tag.objects.get_for_object(self) 
-
-class MyForm(forms.Form): 
-    material = forms.ModelChoiceField(Material.objects, widget=forms.Select(attrs={'onchange':'FilterTests();'})) 
-    test = DynamicChoiceField(widget=forms.Select(attrs={'disabled':'false'}), choices=(('-1','Select Tests'),))
 
 class Test(models.Model):
 	#lab = models.ForeignKey(Lab)
@@ -128,6 +139,10 @@ class Clientadd(models.Model):
 	user = models.ForeignKey(User)
 	client = models.ForeignKey(UserProfile)
 	
+class editClientadd(models.Model):
+	user = models.ForeignKey(User)
+	client = models.ForeignKey(UserProfile)
+
 class Govt(models.Model):
 	name =	models.CharField(max_length=600, blank=True )
 
@@ -148,30 +163,58 @@ class Job(models.Model):
 	
 	""" 
         client = models.ForeignKey(Clientadd)
-	check_number = models.CharField(max_length=15,blank=True)
-	check_dd_date = models.CharField(blank=True, max_length=15)
 	job_no = models.IntegerField(editable =False)
-	site = models.CharField(max_length=600, blank=True )
+	sample = models.IntegerField()
+	ip = models.CharField(max_length=50)
+	site = models.CharField(max_length=50)
 	type_of_work = models.ForeignKey(Govt)
 	report_type = models.ForeignKey(Report)
-	pay = models.CharField(max_length=600, blank=True )
+	pay = models.CharField(max_length=600)
+	check_number = models.CharField(max_length=15,blank=True)
+	check_dd_date = models.CharField(blank=True, max_length=15)
 	date = models.DateField(auto_now_add=True)
+	letter_no = models.IntegerField(blank=True,null=True)
+	letter_date = models.DateField( blank=True, null=True)
+	tds = models.IntegerField(default="0")
 
 	def __unicode__(self):
           return self.id()
 
+class EditJob(models.Model):
+	"""
+	**ClientJob**
+	
+	ClientJob Class is define all field required to submit detail about new Job.
+	
+	""" 
+        client = models.ForeignKey(editClientadd)
+	job_no = models.IntegerField(editable =False)
+	sample = models.CharField(max_length=11)
+	ip = models.CharField(max_length=50)
+	site = models.CharField(max_length=600)
+	type_of_work = models.ForeignKey(Govt)
+	report_type = models.ForeignKey(Report)
+	pay = models.CharField(max_length=600, blank=True )
+	date = models.DateField(auto_now_add=True)
+	check_number = models.CharField(max_length=15,blank=True)
+	check_dd_date = models.CharField(blank=True, max_length=15)
+	letter_no = models.IntegerField(blank=True,null=True)
+	letter_date = models.DateField( blank=True, null=True)
+	tds = models.IntegerField(default="0")
+
+	def __unicode__(self):
+          return self.id()
 
 class JobForm(forms.ModelForm):
 	class Meta :
 		model = Job
-		exclude= ['client','job_no','report_type','date','id']
+		exclude= ['client','job_no','report_type','date','ip']
         
 class editJobForm(forms.ModelForm):
 	class Meta :
-		model = Job
-		exclude= ['client','job_no','id'] 
-
-	    
+		model = EditJob
+		exclude= ['client','job_no','report_type','date','ip'] 
+	
 	
 class ClientJob(models.Model):
 	job = models.ForeignKey(Job)
@@ -180,27 +223,41 @@ class ClientJob(models.Model):
 	
 	def __unicode__(self):
           return self.id()
-	
-	
+
 class ClientJobForm(forms.ModelForm):
 	class Meta :
 		model = ClientJob
 		exclude= ['job','material']
 
-class editClientJobForm(forms.ModelForm):
+class ClientEditJob(models.Model):
+	job = models.ForeignKey(EditJob)
+	material = models.ForeignKey(Material)
+	test = models.ManyToManyField(Test)
+	
+	def __unicode__(self):
+          return self.id()
+	
+
+class ClientjobForm(forms.ModelForm):
 	test = forms.ModelMultipleChoiceField(queryset=Test.objects.all(), required=False,widget=forms.CheckboxSelectMultiple)
 
 	class Meta :
 		model = ClientJob
 		exclude= ['job']
-	
+
 	def __init__(self,*args, **kwargs):
-		super(editClientJobForm,self).__init__(*args,**kwargs)
+		super(ClientjobForm,self).__init__(*args,**kwargs)
 		try:
             		material = kwargs['instance'].material
        		except KeyError:
            		 material = 1 	
 		self.fields['test'].queryset=Test.objects.filter(material_id = material) 
+
+class editClientJobForm(forms.ModelForm):
+	class Meta :
+		model = ClientEditJob
+		exclude= ['job','material']
+	
 
 
 class SuspenceJob(models.Model):
@@ -219,6 +276,22 @@ class SuspenceJob(models.Model):
 	def __unicode__(self):
           return self.id()
 
+class SuspenceEditJob(models.Model):
+	"""
+	**SuspenceJob**
+	
+	SuspenceJob Class is used to define all fields required to submit detail about new Suspence Job.
+	
+	""" 
+	job = models.ForeignKey(EditJob)
+	field = models.ForeignKey(Material)
+	test = models.ForeignKey(Test)
+	other = models.CharField(max_length=600, blank=True )
+	
+
+	def __unicode__(self):
+          return self.id()
+
 class SuspenceJobForm(forms.ModelForm):
 	class Meta :
 		model = SuspenceJob
@@ -226,45 +299,37 @@ class SuspenceJobForm(forms.ModelForm):
 
 class editSuspenceJobForm(forms.ModelForm):
 	class Meta :
+		model = SuspenceEditJob
+		exclude= ['job','field','test']
+
+class SuspencejobForm(forms.ModelForm):
+	class Meta :
 		model = SuspenceJob
 		exclude= ['job']
 
 
 class TestTotal(models.Model):
 	job_no = models.IntegerField(editable =False)
+	job = models.ForeignKey(Job)
 	mat = models.IntegerField(editable =True,null=True)
 	unit_price = models.IntegerField(blank=True,null=True)
+	balance = models.IntegerField(blank=True,null=True)
 	type = models.CharField(max_length=100,blank=True,null=True)
 
 	def __unicode__(self):
         	return self.id
 
-class TestTotalForm(forms.ModelForm):
-	class Meta :
-		model = TestTotal
 
-	
-	
-class Sessiondata(models.Model):
-	amt = models.IntegerField(blank=True,null=True)
+class TestTotalPerf(models.Model):
+	job_no = models.IntegerField(editable =False)
+	job = models.ForeignKey(EditJob)
+	mat = models.IntegerField(editable =True,null=True)
+	unit_price = models.IntegerField(blank=True,null=True)
+	balance = models.IntegerField(blank=True,null=True)
+	type = models.CharField(max_length=100,blank=True,null=True)
 
-
-class TestsForm(ModelForm):
-
-    tests = forms.ModelMultipleChoiceField(queryset=Test.objects.all(), required=False,widget=forms.CheckboxSelectMultiple)
-
-    class Meta:
-        model = ClientJob
-	exclude = ('report_type','type_of_consultancy','field','client','date','site','type_of_work','letter_no','letter_date',)
-
-    def __init__(self):
-        super(TestsForm, self).__init__()
-	id = ClientJob.objects.aggregate(Max('job_no'))
-	maxid =id['job_no__max']
-	field = Field.objects.all()
-	client = ClientJob.objects.values_list('field_id',flat=True).filter(job_no = maxid)
-        self.fields['tests'].queryset = Test.objects.filter(field_id = client)
-
+	def __unicode__(self):
+        	return self.id
 
 class Bill(models.Model):
 	job_no = models.IntegerField(primary_key=True, editable =False)
@@ -274,12 +339,17 @@ class Bill(models.Model):
 	net_total = models.IntegerField(blank=True,null=True)
 	price = models.IntegerField(blank=True,null=True)
 
-class BillForm(ModelForm):
-	class Meta :
-		model = Bill
+class BillPerf(models.Model):
+	job_no = models.IntegerField(primary_key=True, editable =False)
+	education_tax = models.IntegerField(blank=True,null=True)
+	higher_education_tax = models.IntegerField(blank=True,null=True)
+	service_tax = models.IntegerField(blank=True,null=True)
+	net_total = models.IntegerField(blank=True,null=True)
+	price = models.IntegerField(blank=True,null=True)
+
 
 class Amount(models.Model):
-	job_no = models.IntegerField(blank=True,null=True)
+	job = models.ForeignKey(Job)
 	college_income = models.IntegerField(blank=True, null=True)
 	admin_charge = models.IntegerField(blank=True,null=True)
 	consultancy_asst = models.IntegerField(blank=True,null=True)
@@ -324,7 +394,7 @@ class DistanceForm(ModelForm):
 
 
 class Suspence(models.Model):
-	job_no = models.IntegerField(blank=True, null=True)
+	job = models.ForeignKey(Job)
 	rate = models.IntegerField(null=True, blank=True)
 	sus = models.ForeignKey(SuspenceJob)
 	work_charge = models.IntegerField(null=True, blank=True)
@@ -342,26 +412,7 @@ class SuspenceForm(ModelForm):
 		model = Suspence
 
 
-class Organisation(models.Model):
-	name = models.CharField(max_length=50)
-	address = models.CharField(max_length=150)
-	phone = models.CharField(max_length=20)
-	director = models.CharField(max_length=50) 
-	logo_upload = models.ImageField(upload_to='logo')
 
-	def __unicode__(self):
-        	return self.name
-
-class Department(models.Model):
-	organisation = models.ForeignKey(Organisation)
-	name = models.CharField(max_length=50)
-	address = models.CharField(max_length=150)
-	phone = models.CharField(max_length=20)
-	dean = models.CharField(max_length=50)
-	faxno = models.IntegerField( blank=True, null=True)
-
-	def __unicode__(self):
-        	return self.name
 
 class Staff(models.Model):
 	department = models.ForeignKey(Department)
@@ -376,37 +427,6 @@ class Staff(models.Model):
         	return self.name
 	
 
-class Proformabill(models.Model):
-	pro_no = models.AutoField(primary_key=True)
-	name = models.CharField(max_length=210)
-	address = models.CharField(max_length=750)
-	charges_for = models.CharField(max_length=450)
-	site = models.CharField(max_length=750)
-	sample = models.CharField(max_length=270)
-	ref_no = models.CharField(max_length=300)
-	rate = models.IntegerField()
-	amount = models.IntegerField()
-	date = models.DateField(default=datetime.date.today())
-	transpotation = models.IntegerField()
-	labour = models.CharField(max_length=300)
-
-
-class ProformabillForm(ModelForm):
-	class Meta :
-		model = Proformabill
-                widgets = {
-             'name' : TextInput(attrs={'size':60}),
-             'address' : TextInput(attrs={'size':60}),
-             'charges_for' : TextInput(attrs={'size':60}),
-             'site' : TextInput(attrs={'size':60}),
-             'sample' : TextInput(attrs={'size':60}),
-             'ref_no' : TextInput(attrs={'size':60}),
-             'rate' : TextInput(attrs={'size':60}),
-             'amount' : TextInput(attrs={'size':60}),
-             'date' : TextInput(attrs={'size':60}),
-             'transpotation' : TextInput(attrs={'size':60}),
-             'labour' : TextInput(attrs={'size':60}),
-         }
 
 class ProfromaTax(models.Model):
     pro_no = models.IntegerField(primary_key=True)
@@ -415,47 +435,41 @@ class ProfromaTax(models.Model):
     education_tax = models.IntegerField()
     total = models.IntegerField()
 
-class Ta_Da(models.Model):
+class TaDa(models.Model):
 	"""
 	Model of TA/DA Report
 	"""
-	id = models.AutoField(primary_key=True)
-	job_no = models.IntegerField()
+	job = models.ForeignKey(Job)
 	departure_time_up = models.TimeField(default = "00:00:00") 
 	arrival_time_up = models.TimeField(default = "00:00:00") 
 	departure_time_down = models.TimeField(default = "00:00:00")
 	arrival_time_down = models.TimeField(default = "00:00:00") 
 	tada_amount = models.IntegerField(blank=True, null=True, editable=False)
 	reach_site = models.CharField(max_length=60, blank=True)
-	test_date = models.CharField(default='0000-00-00', max_length=15)
+	test_date = models.CharField(max_length=15)
 	end_date = models.CharField(max_length=15)
-	testing_staff_code_1 = models.CharField(max_length=4)
-	testing_staff_code_2 = models.CharField(max_length=4, blank=True)
-	testing_staff_code_3 = models.CharField(max_length=4, blank=True)
-	testing_staff_code_4 = models.CharField(max_length=4, blank=True)
-	testing_staff_code_5 = models.CharField(max_length=4, blank=True)
-	testing_staff_code_6 = models.CharField(max_length=4, blank=True)
-	testing_staff_code_7 = models.CharField(max_length=4, blank=True)
-	testing_staff_code_8 = models.CharField(max_length=4, blank=True)
-	testing_staff_code_9 = models.CharField(max_length=4, blank=True)
-	testing_staff_code_10 = models.CharField(max_length=4, blank=True)
+	testing_staff_code = models.CharField(max_length=50)
+	
 
-class Ta_DaForm(ModelForm):
+class TadaForm(ModelForm):
 	class Meta :
-		model = Ta_Da
+		model = TaDa
+		exclude= ['job']
 		widgets = {
-            'testing_staff_code_1': TextInput(attrs={'size': 1}),
-            'testing_staff_code_2': TextInput(attrs={'size': 1}),
-            'testing_staff_code_3': TextInput(attrs={'size': 1}),
-            'testing_staff_code_4': TextInput(attrs={'size': 1}),
-            'testing_staff_code_5': TextInput(attrs={'size': 1}),
-            'testing_staff_code_6': TextInput(attrs={'size': 1}),
-            'testing_staff_code_7': TextInput(attrs={'size': 1}),
-            'testing_staff_code_8': TextInput(attrs={'size': 1}),
-            'testing_staff_code_9': TextInput(attrs={'size': 1}),
-            'testing_staff_code_10': TextInput(attrs={'size': 1}),
-        }
+             'job' : TextInput(attrs={'size':20}),
+             'departure_time_up' : TextInput(attrs={'size':20}),
+             'arrival_time_up' : TextInput(attrs={'size':20}),
+             'departure_time_down' : TextInput(attrs={'size':20}),
+             'arrival_time_down' : TextInput(attrs={'size':20}),
+             'tada_amount' : TextInput(attrs={'size':20}),
+	     'reach_site' : TextInput(attrs={'size':20}),
+	     'test_date' : TextInput(attrs={'size':20}),
+	     'end_date' : TextInput(attrs={'size':20}),
+	     'testing_staff_code' : TextInput(attrs={'size':20}),
+                  }
 
+		
+		
 class Transportation(models.Model):
 	vehicleno = models.CharField(max_length=150)
 	rate = models.IntegerField(default='7')
@@ -492,3 +506,10 @@ class BankdetailsForm(ModelForm):
 	class Meta :
 		model = Bankdetails
 
+class LabReport(forms.Form):
+	"""
+	Form that displays start and end date and thus helps in retrieving data between this date range for a particular material.
+	"""
+	start_date= forms.DateField()
+        end_date= forms.DateField()
+	material = forms.ModelChoiceField(queryset=Material.objects.all())

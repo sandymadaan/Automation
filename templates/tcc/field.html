@@ -6,8 +6,8 @@
 </head>
 {% block content %}
 <div align="center"><h2>Catalog</h2></div>
-<div align="center"><h4>Materials</h4></div>
-<div align="left"><table>
+
+<div id="leftnav" style=" float: left; width:auto;"><table>
 	<tr><td><b>S.No</b></td>
 		<td> </td>
 		<td> </td>
@@ -21,7 +21,7 @@
 			<td>{{forloop.counter}}</td>
 			<td> </td>
 			<td> </td>
-			<td> <a href="{{ LOCAL_URL }}/automation/tcc11_12/rate/?id={{ materials.id }}" >{{materials.name}}</a> </td>
+			<td> <a href="{{ LOCAL_URL }}/automation/tcc11_12/rate/?id={{ materials.id }}" class="changegreen">{{materials.name}}</a> </td>
 </tr>
 	{% endfor %}
 {% endif %}

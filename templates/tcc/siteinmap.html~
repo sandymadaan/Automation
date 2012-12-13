@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% load i18n %}
 <html>
-{% block content %}
-	<head>
+
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
 		<title>Distance Calculator</title>
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 		<style type="text/css">
 			#map_canvas { 
-				height: 70%;
+				height: 80% ;width:60%;
 			}
 		</style>
 		<script type="text/javascript">
@@ -55,7 +54,7 @@
 			alert(distancevalue);
 			}
 		</script>
-	</head>
+	
 
 	<body onload="initialize()">
 		 {% if form.errors %}
@@ -89,4 +88,4 @@
 		
 	</body>
 </html>
-{% endblock %}
+

@@ -3,14 +3,14 @@
 <body>
 <br>
 
-<div style="position:absolute;right:7px;top:55px;">Main/Mat. No :<u>{{ job_no }}</u> </div>
+<div style="position:absolute;right:7px;top:55px;">Main/Mat. No :<u>{{ user.job_no }}</u> </div>
 <div style="position:absolute;right:7px;top:75px;">Dated :  </div>
 <div style="position:absolute;left:7px;top:105px;">Director,</div>
 <br/> <br/><br/><br/><br></br>
 Received a sum of Rs. {{amount.unit_price }}/- ( Rupees {{ net_total_eng }} only ) <br/><br>
-Vide Cash from : {{ cli }} <br><br>
-On account of : testing/checking {{ mate.name }} <br/><br>
-<div style="position:absolute;left:7px;top:270px;">Vide Receipt No. : {{job_no }}  Dated: </div>
+Vide Cash from : {{ name }} <br><br>
+On account of testing/checking of : {{mat}} <br/><br>
+<div style="position:absolute;left:7px;top:270px;">Vide Receipt No. : {{user.job_no }}  Dated: </div>
 <div style="position:absolute;left:7px;top:290px;">Nature of Consultancy :{{ client.type }},  Ratio {{ ratio1 }}:{{ ratio2 }} </div>
 <div align= "left">
 <br/><br/><br/></br>

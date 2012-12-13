@@ -13,19 +13,10 @@
     {% endif %}
 
     <form action="" method="post">
-	{% csrf_token %}
-<table>
+	
+        <table>
             {{ form.as_table }}
         </table>
-        <!--{% for test in tests %}
-<table>
-            {{ form.as_table }}
-        </table>
- <input type="checkbox" name="test" id="{{test.id}}" value={{test.name}} />
-<label for="{{test.id}}"><b>{{test.name}}</b></label><br />
-
-{% endfor %}-->
-
         <input type="submit" value="Submit">
     </form>
 

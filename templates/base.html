@@ -23,6 +23,17 @@
 <script type="text/javascript">
 document.getElementByClass('changeBlue').onmouseover.style.color = "#0000ff;';
 </script>
+ <script type='text/javascript' src='{{ MEDIA_URL }}/calendar/validate.js'></script><script type='text/javascript' src='{{ MEDIA_URL }}/calendar/jquery-1.5.min.js'></script><script type='text/javascript' src='{{ MEDIA_URL }}/calendar/jquery-validate/jquery.validate.js'></script><link href='style.css' rel='stylesheet' type='text/css'><link href='{{ MEDIA_URL }}calendar/datepick/redmond.datepick.css' rel='stylesheet' type='text/css'><script type='text/javascript' src='{{ MEDIA_URL }}calendar/datepick/jquery.datepick.js'></script><script>
+  $(document).ready(function(){
+    $('#id_date').datepick({dateFormat:'yyyy-mm-dd'});
+    $('#id_start_date').datepick({dateFormat:'yyyy-mm-dd'});
+    $('#id_end_date').datepick({dateFormat:'yyyy-mm-dd'});
+    $('#id_test_date').datepick({dateFormat:'yyyy-mm-dd'});
+    $('#id_letter_date').datepick({dateFormat:'yyyy-mm-dd'});
+    $('#id_cheque/dd_date').datepick({dateFormat:'yyyy-mm-dd'});
+   
+  });
+  </script> 
 
 <!--<script type="text/javascript">
 swfobject.embedSWF("http://www.youtube.com/v/JVuUwvUUPro&amp;ap=%2526fmt%3D22", "flash1", "860", "519", "8.0.0", false,

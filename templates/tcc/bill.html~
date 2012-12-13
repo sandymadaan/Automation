@@ -13,7 +13,7 @@
 <div align="left">No. : GNDEC/TCC/B/{{ job_no }}</div>
 <br/><br/>
 
-<div align="left">To<br> {{ clients.name }}</div>
+<div align="left">To<br> {{ client}}</div>
 
 <br/><br/>
 
@@ -25,10 +25,12 @@
 			<td>Rate</td>
 			<td>Amount</td>
 		</tr>
-		<tr><td>Charges For {% for mates in mate %}
-		    {% for prices in price %}
-			 {{ mates.name}} ({{ prices.unit_price}}) 
-			{% endfor%}
+		<tr><td><b>Charges For</b> {% for mates in mate %}
+		   
+			 {{ mates.name}} [{% for job in getjob %}{% if mates.id == job.clientjob__material_id %}{{job.clientjob__test__name}},{% else %}{{job.suspencejob__test__name}},{% endif %}
+			
+			{% endfor%}]<br />
+			
 			{% endfor%}</td>
 			<td rowspan="6"></td>
 			<td rowspan="6"></td>
@@ -36,7 +38,7 @@
 		</tr>
 		<tr>
 			
-			<td>Site :{% for jobs in job %} {{ jobs.site}}{% endfor%}</td>
+			<td>Site : {% for job in getjob %}{{ job.site}},{% endfor %}</td>
 			
 		</tr>
 		<tr>
