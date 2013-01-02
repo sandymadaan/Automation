@@ -108,14 +108,14 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'Automation.urls'
 
-TEMPLATE_DIRS = ("/home/user_name/Automation/templates"
+TEMPLATE_DIRS = ("mPath/Automation/templates"
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
 
 
-INSTALLED_APPS = (
+INSTALLED_APPS =
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
