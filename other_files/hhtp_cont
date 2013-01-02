@@ -6,8 +6,8 @@ Order deny,allow
 Allow from all
 </Directory>
 
-WSGIScriptAlias /automation /home/user_name/Automation/apache/django.wsgi
-<Directory /home/user_name/Automation/apache/>
+WSGIScriptAlias /automation mPath/Automation/apache/django.wsgi
+<Directory mPath/Automation/apache/>
 Order allow,deny
 Allow from all
 </Directory>
