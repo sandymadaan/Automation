@@ -115,7 +115,7 @@ TEMPLATE_DIRS = ("mPath/Automation/templates"
 )
 
 
-INSTALLED_APPS =
+INSTALLED_APPS =(
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
