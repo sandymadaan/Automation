@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% include 'tcc/inc/tag_cloud.html' %}
+{% load i18n %}
+<html>
+<head>
+    <title>gne</title>
+</head>
+{% block content %}
+<div align="center"><h2>{{ title }}</h2></div>
+<div align="center"><h4>{{ address }}</h4></div>
+</br></br></br></br></br>
+<table width =100%>
+	 <tr>
+		<td><b><center><b><center><a href="{{ LOCAL_URL }}/automation/tcc11_12/catalog">Catalog</a> </td>
+		 <td><b><center><a href="{{ LOCAL_URL }}/automation/tcc11_12/addprofile" >Register Client</a> </td>
+		 <td><b><center><a href="{{ LOCAL_URL }}/automation/tcc11_12/prev" >Previous Work</a> </td>
+		<td><b><center><a href="{{ LOCAL_URL }}/automation/tcc11_12/jobok" >Get Bill</a> </td>
+		<td><b><center><a href="{{ LOCAL_URL }}/automation/tcc11_12/map" >Get Map</a> </td>
+	 </tr> 
+	
+	 <tr>
+		<td><b><center><b><center><a href="{{ LOCAL_URL }}/automation/tcc11_12/addprofile">Add Profile</a> </td>
+                <td><b><center><b><center><a href="{{ LOCAL_URL }}/automation/tcc11_12/transport">Transport</a> </td>
+		 <td><b><center><a href="{{ LOCAL_URL }}/automation/tcc11_12/performa/?id={{ user.id }}" >Performa</a> </td>
+		<td><b><center><a href="{{ LOCAL_URL }}/automation/tcc11_12/search" >Search a client</a> </td>
+		
+	 </tr>
+	 <tr>
+		<td><b><center><b><center><a href="{{ LOCAL_URL }}/automation/tcc11_12/suspenceclearance">Suspence Clearance Report</a> </td>
+		<td><b><center><b><center><a href="{{ LOCAL_URL }}/automation/tcc11_12/payjob">Confirmed job</a> </td>
+		<td><b><center><b><center><a href="{{ LOCAL_URL }}/automation/tcc11_12/bank">Fill Bank</a> </td>
+	</tr>
+
+ </table>
+
+
+</body>
+</html>
+{% endblock %}

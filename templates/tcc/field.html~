@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n %}
+<html>
+<head>
+    <title>gne</title>
+</head>
+{% block content %}
+<div align="center"><h2>Catalog</h2></div>
+
+<div id="leftnav" style=" float: left; width:auto;"><table>
+	
+		<tr><td><b>Lab Work :</b></td>
+ 	</tr>
+
+{% if material %}
+    {% for materials in material %}	
+
+<tr>
+	<td><a class='open' href="{{ LOCAL_URL }}/auto/tcc11_12/rate/hello/?id={{ materials.id }}">{{materials.name}}</a></td>
+</tr>
+	
+	{% endfor %}
+{% endif %}</td>
+<tr><td><b>Field Work :</b></td>
+ 	</tr>
+{% if field %}
+    {% for materials in field %}	
+
+<tr>
+	<td><a class='open' href="{{ LOCAL_URL }}/auto/tcc11_12/rate/hello/?id={{ materials.id }}">{{materials.name}}</a></td>
+</tr>
+	
+	{% endfor %}
+{% endif %}</td>
+</table> </div>
+
+</html>
+{% endblock %}

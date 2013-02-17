@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+<html>
+<head>
+    <title>Gndec Ludhiana</title>
+</head>
+{% block content %}
+<body>
+<br/><br/>
+<table border="2">
+<caption><center><b> Transport Bill </b> </center></caption>
+		<tr><td>  Job No. : {{job_no}}</tr>
+		<tr><td> Bill No : {{bill_no}} </tr>
+		<tr><td> Date of Testing : {{test_date}}</tr>
+		<tr><td>Kilometer : {{kilometer}}</tr>
+		<tr><td><center><a href="{{ LOCAL_URL }}/auto/tcc11_12/transportbill/?job_no={{job_no}}"><b> Transport Bill</b></a></center>  
+		
+	</tr>
+	
+</table>
+
+
+</body>
+{% endblock %}

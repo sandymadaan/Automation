@@ -1,0 +1,55 @@
+{% extends "report/header.html" %}
+{% load i18n %}
+<html>
+{% block report %}
+<body>
+{% if water %}
+
+	
+	
+	
+<!--		<tr>
+			<th>S.no</th>
+			<th>Description</th>
+			<th>Result</th>
+		</tr>
+-->	{% for test in water %}
+
+	
+	<p align="center"><b>PH Value</b>				:{{test.PH_Value}}</p>	
+	<p align="center"><b>Colour</b>					:{{test.Color}}</p>
+	<p align="center"><b>COD (Total)</b>				:{{test.COD_Total}}</p>		
+	<p align="center"><b>COD (Filtered)</b>				:{{test.COD_Filtered}}</p>		
+	<p align="center"><b>BOD5 (Total)</b>				:{{test.BOD5_Total}}</p>		
+	<p align="center"><b>BOD5 (Filtered)</b>			:{{test.BOD5_Filtered}}</p>		
+	<p align="center"><b>Sulphide ( as S2-)</b>			:{{test.Sulphide}}</p>		
+	<p align="center"><b>Sulphate ( as SO4 2-)</b>			:{{test.Sulphate}}</p>		
+	<p align="center"><b>Alkalinity ( as mg Ca CO3/L)</b>		:{{test.Alkalinity}}</p>		
+	<p align="center"><b>Total Suspended Solids (mg/l)</b>		:{{test.Total_Suspended_Solids}}</p>		
+	<p align="center"><b>Volatile Suspended Solids (mg/l)</b>	:{{test.Volatile_Suspended_Solids }}</p>	
+	<p align="center"><b>Chloride ( as Cl -)</b>			:{{test.Chloride_as_Cl}}</p>		
+	<p align="center"><b>Nickel</b>					:{{test.Nickel}}</p>		
+	<p align="center"><b>Iron</b>					:{{test.Iron}}</p>		
+	<p align="center"><b>Maganese</b>				:{{test.Maganese}}</p>		
+	<p align="center"><b>Copper</b>					:{{test.Copper}}</p>		
+	<p align="center"><b>Hardness</b>				:{{test.Hardness}}</p>		
+	<p align="center"><b>Nitrates</b>				:{{test.Nitrates}}</p>		
+	<p align="center"><b>Nitrites</b>				:{{test.Nitrites}}</p>		
+	<p align="center"><b>Turbidity</b>				:{{test.Turbidity}}</p>		
+	<p align="center"><b>Faecal coliform (E.Coli/MPN)</b>		:{{test.Faecal_coliform}}</p>		
+	<p align="center"><b>TDS</b>					:{{test.TDS}}</p>		
+	<p align="center"><b>Taste & Odour</b>				:{{test.Taste_and_Odour}}</p>
+	<p align="center"><b>Calcium, Ca(Mg/l)</b>			:{{test.Calcium_and_Ca_Mg_per_l}}</p>		
+	<p align="center"><b>Residual Free Chloride (Mg/l)</b>		:{{test.Residual_Free_Chloride}}</p>		
+	<p align="center"><b>Florides</b>				:{{test.Florides}}</p>		
+	<p align="center"><b>Ammonia Nitrogen in mg/l</b>		:{{test.Ammonia_Nitrogen}}</p>		
+	<p align="center"><b>Total Phosphorus in mg/l</b>		:{{test.Total_Phosphorus}}</p>		
+	<p align="center"><b>TKN</b>					:{{test.TKN}}</p>		
+		
+	{% endfor  %}
+{% endif %}
+	
+</body>
+{% endblock %}
+</html>
+

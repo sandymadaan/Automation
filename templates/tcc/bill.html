@@ -1,0 +1,61 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="a.css" /><title>Report</title></head>
+<div style="font-size:20px" align='center'><b>{{address.name}}</b></div>
+<div style="font-size:15px" align='center'>gill road, Ludhiana</div>
+<div style="font-size:20px" align='center'>{{title.name}}</div><br>
+<div align='left'>STC No. G31843A(S)LDH -ST-001<br>PAN No. AAATN1978L</div>
+<br>
+<body>
+
+<br/><h2 align="center">BILL</h2>
+
+<div align="left">No. : GNDEC/TCC/B/{{ job_no }}</div>
+<br/><br/>
+
+<div align="left">To,<br>{% for add in getadd %} {{ add.client__client__first_name}}, {{ add.client__client__address_1}}, {{ add.client__client__city}}{% endfor %}</div>
+
+<br/><br/>
+
+<div align= "left">
+	<table border="1" width="100%">
+		<tr>
+			<td>Details</td>
+			<td>Per. </td>
+			<td>Rate</td>
+			<td>Amount</td>
+		</tr>
+		<tr><td><b>Charges For</b> {% for mates in mate %}
+		   
+			 {{ mates.name}},
+			
+			{% endfor%}</td>
+			<td rowspan="6"></td>
+			<td rowspan="6"></td>
+			<td align="right" rowspan="2">{{ bill.price }}.00</td>
+		</tr>
+		<tr>
+			
+			<td>Site : {% for add in getsite %}{{ add.site}},{% endfor %}</td>
+			
+		</tr>
+		<tr>
+			<td>Service Tax  @ {{ servicetaxprint }}% </td>
+			<td  align="right">{{ bill.service_tax }}.00</td>
+		<tr>
+			<td>Education Cess  @ {{ educationtaxprint }}% </td>
+			<td  align="right">{{ bill.education_tax }}.00</td>
+		</tr>
+		<tr>
+			<td>Higher Education Cess  @ {{ highereducationtaxprint }}% </td>
+			<td  align="right">{{ bill.higher_education_tax }}.00</td>
+		</tr>
+		<tr>
+				<td>Total Rs.  ( {{ net_total_eng }} only) </td>
+			<td  align="right">{{ cdftotal }} {{ bill.net_total}}.00</td>
+		</tr>	
+	</table>
+<br/><br/><br/><br/><br/>
+<div align="right">DEAN</div>
+</body>
+</html>

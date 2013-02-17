@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+<html>
+
+{% block content %}	
+<body>
+	<h1>Congrates!!!...</h1>
+<p>You  have successfully added  {{test}} in {{ mee.site}} material. Would you like to test more materials in this Job or generate bill for your job ?</p>
+<input type="button" onClick="location.href='{{ LOCAL_URL }}/auto/tcc11_12/addjob/?id={{moremat}}'" value="Add New Material">
+
+		
+		<input type="button" onClick="location.href='{{ LOCAL_URL }}/auto/tcc11_12/jobok/?id={{value}}'" value='Generate Bill'>
+		<input type="button" value="Continue edting performa job" onClick="javascript:history.go(-2);">
+	
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,41 @@
+</head>
+<body>
+
+<div>Daily Report Of {{start_date}} to {{end_date}} for {{type}} payment
+<table border='1' width='100%'>
+	<tr>
+		<td><b>Sr.No </b></td>
+		<td><b>Receipt No.</b></td>
+		<td><b>Date</b></td>
+		<td><b>Name of Parties</b></td>
+                <td><b>TDS</b></td>
+		<td><b>Balance</b></td>
+	</tr>
+{% if client %}
+    {% for clients in client %}
+    {% for testtotals in testtotal %}
+          {% if clients.id == testtotals.job_id %}
+         <tr>
+			<td>{{forloop.counter}}</td>
+			<td>{{ clients.job_no }}</td>
+			<td> {{ clients.date }}</td>
+			<td> {{clients.client__client__first_name}}</td>
+                        <td ALIGN="right">{{clients.tds}}</td>
+		        <td ALIGN="right">{{testtotals.unit_price}}</td>
+		
+		</tr>
+       		{% endif  %}
+        {% endfor %}
+        {% endfor %}
+{% endif  %}
+	<tr>
+         <td colspan='4'><b><center>SUM</center></td>
+         <td ALIGN="right"><b></td>
+         <td ALIGN="right"><b>{{total}}</td>
+        </tr>
+     
+</table>
+<br></br></br></br>
+</div>
+
+</body>

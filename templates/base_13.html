@@ -1,0 +1,92 @@
+{% load i18n %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>GNDEC</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="Tomas Bagdanavicius, http://www.lwis.net/free-css-drop-down-menu/" />
+<meta name="keywords" content=" css, dropdowns, dropdown menu, drop-down, menu, navigation, nav, horizontal, vertical left-to-right, vertical right-to-left, horizontal linear, horizontal upwards, cross browser, internet explorer, ie, firefox, safari, opera, browser, lwis" />
+<meta name="description" content="Clean, standards-friendly, modular framework for dropdown menus" />
+<link rel="shortcut icon" type="image/x-icon" href="http://localhost/media/css/css/dropdown/themes/nvidia.com/images/favicon.ico" />
+<link href="css/helper.css" media="screen" rel="stylesheet" type="text/css" />
+
+<!-- Beginning of compulsory code below -->
+
+<link href="http://localhost/media/css/css/dropdown/dropdown.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://localhost/media/css/css/dropdown/themes/nvidia.com/default.advanced.css" media="screen" rel="stylesheet" type="text/css" />
+
+<link href="http://localhost/media/css/css/horizontal-centering.css" media="all" rel="stylesheet" type="text/css" />
+
+<!-- / END -->
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+<script type="text/javascript">
+document.getElementByClass('changeBlue').onmouseover.style.color = "#0000ff;';
+</script>
+ <script type='text/javascript' src='{{ MEDIA_URL }}/calendar/validate.js'></script><script type='text/javascript' src='{{ MEDIA_URL }}/calendar/jquery-1.5.min.js'></script><script type='text/javascript' src='{{ MEDIA_URL }}/calendar/jquery-validate/jquery.validate.js'></script><link href='style.css' rel='stylesheet' type='text/css'><link href='{{ MEDIA_URL }}calendar/datepick/redmond.datepick.css' rel='stylesheet' type='text/css'><script type='text/javascript' src='{{ MEDIA_URL }}calendar/datepick/jquery.datepick.js'></script><script>
+  $(document).ready(function(){
+    $('#id_date').datepick({dateFormat:'yyyy-mm-dd'});
+    $('#id_start_date').datepick({dateFormat:'yyyy-mm-dd'});
+    $('#id_end_date').datepick({dateFormat:'yyyy-mm-dd'});
+    $('#id_test_date').datepick({dateFormat:'yyyy-mm-dd'});
+    $('#id_letter_date').datepick({dateFormat:'yyyy-mm-dd'});
+    $('#id_cheque/dd_date').datepick({dateFormat:'yyyy-mm-dd'});
+   
+  });
+  </script> 
+
+<!--<script type="text/javascript">
+swfobject.embedSWF("http://www.youtube.com/v/JVuUwvUUPro&amp;ap=%2526fmt%3D22", "flash1", "860", "519", "8.0.0", false,
+	false,
+	{wmode:"transparent",allowFullScreen:"true",quality:"high",bgcolor:"#000000",allowscriptaccess:"always"},
+	{id:"wmfg",name:"wmfg"}
+);
+</script>-->
+
+</head>
+
+
+<body class="nvidia-com" link="#C0C0C0" vlink="#808080" alink="#76B900" text="white">
+<div>
+        {% block header %}
+	{% if user.is_authenticated %}<a href="http://localhost/auto/tcc11_12/index/">{% else %}<a href ="http://localhost/auto">{% endif %}{% trans "Home" %}</a> | 
+
+	{% if user.is_authenticated %}
+	<font color="white">{% trans "Logged in" %}: {{ user.username }} </font>
+	(<a href="{% url auth_logout %}">{% trans "Log out" %}</a> | 
+	<a href="{% url auth_password_change %}">{% trans "Change password" %}</a>)
+	{% else %}
+	<a href="{% url auth_login %}">{% trans "Log in" %}</a>
+	{% endif %}
+	<hr />
+        {% endblock %}
+    </div>
+<div class="wrapper">
+
+	<div class="container">
+
+   {% block nav-main %}{% endblock %}
+		<!-- END navigation -->
+
+		
+			{% block columnwrap %}
+				<div id="content-main" class="span-22 prepend-1 append-1">
+				{% block content %}{% endblock %}
+
+  				</div><!-- END content-main -->
+			{% endblock %}
+		<!-- END content -->
+
+  <br/><br/><br/><br/><br/><br />
+  </div>
+</div>
+        {% block footer %}
+
+       <a href="http://gndec.ac.in/"><img src="http://localhost/media/css/css/greengne.png" align="right" height="90" width="90"></a>
+<font color="#76B900" align="center">For Bouquets & Brickbats visit :</font><br>
+<a href="{{ LOCAL_URL }}/auto/tcc11_12/contact" align="center">Credit & Feedback</a>	
+        {% endblock %}
+   
+</body>
+
+</html>

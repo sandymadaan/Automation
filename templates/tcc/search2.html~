@@ -1,0 +1,19 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html lang="en">
+<head>
+    <title>Search{% if query %} Results{% endif %}</title>
+</head>
+<body>
+  <h1>Search</h1>
+ <select name="form" ONCHANGE="location =
+this.options[this.selectedIndex].value;">
+{% for field in field_list %}
+  <option value="http://localhost/automation/tcc11_12/search/?q={{field.id}}">{{field.name}}</option>
+	{% endfor %}
+</select>
+
+	     
+</body>
+</html>
+

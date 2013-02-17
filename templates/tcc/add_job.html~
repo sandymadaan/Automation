@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load i18n %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Gndec Ludhiana</title>
+	
+</head>
+
+{% block content %}
+<script type="text/javascript" >
+    function showfield(name){
+    if(name=='cheque' || name=='dd')document.getElementById('div1').style.display="block";
+    else document.getElementById('div1').style.display='none';
+    }
+    function hidefield() {
+    document.getElementById('div1').style.display='none';
+    }
+    
+    </script>
+<body onload = "hidefield()">
+<h1 class="changeBlue">Add Lab Work</h1>
+ <table>
+<tr><td><label for="id_search">Type of work:</label></td><td><select name="form" ONCHANGE="location =
+this.options[this.selectedIndex].value;">
+	 <option value="">Select type</option>
+{% for reports in report %}
+  <option value="http://localhost/automation/tcc11_12/select/?id={{reports.id}}">{{reports.name}}</option>
+	{% endfor %}
+</select></tr>
+<br>
+ <tr><td><label for="id_search">Material:</label></td><td><select name="form" ONCHANGE="location =
+this.options[this.selectedIndex].value;">
+	<option value="">Select Material</option>
+{% for field in field_list %}
+  <option value="http://localhost/automation/tcc11_12/save/?q={{field.id}}">{{field.name}}</option>
+	{% endfor %}
+</select></td></tr>
+
+ 
+<br>
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post">
+	{% csrf_token %}
+         <tr><td><label for="id_sample">No. of such samples:</label></td><td><input id="id_sample" type="number" pattern="[0-9]" min="1" name="sample"  maxlength="11" required="Yes" title="You must enter a no. of samples in the range 1-9."/></td></tr>
+	<tr><td><label for="id_site">Address of Site:</label></td><td><input id="id_site" type="site" name="site"  maxlength="600"  required="yes" title="Site is Required!"  /></td></tr>
+	<tr><td><label for="id_letter">Letter No:</label></td><td><input id="id_letter" name="letter_no"  maxlength="11" /></td></tr>
+	<tr><td><label for="id_letterd">Letter Date:</label></td><td><input id="id_letter_date" name="letter_date"  maxlength="11" /></td></tr>	
+	<tr><td><label for="id_tds">TDS:</label></td><td><input id="id_tds" type="number" name="tds"  maxlength="11" value=0 /></td></tr>	
+
+        	   
+		 <tr><td><label for="check">Test:</label></td>
+			<td><table>{% if test %}
+       {% for tests in test%} <tr><input type="checkbox" name="test" value="{{tests.id}}">
+		 <label for="check">{{ tests.name }}</label><br /></tr>
+
+		
+       {% endfor %}      
+       {% endif  %}</table></td></tr>
+	
+	<tr><td><label for="id_work">Type of Work:</label></td><td><select name="type_of_work">
+{% for typeofwork in work %}
+    <option value="{{typeofwork.id }}">{{ typeofwork.name }}</option>
+{% endfor %}
+</select></td></tr>
+	
+<tr><td><label for="id_pay">Mode of Payment:</label></td><td>
+<select name="pay" id="pay" onchange="showfield(this.options[this.selectedIndex].value)">
+<option value="cash">Cash</option>
+<option value="online">Online</option>
+<option value="cheque" >Cheque</option>
+<option value="dd" >DD</option>
+</select></td></tr> </table>
+<div id="div1">Enter Cheque/DD No. : <input type="text" name="check_number" /> </br>Enter Cheque/DD Date : <input type="text" name="check_dd_date" id="id_cheque/dd_date" /> </div>
+
+       
+        <input type="submit" value="Submit">
+    </form>
+</html>
+{% endblock %}

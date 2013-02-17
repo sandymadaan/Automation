@@ -1,0 +1,32 @@
+{% extends "report/header.html" %}
+{% load i18n %}
+<html>
+{% block report %}
+<body>
+{% if brick %}
+
+	
+	
+	<table align="center" border="1">
+		<tr>
+			<th>S.no</th>
+			<th>Comp Strength</th>
+			<th>Water Absorption</th>
+			<th>Efflorescence</th>
+			<th>Dimension Test</th>
+		</tr>
+	{% for bricks in brick %}
+	
+		<tr>
+			<td>{{bricks.S_No}}</td>	
+			<td>{{bricks.Comp_Strength}}</td>
+			<td>{{bricks.Water_Absorption}}</td>		
+			<td>{{bricks.Efflorescence}}</td>		
+			<td>{{bricks.Dimension_Test}}</td>		
+		</tr>	
+	{% endfor  %}
+{% endif %}
+	</table>
+</body>
+{% endblock %}
+</html>

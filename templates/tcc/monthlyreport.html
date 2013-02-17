@@ -1,0 +1,77 @@
+<html>
+<head>
+    <title>Monthly Tax Report</title>
+</head>
+<body>
+<div align="center"><h2>{{ title.name }}</h2></div>
+<div>Detailed list of Service tax @10.30% (Including Education tax) for the month of {{month_print}}, {{year}} 
+<table border='1' width='100%'>
+	<tr>
+		<td>Sr.No </td>
+		<td>Receipt No.</td>
+		<td>Date</td>
+		<td>Name of Parties</td>
+		<td>Amount</td>
+		<td>Service Tax ( {{ servicetaxprint }} %)</td>
+		<td>Edu. Cess ( {{ educationtaxprint }} %)</td>
+		<td>H. Edu. Cess ( {{ highereducationtaxprint }} %)</td>
+		<td>Total Amount</td>
+	</tr>
+{% if client %}
+    {% for clients in client %}
+    {% for bills in bill %}
+   	{% if clients.job_no == bills.job_no %}
+        
+         <tr>
+                        <td>{{forloop.counter}}</td>
+			<td>{{ clients.job_no }}</td>
+			<td> {{ clients.date }}</td>
+			<td> {{clients.client__client__first_name}}</td>
+			<td>{{bills.price}}</td>
+			<td>{{bills.service_tax}}</td>
+			<td>{{bills.education_tax}}</td>
+			<td>{{bills.higher_education_tax}}</td>
+			<td>{{bills.net_total}}</td>
+			
+		</tr>
+      		{% endif  %}
+        {% endfor %}
+	{% endfor %}
+{% endif  %}
+<tr>
+         <td colspan='4'><center>SUM</center></td>
+         <td >{{total}}</td>
+         <td>{{service_tax}}</td>
+         <td>{{education_tax}}</td>
+         <td>{{higher_education_tax}}</td>
+         <td>{{net_total}}</td>
+        </tr>
+    <tr><td colspan='5'></td>
+    <td colspan='3'><center>{{tax}}</center></td></tr>    
+</table>
+<br></br></br></br>
+<table border="1" width='100%'>
+<tr>
+<td align ="center" >Service Tax Already Paid </td> 
+<td align ="right">{{paid_service_tax}}</td>
+<td align ="right">{{paid_education_tax}}</td>
+<td align ="right">{{paid_higher_education_tax}}</td>
+<td align ="right">{{paid_tax}}</td>
+<tr >
+<td colspan="2" align ="right">{{ser_tax}}</td>
+<td align ="right">{{edu_tax}}</td>
+<td align ="right">{{high_tax}}</td>  
+<tr >
+<td align ="center">Total Amount</td>
+<td colspan="3" align ="center">{{final}}</td>
+</table>
+</div>
+
+
+</body>
+	
+</table>
+</div>
+
+
+</body>
