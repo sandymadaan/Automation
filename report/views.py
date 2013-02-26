@@ -3,14 +3,14 @@ views of the report are described here
 """
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render_to_response
-from Auto.report.models import *
+from Automation.report.models import *
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from django.forms.formsets import formset_factory, BaseFormSet
 from django.forms.models import modelformset_factory
 from django.forms.models import inlineformset_factory
 from django.core.context_processors import csrf
-from Auto.report.forms import *
+from Automation.report.forms import *
 
 
 """
@@ -48,7 +48,7 @@ def soil_ohsr(request):
                 Soil_ohsr.save()
 	
             #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
-	return HttpResponseRedirect(reverse('Auto.report.views.result_Soil_ohsr'))
+	return HttpResponseRedirect(reverse('Automation.report.views.result_Soil_ohsr'))
     else:
         report_form = ReportForm()
         Soil_ohsr_formset = Soil_OhsrFormSet()
@@ -111,7 +111,7 @@ def chemical_analysis(request):
 		chem_analysis.save()
 	
             #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
-	return HttpResponseRedirect(reverse('Auto.report.views.result_chem'))
+	return HttpResponseRedirect(reverse('Automation.report.views.result_chem'))
     else:
         report_form = ReportForm()
         chem_analysis_formset = Chem_analysisFormSet()
@@ -170,7 +170,7 @@ def index(request):
                 todo_item.save()
 	
             #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
-	return HttpResponseRedirect(reverse('Auto.report.views.result_cube'))
+	return HttpResponseRedirect(reverse('Automation.report.views.result_cube'))
     else:
         report_form = ReportForm()
         todo_item_formset = CubeFormSet()
@@ -229,7 +229,7 @@ def water_test(request):
                 water.save()
 	
            #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
-	   return HttpResponseRedirect(reverse('Auto.report.views.result_water'))
+	   return HttpResponseRedirect(reverse('Automation.report.views.result_water'))
     else:
         report_form = ReportForm()
         water_formset = WaterFormSet()
@@ -287,7 +287,7 @@ def brick_test(request):
                 brick.save()
 	
            #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
-	   return HttpResponseRedirect(reverse('Auto.report.views.result_brick'))
+	   return HttpResponseRedirect(reverse('Automation.report.views.result_brick'))
     else:
         report_form = ReportForm()
         brick_formset = BrickFormSet()
@@ -345,7 +345,7 @@ def soil_building(request):
 		soil_building.save()
 	
            #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
-	   return HttpResponseRedirect(reverse('Auto.report.views.result_soil_building'))
+	   return HttpResponseRedirect(reverse('Automation.report.views.result_soil_building'))
     else:
         report_form = ReportForm()
         soil_building_formset = Soil_BuildingFormSet()
@@ -403,7 +403,7 @@ def admixture(request):
                 Mixture.save()
 	
            #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
-	   return HttpResponseRedirect(reverse('Auto.report.views.result_Admixture'))
+	   return HttpResponseRedirect(reverse('Automation.report.views.result_Admixture'))
     else:
         report_form = ReportForm()
         Mixture_formset = AdmixtureFormSet()
@@ -461,7 +461,7 @@ def cement_ppc(request):
                 Cement_ppc.save()
 	
            #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
-	   return HttpResponseRedirect(reverse('Auto.report.views.result_Cement_PPC'))
+	   return HttpResponseRedirect(reverse('Automation.report.views.result_Cement_PPC'))
     else:
         report_form = ReportForm()
         Cement_ppc_formset = Cement_PPCFormSet()
@@ -519,7 +519,7 @@ def cement_opc_33(request):
 		Cement_opc_33.save()
 	
            #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
-	   return HttpResponseRedirect(reverse('Auto.report.views.result_Cement_OPC_33'))
+	   return HttpResponseRedirect(reverse('Automation.report.views.result_Cement_OPC_33'))
     else:
         report_form = ReportForm()
         Cement_opc_33_formset = Cement_OPC_33FormSet()
@@ -577,7 +577,7 @@ def cement_opc_43(request):
                 Cement_opc_43.save()
 	
            #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
-	   return HttpResponseRedirect(reverse('Auto.report.views.result_Cement_OPC_43F'))
+	   return HttpResponseRedirect(reverse('Automation.report.views.result_Cement_OPC_43F'))
     else:
         report_form = ReportForm()
         Cement_opc_43_formset = Cement_OPC_43FormSet()
