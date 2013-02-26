@@ -8,7 +8,7 @@ from django.views.generic.simple import direct_to_template
 """
 Urls of views.py
 """
-urlpatterns = patterns('Auto.report.views',
+urlpatterns = patterns('Automation.report.views',
 	(r'^report/$', 'report'),
 	(r'^chemical_analysis/$', 'chemical_analysis'),
 	(r'^result_chem/$', 'result_chem'),
@@ -38,7 +38,7 @@ urlpatterns = patterns('Auto.report.views',
 """
 Urls of search.py
 """
-urlpatterns += patterns('Auto.report.search',
+urlpatterns += patterns('Automation.report.search',
 	(r'^search_report/$', 'search_report'),
 	(r'^search/$', 'search'),
 	(r'^report_gen/$', 'report_gen'),
@@ -47,7 +47,7 @@ urlpatterns += patterns('Auto.report.search',
 """
 Urls of pdf.py
 
-urlpatterns += patterns('Auto.report.pdf',
+urlpatterns += patterns('Automation.report.pdf',
 	(r'^report_pdf/$', 'report_pdf'),
 )
 """
