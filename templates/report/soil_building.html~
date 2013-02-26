@@ -1,0 +1,256 @@
+{% extends "report/report_header.html" %}
+{% load i18n %}
+<html>
+<body>
+{% block content %}
+<h2>List of Faculty/Experts</h2>
+<table>
+<tr><td>
+<h2>Geotechnical</h2>		Dr. J.N.Jha, Ph.D
+</td><td>			Prof. Kulbir Singh Gill,M.E
+</td><td>			Dr. B.S.Walia, Ph.D.
+</td><td>			Prof. Harjinder Singh, M.E
+</td><td>			Prof. Gurdeepak Singh, M.Tech.
+</td><tr>
+<h2>Structure</h2>		Dr. Harpal Singh, Ph.D
+</tr><tr>			Dr. Hardeep Singh Rai, Ph.D
+</tr><tr>			Prof. Harvinder Singh, M.Tech
+</tr><tr>			Dr. Jagbir Singh, Ph.D.
+</tr><tr>			Prof. Kanwarjit Singh Bedi, M.Tech.
+</tr><tr>			Prof. Parshant Garg, M.Tech
+</tr><tr>			Prof. Harpreet Kaur, M.Tech.
+</tr><tr>			Prof. Inderpreet Kaur, M.Tech.
+</tr><tr>
+</tr><tr>
+<h2>Highway</h2> 		Prof. Kulbir Singh Gill, M.E 
+</tr><tr>
+</tr><tr>
+<h2>Material Testing</h2> 	Dr. Jagbir Singh, Ph.D.
+</tr><tr>			Prof. Kanwarjit Singh Bedi, M.Tech.
+</tr><tr>
+</tr><tr>
+<h2>Survey</h2>			Dr. B.S.Walia, Ph.D.
+</tr><tr>
+<h2>Chemical Testing</h2> 	Dr. R.P.Singh, Ph.D. 
+</tr><tr>
+<h2>Environmental Engg.</h2>	Prof. Puneet Pal Singh, M.E
+</tr>
+</table>
+{% for Soil in Soil_building %}
+
+<h1>SOIL INVESTIGATION REPORT</h1>
+<p>
+<br/>
+<table align="center" width="80%" border="2px" cellspacing="0px">
+	<tr>
+		<td align="left"><b>Date of testing :</b></td><td align="left">{{Soil.Date_of_Testing}}</td>
+	</tr>
+	<tr>
+		<td align="left"><b>Type of Structure:</b></td><td align="left">{{Soil.Type_of_Str}}</td>
+	</tr>
+	<tr>
+		<td align="left"><b>Site location:</b></td><td align="left">Latitude: {{Soil.Latitude_N}}<br/>Longitude: {{Soil.Longitude_E}}
+</td>
+	</tr>
+ 	<tr>
+		<td align="left"><b>Tested in Presence of:</b></td><td align="left">{{Soil.Presence_1}}, <br/>{{Soil.Presence_2}}</td>
+	</tr>
+	<tr>
+		<td align="left"><b>Report Submitted to </b></td><td align="left">{{Soil.Submitted_1}}, <br/>{{Soil.Submitted_2}}, </br>{{Soil.Submitted_3}}</td>
+	</tr>							
+ 								
+</table>
+<br/><br/>
+<h2 align="center">{{Soil.Site_Name}}</h2>
+
+<h3>Introduction</h3>
+<p>The soil investigation for the proposed {{Soil.Site_Name}} had been taken up on request of {{Soil.Submitted_1}}, {{Soil.Submitted_2}}, {{Soil.Submitted_3}}. The field soil investigation as per requirements was carried out on {{Soil.Date_of_Testing}} by testing team of this institution in the presence of {{Soil.Presence_1}} & {{Soil.Presence_2}} of  the concerned department.</p>
+<P>The purpose of this soil investigation was to determine the nature of the subsoil stratum and  the  safe net allowable bearing capacity of the soil.</p>
+<h3>Field Soil Investigation</h3>
+<p>{{Soil.Bore_Hole}} bore holes were tested in the field Standard Penetration Test (S.P.T) was carried out at the proposed site as per I.S.Code 2131-1981 in the soil deposits at the foundation level and at an interval of 1.5 m or at the location where change of soil strata takes place during field testing. The samples of the soil both disturbed and tube samples were collected at different depths and were properly sealed in air-tight plastic bags after labelling them carefully to maintain the natural moisture content.</p> 
+<h3>Laboratory Testing</h3>
+<p>The various samples (disturbed and tube) collected during field soil investigation were tested in the laboratory (as per Standard Methods) for finding.</p> 
+<p>(i)	Grain size analysis and wet analysis</p>
+<p>(ii)	Atterberg's limits</p>
+<p>(iii)	Field moisture content</p>
+<p>(iv)	Bulk density</p>							
+<p>(v)	Direct/ triaxial shear/Unconfined compression  tests</p>
+<h3>Safe Bearing Capacity</h3>
+<p>As per I.S. Code 6403-1981, the least of the following shall be taken as safe net allowable bearing capacity of the soil.</p>
+<p>(i)	The safe net allowable bearing capacity from shear considerations is obtained by dividing net ultimate bearing capacity by a suitable factor of safety.</p>	
+<p>(ii)	The safe net allowable bearing pressure that can be imposed on the base of the foundation without the settlement exceeding a permissible value is calculated either from settlement analysis or from the Standard Penetration Test Values(N)whichever is  applicable depending upon the nature of sub soil strata.</p>				   
+<h3>Water Table</h3>
+<p>The underground (i.e. sub-soil) water was  {{Soil.Water_Table}} at  the time of  field soil investigation.</p>
+
+<h3>Proposed Substructure</h3>
+<p>The substructures i.e. foundations of the proposed  {{Soil.Type_of_Str}} may be taken as  wall footing and isolated column foundation. The least soil properties have been taken for calculating the bearing capacity of soil for the following types of foundations.</p>
+<h3>(i)	Wall Foundation</h3>
+<p span style="padding-left:100px">Depth of  wall foundation,  Df 	=  	{{Soil.Wall_Dt}} m</p>
+<p span style="padding-left:100px">Width of wall foundation,  B 		=	{{Soil.Wall_B}}  m</p>
+<h3>(ii)	Column  Foundation</h3>
+<p span style="padding-left:100px">Depth of column foundation, Df   	=   	{{Soil.Col_Df}} m</p>
+<p span style="padding-left:100px">Size of column  foundation   		=      	{{Soil.Col_L}} m x{{Soil.Col_B}} m</p>
+<p span style="padding-left:100px">Length of  column foundation , L 	= 	{{Soil.Col_L}} m</p>
+<p span style="padding-left:100px">Width of column foundation, B 	= 	{{Soil.Col_B}} m</p>			
+<p span style="padding-left:100px">The data obtained from the field soil investigation and the laboratory tests have been used in the preparation of this report.</p>
+<h3>Bearing Capacity Calculations</h3>
+<h2>(A)	Bearing Capacity Based on Shear Considerations</h2>
+<p span style="padding-left:100px">(As per I.S.Code - 6403:1981)</p>
+<h3>(i)	Wall Foundation</h3>	
+<p span style="padding-left:100px">Depth of  wall foundation, Df		 =	{{Soil.Wall_Dt}} m</p>
+<p span style="padding-left:100px">Width of wall foundation,  B 		= 	{{Soil.Wall_B}} m</p>
+<p span style="padding-left:100px">The least soil properties at the foundation level i.e. at {{Soil.Wall_Dt}} m depth are:</p>
+<p span style="padding-left:100px">γ	=	{{Soil.Gama_wall}} kN/m3,  		c 	=	{{Soil.Wall_C}} kN/m2</p>
+<p span style="padding-left:100px">	ф   	=	{{Soil.Wall_Phay}}0 ,			ф'	=	{{Soil.Wall_Phay_Fe}} 0</p>	
+<p span style="padding-left:100px">Bearing Capacity factors are:</p>
+<p span style="padding-left:100px">Nc'  =    {{Soil.Wall_Nc}},        Nq' = {{Soil.Wall_Nq}}      and       Nγ '  =      {{Soil.Wall_Ny}}</p>
+<p span style="padding-left:100px">Shape factors are:</p>
+<p span style="padding-left:100px">Sc =   {{Soil.Wall_Sc}}   Sq =  {{Soil.Wall_Sq}}     Sγ     =   {{Soil.Wall_Sy}}</p>
+<p span style="padding-left:100px">Depth  factors are:</p>
+<p span style="padding-left:100px">dc       =   {{Soil.Wall_dc}} ,       dq = dγ      =   {{Soil.Wall_dq_dy}}</p>
+<p span style="padding-left:100px">Water table correction factor, w'  =  {{Soil.Wall_w}}</p>
+<p span style="padding-left:100px">Ultimate net bearing capacity, qu' = 0.67 x{{Soil.Wall_C}} x{{Soil.Wall_Nc}} x{{Soil.Wall_Sc}} x{{Soil.Wall_dc}} +{{Soil.Gama_wall}} x{{Soil.Wall_Dt}} x(1 -{{Soil.Wall_Nq}}) x{{Soil.Wall_Sc}} x{{Soil.Wall_dq_dy}}
++0.5 x{{Soil.Gama_wall}} x{{Soil.Wall_B}} x{{Soil.Wall_Ny}} x{{Soil.Wall_Sc}} x{{Soil.Wall_dq_dy}} x{{Soil.Wall_w}}
+=	{{Soil.Wall_peq}}  	=	{{Soil.Wall_Total}} kN/m2				       
+<p span style="padding-left:100px">Safe net allowable bearing capacity = qu'/2.5  =   {{Soil.Wall_Total}}/2.5   = {{Soil.Wall_T_2}} kN/m2     . ..... (a)</p>					
+
+
+<h3>(ii)	Column Foundation</h3>
+<p span style="padding-left:100px">Depth of column foundation, Df 	=	{{Soil.Col_Df}} m</p>
+<p span style="padding-left:100px">Size of column  foundation   		=	{{Soil.Col_L}} m x{{Soil.Col_B}} m</p>
+<p span style="padding-left:100px">Length of  column foundation , L 	= 	{{Soil.Col_L}} m</p>
+<p span style="padding-left:100px">Width of column foundation, B 	= 	{{Soil.Col_B}} m</p>
+<p span style="padding-left:100px">The least soil properties at the foundation level i.e. at {{Soil.Col_Df}} m depth are:</p>
+<p span style="padding-left:100px">γ	=	{{Soil.Gama_wall}} kN/m3,  		c	=	{{Soil.Wall_C}} kN/m2</p>     
+<p span style="padding-left:100px">	ф  	=	{{Soil.Wall_Phay}}0 ,			ф' 	=	{{Soil.Wall_Phay_Fe}}0</p>
+<p span style="padding-left:100px">Bearing Capacity factors are:</p>
+<p span style="padding-left:100px">Nc'  = {{Soil.Wall_Nc}},        Nq' = {{Soil.Wall_Nq}}       and       Nγ '  = {{Soil.Wall_Ny}}</p>
+<p span style="padding-left:100px">Shape factors are:</p>
+<p span style="padding-left:100px">Sc =   {{Soil.Col_Sc}}   Sq =  {{Soil.Col_Sq}}     Sγ     =   {{Soil.Col_Sy}}</p>
+<p span style="padding-left:100px">Depth factors are:</p>
+<p span style="padding-left:100px">dc       =   {{Soil.Col_dc}} ,       dq = dγ      =   {{Soil.Col_dq_dy}}</p>
+<p span style="padding-left:100px">Water table correction factor, w' = {{Soil.Wall_w}}</p>
+<p span style="padding-left:100px">Ultimate net bearing capacity,  qu' = 0.67 x{{Soil.Wall_C}} x{{Soil.Wall_Nc}} x{{Soil.Col_Sc}} x{{Soil.Col_dc}} +{{Soil.Gama_wall}} x{{Soil.Col_Df}} x(1 -{{Soil.Wall_Nq}}) x{{Soil.Col_Sq}} x{{Soil.Col_dq_dy}}
++0.5 x{{Soil.Gama_wall}} x{{Soil.Col_L}} x{{Soil.Wall_Ny}} x{{Soil.Col_Sy}} x{{Soil.Col_dq_dy}} x{{Soil.Wall_w}}</p>
+<p span style="padding-left:100px">=	{{Soil.Col_peq}}  	=	{{Soil.Col_Total}} kN/m2</p>	
+<p span style="padding-left:100px">Safe net allowable bearing capacity =  qu'/2.5  =  {{Soil.Col_Total}}/2.5  =   {{Soil.Col_T_2}} kN/m2	        ..........(b)</p>
+<h2>(B)	Bearing Capacity Based on Standard Penetration Test Value</h2>
+<p span style="padding-left:100px">(As per I.S. Code -6403: 1981)</p>
+<table align="center" border="2px" cellspacing="0px">
+	<tr>
+		<th>S.No.</th>
+		<th>Depth(m)</th>
+		<th>Overburden pressure (kN/m2)</th>
+		<th>Correction factor</th>
+		<th>Observed value of N</th>
+		<th>Corrected value of N</th>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>{{Soil.Dt_1}}</td>
+		<td>{{Soil.Ob_Pr_1}}</td>
+		<td>{{Soil.Corr_F_1}}</td>
+		<td>{{Soil.Ob_N_V1}}</td>
+		<td>{{Soil.Corr_N_V1}}</td>
+	</tr>
+	<tr>
+		<td>2</td>
+		<td>{{Soil.Dt_2}}</td>
+		<td>{{Soil.Ob_Pr_2}}</td>
+		<td>{{Soil.Corr_F_2}}</td>
+		<td>{{Soil.Ob_N_V2}}</td>
+		<td>{{Soil.Corr_N_V2}}</td>
+	</tr>
+	<tr>
+		<td>3</td>
+		<td>{{Soil.Dt_3}}</td>
+		<td>{{Soil.Ob_Pr_3}}</td>
+		<td>{{Soil.Corr_F_3}}</td>
+		<td>{{Soil.Ob_N_V3}}</td>
+		<td>{{Soil.Corr_N_V3}}</td>
+	</tr>
+	<tr>
+		<td>4</td>
+		<td>{{Soil.Dt_4}}</td>
+		<td>{{Soil.Ob_Pr_4}}</td>
+		<td>{{Soil.Corr_F_4}}</td>
+		<td>{{Soil.Ob_N_V4}}</td>
+		<td>{{Soil.Corr_N_V4}}</td>
+	</tr>
+	<tr>
+		<td>5</td>
+		<td>{{Soil.Dt_5}}</td>
+		<td>{{Soil.Ob_Pr_5}}</td>
+		<td>{{Soil.Corr_F_5}}</td>
+		<td>{{Soil.Ob_N_V5}}</td>
+		<td>{{Soil.Corr_N_V5}}</td>
+	</tr>
+	<tr>
+		<td>6</td>
+		<td>{{Soil.Dt_6}}</td>
+		<td>{{Soil.Ob_Pr_6}}</td>
+		<td>{{Soil.Corr_F_6}}</td>
+		<td>{{Soil.Ob_N_V6}}</td>
+		<td>{{Soil.Corr_N_V6}}</td>
+	</tr>
+	<tr>
+		<td>7</td>
+		<td>{{Soil.Dt_7}}</td>
+		<td>{{Soil.Ob_Pr_7}}</td>
+		<td>{{Soil.Corr_F_7}}</td>
+		<td>{{Soil.Ob_N_V7}}</td>
+		<td>{{Soil.Corr_N_V7}}</td>
+	</tr>
+	<tr>
+		<td>8</td>
+		<td>{{Soil.Dt_8}}</td>
+		<td>{{Soil.Ob_Pr_8}}</td>
+		<td>{{Soil.Corr_F_8}}</td>
+		<td>{{Soil.Ob_N_V8}}</td>
+		<td>{{Soil.Corr_N_V8}}</td>
+	</tr>
+</table>	
+<p span style="padding-left:100px">i) 	Depth of wall foundation, Df  		=  	{{Soil.Wall_Dt}} m</p>
+<p span style="padding-left:100px">Width of  wall foundation, B 		=	{{Soil.Wall_B}} m</p>    
+<p span style="padding-left:100px">Safe net allowable bearing pressure for</p>
+<p span style="padding-left:100px">B = {{Soil.Wall_B}} m,  N = {{Soil.Wall_N_V}} , S = {{Soil.Wall_S}} m & w' = {{Soil.Wall_w}}   ]	    =  {{Soil.Wall_Value}} kN/m2       .........(a)</p>
+<p span style="padding-left:100px">Taking least of  A & B the safe net allowable bearing capacity = {{Soil.Wall_Net_V}} kN/m2</p>	 
+<p span style="padding-left:100px">   	The safe gross allowable bearing capacity =     {{Soil.Wall_G_V}} kN/m2</p>
+<p span style="padding-left:100px">ii)	Depth of column foundation, Df   	= 	{{Soil.Col_Df}} m</p>
+<p span style="padding-left:100px">Width of  column foundation, B 	=  	{{Soil.Col_B}} m</p> 
+<p span style="padding-left:100px">Safe net allowable bearing pressure for</p>				
+<p span style="padding-left:100px">B = {{Soil.Col_B}} m, N =  {{Soil.Col_N_V}}, S = {{Soil.Wall_S}} m & w' =  {{Soil.Wall_w}}]	=   {{Soil.Col_Value}} kN/m2  	.......(b)</p>
+<p span style="padding-left:100px">Taking least of  A and B the safe net allowable bearing capacity =  {{Soil.Col_Net_V}} kN/m2</p> 
+<p span style="padding-left:100px">The safe gross allowable bearing capacity = {{Soil.Col_G_V}} kN/m2</p>		
+
+<h3>Remarks:</h3>
+
+<p span style="padding-left:100px">(i)	The bore hole logs showing the nature of subsoil stratum alongwith standard penetration test values(N) at different depths and soil properties from laboratory test results are attached.</p>
+
+<p span style="padding-left:100px">(ii)	The safe net allowable bearing capacity for wall foundation {{Soil.Wall_B}} m wide at a depth of {{Soil.Wall_Dt}} m from the existing surface is {{Soil.Wall_Net_V}} kN/m2</p>
+
+<p span style="padding-left:100px">(iii)	The safe gross allowable bearing capacity for wall foundation {{Soil.Wall_B}} m wide at a depth of {{Soil.Wall_Dt}} m from the existing surface is {{Soil.Wall_G_V}} kN/m2</p>
+
+<p span style="padding-left:100px">(iv)	The safe net allowable bearing capacity for column foundation of size {{Soil.Col_L}} x{{Soil.Col_B}} m  at a depth of {{Soil.Col_Df}} m from the existing surface is {{Soil.Col_Net_V}} kN/m2</p>
+
+<p span style="padding-left:100px">(v)	The safe gross allowable bearing capacity for column foundation of size {{Soil.Col_L}} m x{{Soil.Col_B}} m at a depth of {{Soil.Col_Df}} m from the existing surface is {{Soil.Col_G_V}} kN/m2</p>
+
+<p span style="padding-left:100px">(vi)	The sub-soil water was {{Soil.Water_Table}}  at the time of field soil investigation.</p>
+
+	<table span style="padding-left:100px; padding-right:100"  width="100%">
+		<tr>	
+			<td align="left"><h4>(Dr. B. S. Walia)<br/>Associate Professor <br/>Civil Engg. Department</h4></td>
+			<td align="right"><h4>(Prof. Kulbir Singh Gill)<br/>Associate Professor <br/>Civil Engg. Department</h4></td>
+		</tr>
+	</table>
+	<table span style="padding-left:100px; padding-right:100" width="100%">
+		<tr>	
+			<td align="left"><h4>(Dr. J. N. Jha)<br/>H.O.D., Civil Engg. Department	</h4></td>
+			<td align="right"><h4>(Dr. H. S. Rai)<br/>Dean Testing & Consultancy</h4></td>
+		</tr>
+	</table>
+{% endfor %}
+{% endblock %}
+<body>
+</html>
+

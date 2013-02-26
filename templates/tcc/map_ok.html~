@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+<html>
+{% block content %}
+<body>
+<p>Site succesfully added to map, </p>
+<input type="button" value="Continue adding job" onClick="javascript:history.go(-2);">
+</body>
+</html>
+{% endblock %}

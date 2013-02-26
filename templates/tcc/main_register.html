@@ -1,0 +1,65 @@
+<html>
+<head>
+    <title>Main Register</title>
+</head>
+<body>
+<div align="center"> Main Register of {{month_print}}, {{year}} 
+<table border='1'>
+	<tr>
+		<th>S.No</th>
+		<th>Ref.No </th>
+		<th>Date</th>
+		<th>Receipt</th>
+		<th>Address</th>
+		<th>Type of Material</th>
+		<th>College Income {{collegeincome }}%</th>
+		<th>Admin Charges {{admincharge}}%</th>
+		<th>Consultancy</th>
+		<th>Dev. Fund</th>
+		<th>Total</th>
+	</tr>
+
+{% if amount %}
+    
+    {% for amounts in amount %}
+    
+       
+	 
+         <tr>
+            <td>{{forloop.counter}}</td> 
+			<td>{{ amounts.job__id}}</td> 
+			<td> {{ amounts.job__date }}</td>
+			<td> {{ amounts.job__job_no }}</td>
+			<td> {{amounts.job__client__client__first_name}}</td>
+			<td>{{amounts.job__clientjob__material__name}}</td>
+			<td align="right">{{amounts.college_income}}</td>
+			<td align="right">{{amounts.admin_charge}}</td>
+			<td align="right">{{amounts.consultancy_asst}}</td>
+			<td align="right">{{amounts.development_fund}}</td>
+			<td align="right">{{amounts.unit_price}}</td>
+		
+			
+		</tr>
+        
+        
+        {% endfor %}
+{% endif  %}
+		<tr>
+			<td><b>  </b></td>
+			<td><b> </b></td>
+			 <td><b></b></td>
+			<td><b>  </b></td>
+			<td><b> </b></td>
+			<td><b> </b></td>
+			<td align="right"><b> {{college_income}} </b></td>
+	         <td align="right"><b>{{admin_charge}}</b></td>
+	        <td align="right"><b>	{{consultancy_asst}} </b></td>
+	        <td align="right"><b> {{development_fund}}</b></td>
+	        <td align="right"><b>{{total}} </b></td>
+	       
+	</tr>	
+</table>
+</div>
+
+
+</body>

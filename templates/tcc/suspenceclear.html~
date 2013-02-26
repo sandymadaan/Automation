@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+<html>
+<head>
+    <title>Gndec Ludhiana</title>
+</head>
+{% block content %}
+<body>
+  <h1 class="changeBlue">Search a Job</h1>
+  <form action="." method="GET">
+    <label for="q">Job: </label>
+    <input type="text" name="q" value="{{ query|escape }}">
+	<input type="submit" value="Search">
+  </form>
+	
+{% if query %}
+	<h2>Results for "{{ query|escape }}":</h2>
+    {% if sus %}
+<br>
+    	{% if form.errors %}
+       		 <p style="color: red;">
+          	  Please correct the error{{ form.errors|pluralize }} below.
+       	 </p>
+   	 {% endif %}
+	
+
+    <form action="" method="post">
+	{% csrf_token %}
+	
+    
+        <table>
+	<tr><th><label for="q">Job_id: </label></th><td><input id="id_job" type="text" name="job" value="{{ query|escape }}"></td></tr>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+	{% else %}
+	      <p>No Suspence Job found</p>
+{% endif %}
+    {% endif %}
+</body>
+</html>
+{% endblock %}

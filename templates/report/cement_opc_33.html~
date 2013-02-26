@@ -1,0 +1,96 @@
+{% extends "report/header.html" %}
+{% load i18n %}
+<html>
+{% block report %}
+<body>
+	
+	<table align="center" border="2px" cellspacing="0px">
+	{% for OPC in opc %}
+		<tr>
+			<th>Physical Properties</th>
+			<th>IS 269 33 GRADE(OPC)</th>
+			<th>Lab Test Result</th>
+		</tr>
+		<tr>
+			<td>Setting Time:</br>initial(Min.)<br/>final(Max.)</td>
+			<td><br/>30 minites (Min.)<br/>600 minutes(Max.)</td>
+			<td><br/>{{OPC.Initial_Time}}<br/>{{OPC.Final_Time}}</td>
+		</tr>
+		
+		<tr>
+			<td>Fineness (SQM/Kg)<br/>(Min.)</td>
+			<td><br/>225 m&sup2;/Kg</td>
+			<td><br/>{{OPC.Fineness}}m&sup2;/Kg</td>
+		</tr>
+		<tr>
+			<td>Soundness:</br>Le-Chat expansion<br/>Un-aerated cement(Max.)</td>
+			<td><br/>10.0(Max.)<br/>5.0(Max.)</td>
+			<td><br/>{{OPC.Unaerated_Cement_Le}}<br/>{{OPC.After_7_Days_Areation_Le}}</td>
+		</tr>
+		<tr>
+			<td>Soundness:</br>Auto Clave expansion<br/>Un-aerated cement(Max.)</td>
+			<td><br/>0.8(Max.)<br/>0.6(Max.)</td>
+			<td><br/>{{OPC.Unaerated_Cement_Auto}}<br/>{{OPC.After_7_Days_Areation_Auto}}</td>
+		</tr>
+		<tr>
+			<td>Consistency</td>
+			<td></td>
+			<td>{{OPC.Consistency}}</td>
+		</tr>
+		<tr>
+			<td>Compressive Strength:</br>(a) 72&plusmn;1 hours (Min.)<br/>(b) 168&plusmn;2 hours (Min)<br/>(c) 672&plusmn;4 hours (Min.)</td>
+			<td><br/>16 (Min)<br/>22 (Min)<br/>33 (Min.)</td>
+			<td><br/>{{OPC.Hours_72}}<br/>{{OPC.Hours_168}}<br/>{{OPC.Hours_672}}</td>
+		</tr>
+
+
+	{% endfor  %}
+	</table>
+	
+<table align="center" border="2px" cellspacing="0px">
+	{% for OPC in opc %}
+		<tr>
+			<th>Physical </th>
+			<th>IS 269 33 GRADE(OPC)</th>
+			<th>Lab Test Result</th>
+		</tr>
+		<tr>
+			<td>Setting Time:</br>initial(Min.)<br/>final(Max.)</td>
+			<td><br/>30 minites (Min.)<br/>600 minutes(Max.)</td>
+			<td><br/>{{OPC.Initial_Time}}<br/>{{OPC.Final_Time}}</td>
+		</tr>
+		
+		<tr>
+			<td>Fineness (SQM/Kg)<br/>(Min.)</td>
+			<td><br/>225 m&sup2;/Kg</td>
+			<td><br/>{{OPC.Fineness}}m&sup2;/Kg</td>
+		</tr>
+		<tr>
+			<td>Soundness:</br>Le-Chat expansion<br/>Un-aerated cement(Max.)</td>
+			<td><br/>10.0(Max.)<br/>5.0(Max.)</td>
+			<td><br/>{{OPC.Unaerated_Cement_Le}}<br/>{{OPC.After_7_Days_Areation_Le}}</td>
+		</tr>
+		<tr>
+			<td>Soundness:</br>Auto Clave expansion<br/>Un-aerated cement(Max.)</td>
+			<td><br/>0.8(Max.)<br/>0.6(Max.)</td>
+			<td><br/>{{OPC.Unaerated_Cement_Auto}}<br/>{{OPC.After_7_Days_Areation_Auto}}</td>
+		</tr>
+		<tr>
+			<td>Consistency</td>
+			<td></td>
+			<td>{{OPC.Consistency}}</td>
+		</tr>
+		<tr>
+			<td>Compressive Strength:</br>(a) 72&plusmn;1 hours (Min.)<br/>(b) 168&plusmn;2 hours (Min)<br/>(c) 672&plusmn;4 hours (Min.)</td>
+			<td><br/>16 (Min)<br/>22 (Min)<br/>33 (Min.)</td>
+			<td><br/>{{OPC.Hours_72}}<br/>{{OPC.Hours_168}}<br/>{{OPC.Hours_672}}</td>
+		</tr>
+
+
+	{% endfor  %}
+	</table>
+
+
+</body>
+{% endblock %}
+</html>

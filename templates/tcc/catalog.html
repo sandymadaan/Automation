@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>gne</title>
+</head>
+{% block content %}
+<div align="center"><h2>Catalog</h2></div>
+<div align="center"><h4>Services Provided</h4></div>
+<table>
+	<tr>
+		<td><b>S.No</b></td>
+		<td> </td>
+		<td> </td>
+		<td><b>LAB</b></td>
+ 	</tr>
+{% if lab %}
+    {% for labs in lab %}
+	<tr>
+			<td>{{ labs.id}}</td>
+			<td> </td>
+			<td> </td>
+			<td> <a href="{{ LOCAL_URL }}/automation/tcc11_12/field/?id={{ labs.id }}" >{{labs.name}}</a> </td>
+</tr>
+        {% endfor %}
+{%endif %}
+</table> 
+
+</html>
+{% endblock %}
