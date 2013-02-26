@@ -1,7 +1,0 @@
-{% extends "base.html" %}
-{% load i18n %}
-
-{% block content %}
-<div id="leftnav" style=" float: left; width:auto;"><img src="http://localhost/media/img/swagat.gif" height="250" width="200"></div>
-<div id="content" style="float: center; width: auto; position: absolute; right: 0px; left: 500px; top:230px;"><font size="5px"> Welcome To TCC</font><br><a href="/automation/tcc11_12/index"><img src="http://localhost/media/img/enter1.png" height="50" width="50"></a></div>
-{% endblock %}
