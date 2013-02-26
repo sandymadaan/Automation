@@ -5,9 +5,9 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
-from Auto.report.models import *
-from Auto.report.forms import *
-from Auto.report.views import *
+from Automation.report.models import *
+from Automation.report.forms import *
+from Automation.report.views import *
 from django.core.context_processors import csrf
 
 """
