@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     (r'^hello', direct_to_template,
                     { 'template': 'job_ok.html' }, ),
     (r'^tcc11_12/', include('Automation.tcc.urls')),
-    (r'^report/', include('Auto.report.urls')),
+    (r'^report/', include('Automation.report.urls')),
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
