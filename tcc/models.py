@@ -35,18 +35,20 @@ class UserProfile(models.Model):
         user = models.ForeignKey(User)
 
     # Other fields here
-        name = models.CharField(max_length=255)
-	address_1 =models.CharField(max_length=255)
-	address_2 =models.CharField(max_length=255)
+	first_name = models.CharField(max_length=100)
+	middle_name = models.CharField(max_length=100,blank=True, null=True)
+	last_name = models.CharField(max_length=100,blank=True, null=True)
+	company =models.CharField(max_length=255,null=True,blank=True)
+	address =models.CharField(max_length=255)
 	city =models.CharField(max_length=255)
-	pin_code = models.IntegerField(null=True)
+	pin_code = models.IntegerField(null=True,blank=True)
 	state=models.CharField(max_length=30,choices=STATES_CHOICES,default='Punjab')
 	website =models.URLField(blank=True, null=True)
 	contact_no =models.CharField(max_length=25)
 	type_of_organisation = models.CharField(max_length=20,choices=ORGANISATION_CHOICES)
 
 	def __unicode__(self):
-        	return self.name
+        	return self.first_name
 
 
 class UserProfileForm(ModelForm):
@@ -54,9 +56,11 @@ class UserProfileForm(ModelForm):
 		model = UserProfile
 		exclude= ['user']
 		widgets = {
-             'name' : TextInput(attrs={'size':60}),
-             'address_1' : TextInput(attrs={'size':60}),
-             'address_2' : TextInput(attrs={'size':60}),
+             'first_name' : TextInput(attrs={'size':60}),
+	     'middle_name' : TextInput(attrs={'size':60}),
+	     'last_name' : TextInput(attrs={'size':60}),
+             'company' : TextInput(attrs={'size':60}),
+             'address' : TextInput(attrs={'size':60}),
              'city' : TextInput(attrs={'size':60}),
              'pin_code' : TextInput(attrs={'size':60}),
              'website' : TextInput(attrs={'size':60}),
@@ -73,7 +77,7 @@ class Organisation(models.Model):
 	address = models.CharField(max_length=150)
 	phone = models.CharField(max_length=20)
 	director = models.CharField(max_length=50) 
-	logo_upload = models.ImageField(upload_to='logo')
+	
 
 	def __unicode__(self):
         	return self.name
@@ -124,7 +128,7 @@ class Test(models.Model):
 	material = models.ForeignKey(Material)
 	code = models.CharField(max_length=5)
 	name = models.CharField(max_length=300)
-	quantity = models.IntegerField(blank=True, null=True)
+	quantity = models.CharField(max_length=100,blank=True, null=True)
 	unit = models.CharField(max_length=15)
 	cost = models.IntegerField(blank=True, null=True)
 	tags = TagField()
@@ -166,7 +170,7 @@ class Job(models.Model):
 	job_no = models.IntegerField(editable =False)
 	sample = models.IntegerField()
 	ip = models.CharField(max_length=50)
-	site = models.CharField(max_length=50)
+	site = models.CharField(max_length=1000)
 	type_of_work = models.ForeignKey(Govt)
 	report_type = models.ForeignKey(Report)
 	pay = models.CharField(max_length=600)
