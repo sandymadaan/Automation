@@ -9,10 +9,10 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.db.models import Max ,Q, Sum
 from django.forms.fields import DateField, ChoiceField, MultipleChoiceField
-from Auto.tcc.models import *
+from Automation.tcc.models import *
 from django.forms.models import BaseModelFormSet  #for defining formset in models
 #from report.tests import SeparatedValuesField 	  #for storing array in the models
-from Auto.report.choices import *
+from Automation.report.choices import *
 import ast
 
 """
