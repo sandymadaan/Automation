@@ -6,6 +6,13 @@ Order deny,allow
 Allow from all
 </Directory>
 
+Alias /static/ mPath/Automation/static/
+
+<Directory mPath/Automation/static/>
+Order deny,allow
+Allow from all
+</Directory>
+
 WSGIScriptAlias /automation mPath/Automation/apache/django.wsgi
 <Directory mPath/Automation/apache/>
 Order allow,deny
