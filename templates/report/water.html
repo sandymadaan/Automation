@@ -1,0 +1,55 @@
+{% extends "report/header.html" %}
+{% load i18n %}
+<html>
+{% block report %}
+<body>
+{% if water %}
+
+	
+	
+	
+<!--		<tr>
+			<th>S.no</th>
+			<th>Description</th>
+			<th>Result</th>
+		</tr>
+-->	{% for test in water %}
+
+	
+	<p><b>PH Value</b>				:{{test.PH_Value}}</p>	
+	<p><b>Colour</b>				:{{test.Color}}</p>
+	<p><b>COD (Total)</b>				:{{test.COD_Total}}</p>		
+	<p><b>COD (Filtered)</b>			:{{test.COD_Filtered}}</p>		
+	<p><b>BOD5 (Total)</b>				:{{test.BOD5_Total}}</p>		
+	<p><b>BOD5 (Filtered)</b>			:{{test.BOD5_Filtered}}</p>		
+	<p><b>Sulphide ( as S2-)</b>			:{{test.Sulphide}}</p>		
+	<p><b>Sulphate ( as SO4 2-)</b>			:{{test.Sulphate}}</p>		
+	<p><b>Alkalinity ( as mg Ca CO3/L)</b>		:{{test.Alkalinity}}</p>		
+	<p><b>Total Suspended Solids (mg/l)</b>		:{{test.Total_Suspended_Solids}}</p>		
+	<p><b>Volatile Suspended Solids (mg/l)</b>	:{{test.Volatile_Suspended_Solids }}</p>	
+	<p><b>Chloride ( as Cl -)</b>			:{{test.Chloride_as_Cl}}</p>		
+	<p><b>Nickel</b>				:{{test.Nickel}}</p>		
+	<p><b>Iron</b>					:{{test.Iron}}</p>		
+	<p><b>Maganese</b>				:{{test.Maganese}}</p>		
+	<p><b>Copper</b>				:{{test.Copper}}</p>		
+	<p><b>Hardness</b>				:{{test.Hardness}}</p>		
+	<p><b>Nitrates</b>				:{{test.Nitrates}}</p>		
+	<p><b>Nitrites</b>				:{{test.Nitrites}}</p>		
+	<p><b>Turbidity</b>				:{{test.Turbidity}}</p>		
+	<p><b>Faecal coliform (E.Coli/MPN)</b>		:{{test.Faecal_coliform}}</p>		
+	<p><b>TDS</b>					:{{test.TDS}}</p>		
+	<p><b>Taste & Odour</b>				:{{test.Taste_and_Odour}}</p>
+	<p><b>Calcium, Ca(Mg/l)</b>			:{{test.Calcium_and_Ca_Mg_per_l}}</p>		
+	<p><b>Residual Free Chloride (Mg/l)</b>		:{{test.Residual_Free_Chloride}}</p>		
+	<p><b>Florides</b>				:{{test.Florides}}</p>		
+	<p><b>Ammonia Nitrogen in mg/l</b>		:{{test.Ammonia_Nitrogen}}</p>		
+	<p><b>Total Phosphorus in mg/l</b>		:{{test.Total_Phosphorus}}</p>		
+	<p><b>TKN</b>					:{{test.TKN}}</p>		
+		
+	{% endfor  %}
+{% endif %}
+	
+</body>
+{% endblock %}
+</html>
+

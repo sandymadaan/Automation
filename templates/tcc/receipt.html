@@ -1,0 +1,26 @@
+																																																										<html>
+<head><head>
+<link rel="stylesheet" type="text/css" href="a.css" /><title>Receipt</title></head>
+<div style="font-size:20px" align='center'><b>{{address.name}}</b></div>
+<div style="font-size:15px" align='center'>{{title.address}}, Phone No.:{{title.phone}}, Fax No.:{{title.faxno}}</div>
+<div style="font-size:20px" align='center'>{{title.name}}</div><br>
+
+<br></head>
+<center><h3><b>RECEIPT</h3>  </b></center>
+<br/>
+
+
+<div align="left"> Receipt No. : {{job.job_no}}</div>
+<br/><br/><br/>
+
+
+<div align="left">Received a sum of <b>Rs.{{bill.net_total}}</b> (Rupees  {{ net_total_eng }}only) from  <i><b> {{ client}}</b> by {{ job.pay}}  {{ job.check_number}},{{job.check_dd_date }} on account of {% for mates in mate %}<b>{{mates.name}}</b>{% endfor %}.</div>
+
+<br/><br/><br/>
+<div align="right"><b> Cashier</b></div>
+<br>
+<br>
+</body>
+</html>
+
+

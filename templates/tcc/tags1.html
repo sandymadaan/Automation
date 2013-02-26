@@ -1,0 +1,22 @@
+
+<html>
+
+	<h1>Add Job</h1>
+ <label for="id_search">Material:</label><select name="form" ONCHANGE="location =
+this.options[this.selectedIndex].value;">
+{% for field in field_list %}
+  <option value="http://localhost/automation/tcc11_12/savecart/?q={{field.id}}">{{field.name}}</option>
+	{% endfor %}
+</select>
+ 
+<h2>Material Tags</h2>
+<div class="tag-cloud">
+{% load tag_cloud %}
+{% tag_cloud_for_model tcc.Material as tags with steps=6 distribution=log %}
+{% for tag in tags %}
+<span class="tag-{{tag.font_size|add:"2"}}">
+<a href="{{ LOCAL_URL }}/automation/tcc11_12/tag/{{tag.name|slugify}}/">{{tag.name}}</a>
+</span> 
+{% endfor %}
+</div><!-- tag-cloud end -->
+</html>
