@@ -7,13 +7,16 @@
 </head>
 <body>
 <br/>
-
-<div style="position:absolute;right:7px;">No. TCC/{{ user.job_no }}</u> </div><BR/>
-<div style="position:absolute;right:7px;">Dated : {{user.date}} </div><br />
+{% for users in user %}
+<div style="position:absolute;right:7px;">No. TCC/{{ users.job_no }}</u> </div><BR/>
+<div style="position:absolute;right:7px;">Dated : {{users.date}} </div><br />
 <div style="position:absolute;left:7px;">Director,</div>
 <br/> <br/><br/><br/><br></br>
 Received a sum of Rs. {{amount.unit_price }}/- ( Rupees {{ net_total_eng }} only ) <br/>
-Vide Cash from : {{user.client__client__first_name }} {{user.client__client__middle_name }} {{user.client__client__last_name }}, {{user.client__client__address }},{{user.client__client__city}}, {{user.client__client__state}} <br>
+
+Vide Cash from : {{users.client__client__first_name }} {{users.client__client__middle_name }} {{users.client__client__last_name }},
+ {{users.client__client__address }},{{users.client__client__city}}, {{users.client__client__state}} <br>
+{% endfor %}
 On account of testing/checking of : {{mat}} <br/>
 <div style="position:absolute;left:7px;">Vide Receipt No. : {{user.job_no }}  Dated: {{user.date}}</div><br />
 <div style="position:absolute;left:7px;">Nature of Consultancy :{{ client.type }},  Ratio {{ ratio1 }}:{{ ratio2 }} </div>

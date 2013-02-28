@@ -4,12 +4,13 @@
 </head>
 <body>
 <div align="center"><h2>{{ title}}</h2></div>
-<div>Previous Jobs for client
+<div>Previous Jobs for {{ job.client__client__first_name }}
 <table border='1' width='100%'>
 	<tr>
-		<td><b>S.No.</b></td>
-		<td><b>Job No</b></td>
-		<td><b>Site</b></td>
+		<th>S.No.</th>
+		<th>Job No</th>
+		<th>Material</th>
+		<th>Site</th>
                 
 	</tr>
 {% if job %}
@@ -17,6 +18,7 @@
 	<tr>
 			<td>{{ jobs.id }}</td>
 			<td> {{ jobs.job_no }}</td>
+			<td>{{jobs.clientjob__material__name}}</td>
 			<td> {{jobs.site}}</td>
                         
 		</tr>

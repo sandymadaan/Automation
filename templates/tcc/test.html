@@ -3,80 +3,72 @@
 <html>
 <head>
     <title>gne</title>
-
+	
 </head>
 {% block content %}
-<script>
-var selectedEl;
-document.onclick = function(evt)
-{
-    var el = window.event? event.srcElement : evt.target;
-    if (el && el.className == 'unselected')
-    {
-        
-        selectedEl.className = 'unselected';
-        
-        selectedEl = el;
-        
-        selectedEl.className = 'selected';
-    }
-}
-</script>
-<style>
- .selected { background: #76B900; }
-</style>
 <div align="center"><h2>Catalog</h2></div>
-<br/>
- <div id="leftnav" style=" float: left; width:auto;"> <table>
-	<tr><td><b>S.No</b></td>
-		<td> </td>
-		<td> </td>
-		<td><b>Materials</b></td>
+<table><td><table>
+	
+		<tr><td><b>Lab Work :</b></td>
  	</tr>
 
-{% if field %}
-    {% for fields in field %}	
-		
-	<tr>
-			<td>{{forloop.counter}}</td>
-			<td> </td>
-			<td> </td>
-			<td> <span class="unselected"><a href="/automation/tcc11_12/rate/?id={{ fields.id }}" class="changegreen">{{fields.name}}</a> </span></td>
+{% if material %}
+    {% for materials in material %}	
+
+<tr>
+	<td><a class='open' href="{{ LOCAL_URL }}/automation/tcc11_12/rate/?id={{ materials.id }}">{{materials.name}}</a></td>
 </tr>
+	
 	{% endfor %}
-{% endif %}</table>
-</div> 
-  <div id="content" style="float: left; width: auto; position: absolute; right: 0px; left: 300px;"> 
-  <table >	<tr>
-		<td><b>S.No</b></td>
-		<td> </td>
-		<td> </td>
-		<td><b>Test for <font color="#76B900">{{material.name}}</font></b></td>
-		<td> </td>
-		<td> </td>
+{% endif %}</td>
+<tr><td><b>Field Work :</b></td>
+ 	</tr>
+{% if field %}
+    {% for materials in field %}	
+
+<tr>
+	{% if materials.id == mat.id %}
+	<td bgcolor=#00FF00><a class='open' href="{{ LOCAL_URL }}/automation/tcc11_12/rate/?id={{ materials.id }}">{{materials.name}}</a></td>
+	{% else %}
+	<td><a class='open' href="{{ LOCAL_URL }}/automation/tcc11_12/rate/?id={{ materials.id }}">{{materials.name}}</a></td>
+	{% endif %}
+</tr>
+	
+	{% endfor %}
+{% endif %}</td>
+    
+</table>
+</td>
+	<td ALIGN=RIGHT VALIGN=TOP>
+		<table  >
+			<tr><td>Rate List for {{mat.name}}</td>
+				<td><img src="{{MEDIA_URL}}/{{mat.image}}" height="80" width="90" align="center" border="2"></td></tr>
+		</table>
+				<table border="1" bordercolor="#e6e6e6" >	<tr>
+		
+		<td><b> <font color="#76B900">{{mat.name}}</font></b></td>
+		
 		<td><b>Quantity</b></td>
-		<td> </td>
-		<td> </td>
+		
 		<td><b>Cost</b></td>
 		
  	</tr></font>
 {% if test %}
     {% for tests in test %}
 	<tr>
-			<td>{{ forloop.counter}}</td>
-			<td> </td>
-			<td> </td>
+			
 			<td>{{tests.name}}</a> </td>
-			<td> </td>
-			<td> </td>
+			
 			<td>{{tests.quantity}} {{tests.unit}}</a> </td>
-			<td> </td>
-			<td> </td>
+			
 			<td>{{tests.cost}}</a> </td>
 </tr>
         {% endfor %}
 {%endif %}
-</table> </div>
+</table> 
+			</td>
+</table>
+  
 
 </html>
 {% endblock %}
