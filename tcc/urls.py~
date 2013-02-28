@@ -41,6 +41,7 @@ urlpatterns = patterns('Automation.tcc.views',
     (r'^clearjob/$', 'clearjob'),
     (r'^clientreport/$', 'clientreport'),
     (r'^cashbook/$', 'Cashbook'),
+    (r'^labreport/$', 'lab_report'),
    
 )
 

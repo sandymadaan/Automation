@@ -33,9 +33,8 @@ PAYMENT_CHOICES = (
 	('CHEQUE',_('CHEQUE')),
 )
 REPORT_TYPE = ( 
-	('SUSPENCE', _('SUSPENCE')),
-	('GENERAL REPORT', _('GENERAL REPORT')),
-	('CDF',_('CDF')),
+	('FIELD', _('FIELD')),
+	('LAB', _('LAB')),
 )
 MATERIAL_CHOICES = ( 
 	('Material Letter', _('Material Letter')),

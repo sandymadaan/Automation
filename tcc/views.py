@@ -65,7 +65,7 @@ def index1(request):
 		except UserProfile.DoesNotExist:
    			return HttpResponseRedirect(reverse('Automation.tcc.views.profile'))
 	else:
-		return render_to_response('index3.html', tmp, context_instance=RequestContext(request))
+		return render_to_response('index.html', tmp, context_instance=RequestContext(request))
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 @login_required
@@ -125,13 +125,14 @@ def previous(request):
 	#***This function lists the previous jobs of the user who have logged in the software. Just filters the jobs done by user fron the 		#***Job table.
 	#"""
 	title = get_object_or_404(Department, pk='1')
-	client = request.user
-	job = Job.objects.filter(client__client__id =client.pk).values('site','id','job_no')
+	clients = request.user
+	user = UserProfile.objects.get(user_id = clients)
+	userid = user.id
+	job = Job.objects.filter(client__client__id =userid).values('site','id','job_no','client__client__first_name','clientjob__material__name')
 	temp = {'job':job,'title':title}
 	return render_to_response('tcc/previous.html', dict(temp.items() + tmp.items()), context_instance=RequestContext(request))
 
-@cache_control(no_cache=True, must_revalidate=True, no_store=True)
-@login_required
+
 def material(request):
 	#"""
 	#***List the all the materials or field works. These are the links, depending on the selection of material selected, there tests are 		#***filtered.
@@ -139,15 +140,15 @@ def material(request):
 	material = Material.objects.all().order_by('name')
 	return render_to_response('tcc/field.html', tmp, context_instance=RequestContext(request))
 
-@login_required
+
 def rate(request):
 	#"""
 	#***It gets the value of material(that was selected previously) from the url and based on that material, the tests are listed.
 	#"""
 	lab = Lab.objects.all().order_by('code')
 	field = Material.objects.all()
-	material = Material.objects.get(id=request.GET['id'])
-	test = Test.objects.filter(material_id = material)
+	mat = Material.objects.get(id=request.GET['id'])
+	test = Test.objects.filter(material_id = mat)
 	temp = {'lab':lab,'test':test,'mat':mat,}
 	if request.user.is_staff == 1 and request.user.is_active == 1 and request.user.is_superuser == 1:
 		return render_to_response('tcc/test.html', dict(temp.items() + tmp.items()), context_instance=RequestContext(request))
@@ -420,7 +421,7 @@ def job_submit(request):
 	addid =add['id__max']
 	more = Clientadd.objects.get(id=addid)
 	moremat = more.client_id
-	rtemp = {'mee':mee,'clients':clients,'value':value,'moremat':moremat}
+	temp = {'mee':mee,'clients':clients,'value':value,'moremat':moremat}
 	return render_to_response('tcc/job_submit.html',dict(temp.items() + tmp.items()), context_instance=RequestContext(request))
 	
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
@@ -503,7 +504,7 @@ def receipt_report(request):
 	bill = Bill.objects.get(job_no=job_no)
 	net_total1 = bill.net_total
 	net_total_eng = num2eng(net_total1)
-	template = {'mate':mate, 'net_total_eng':net_total_eng,'client':client,'bill':bill,'job':job}
+	template = {'mate':mate, 'net_total_eng':net_total_eng,'client':client,'bill':bill,'job':job,'address':address,'title':title}
 	return render_to_response('tcc/receipt.html', template , context_instance=RequestContext(request))
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
@@ -528,7 +529,7 @@ def rep(request):
 	query =request.GET.get('id')
 	client = TestTotal.objects.all().get(job_id =query)
 	amount = Amount.objects.all().get(job_id =query)
-	user = Job.objects.filter(id=query).values('date','client__client__first_name','client__client__middle_name','client__client__last_name','client__client__address','client__client__city','client__client__state')
+	user = Job.objects.filter(id=query).values('job_no','date','client__client__first_name','client__client__middle_name','client__client__last_name','client__client__address','client__client__city','client__client__state')
 	try:
     		use = ClientJob.objects.all().get(job_id=query)
 		mat = use.material.name
@@ -546,7 +547,7 @@ def rep(request):
 	net_total1 = amount.unit_price
 	net_total_eng = num2eng(net_total1)
 	template = {'net_total_eng':net_total_eng,'servicetaxprint':servicetaxprint,
-	'highereducationtaxprint':highereducationtaxprint,'educationtaxprint':educationtaxprint,'client': client,'amount':amount,'con_type':con_type, 'ratio1':ratio1 ,'ratio2':ratio2,'collegeincome':collegeincome,'admincharge' : admincharge,'user':user,'name':name,'mat':mat,'staff':staff,'title':title,'address':address}
+	'highereducationtaxprint':highereducationtaxprint,'educationtaxprint':educationtaxprint,'client': client,'amount':amount,'con_type':con_type, 'ratio1':ratio1 ,'ratio2':ratio2,'collegeincome':collegeincome,'admincharge' : admincharge,'user':user,'mat':mat,'staff':staff,'title':title,'address':address}
 	return render_to_response('tcc/report.html', template , context_instance=RequestContext(request))
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
@@ -732,6 +733,7 @@ def clientreport(request):
 		job = Job.objects.filter(job_no = query).values('id','client__client__first_name','client__client__middle_name','client__client__last_name','client__client__address','client__client__city','clientjob__material__name','suspencejob__field__name','site','testtotal__unit_price').order_by('id').distinct()
 	else:	
 		job =[]
+	temp = {'job':job,'query':query}
 	return render_to_response('tcc/clientreport.html',dict(temp.items() + tmp.items()),context_instance=RequestContext(request))
 	
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
@@ -977,9 +979,9 @@ def  Cashbook(request):
 			testtotal = TestTotal.objects.all()
 			chequejob = Job.objects.all().filter(date__range=(start_date,end_date)).filter(Q(pay='cheque')|Q(pay='dd')|Q(pay='ONLINE'))
                         total_temp = TestTotal.objects.filter(job_id__in=job).aggregate(Sum('unit_price'))
-                        total= int(total_temp['unit_price__sum'])
+                        total= total_temp['unit_price__sum']
 			net_total_temp = TestTotal.objects.filter(job_id__in=chequejob).aggregate(Sum('unit_price'))
-                        net_total= int(net_total_temp['unit_price__sum'])
+                        net_total= net_total_temp['unit_price__sum']
 			balance = int(total)-int(sumamt)
 			template ={'date': start_date, 'client':client,'type':type,'total':total,'testtotal':testtotal,'net_total':net_total,'name1':name1,'name2':name2,'name3':name3,'name4':name4,'name5':name5,'balance':balance,'amount1':amount1,'amount2':amount2,'amount3':amount3,'amount4':amount4,'amount5':amount5,'sumamt':sumamt,'chequeclient':chequeclient}
 			return render_to_response('tcc/cashbook.html',dict(template.items() + tmp.items()), context_instance=RequestContext(request))
@@ -1020,7 +1022,7 @@ def  daily_report(request):
 	else:
 		form = DailyReportadd()
 	template = {'form': form}
-	return render_to_response('tcc/client.html', dict(data.items() + tmp.items()), context_instance=RequestContext(request))
+	return render_to_response('tcc/client.html', dict(template.items() + tmp.items()), context_instance=RequestContext(request))
 
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
 @login_required
@@ -1175,8 +1177,9 @@ def edit_profile(request):
 	return render_to_response('tcc/client.html', {'form': form,},context_instance=RequestContext(request))
 
 def contact(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
+	from Automation.contact.forms import *
+	if request.method == 'POST':
+		form = ContactForm(request.POST)
         if form.is_valid():
 			cd = form.cleaned_data
 			send_mail(
@@ -1187,8 +1190,8 @@ def contact(request):
 			)
 			template = {'form': form}
 			return render_to_response('contact/thanks.html',dict(template.items() + tmp.items()), context_instance=RequestContext(request))
-    else:
-        form = ContactForm()
+	else:
+		form = ContactForm()
 	temp ={'form': form}
 	if request.user.is_staff == 1 and request.user.is_active == 1 and request.user.is_superuser == 1:
 		return render_to_response('contact/contact.html', dict(temp.items() + tmp.items()), context_instance=RequestContext(request))
