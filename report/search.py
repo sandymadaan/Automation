@@ -73,16 +73,28 @@ def search_report(request):
 	return render_to_response('report/report.html', {'form': form}, context_instance=RequestContext(request))
 '''
 
+def material_site():
+	material = Material.objects.all().filter(report=1)
+	field = Material.objects.all().filter(report=2)
+	title = Department.objects.get(id=1)	
+	address = get_object_or_404(Organisation, pk='1')
+	template={'material':material,'field':field,'title':title,'address':address}
+	return template
+
+tmp =material_site()
+
+
 """
 Search Box of searching Job_id to generate report
 """
 def search(request):
 	query = request.GET.get('q', '')
     	if query:
-        	results = Job.objects.filter(id = query).values('client__client__name','client__client__address_1','clientjob__material__name','suspencejob__field__name','id','job_no','date','site','report_type',)
+        	results = Job.objects.filter(id = query).values('client__client__first_name','client__client__middle_name','client__client__last_name','client__client__address','clientjob__material__name','suspencejob__field__name','id','job_no','date','site','report_type',)
 	else:
         	results = []
-    	return render_to_response("report/search.html", {"results": results,"query": query})
+	temp = {"results": results,"query": query}
+    	return render_to_response("report/search.html",dict(temp.items() + tmp.items()))
 
 """
 For searching the report by Job_id
@@ -90,10 +102,11 @@ For searching the report by Job_id
 def search_report(request):
 	query = request.GET.get('q', '')
     	if query:
-        	results = Job.objects.filter(id = query).values('report__Sample_no','report__id','client__client__name','client__client__address_1','clientjob__material__name','suspencejob__field__name','id','job_no','date','site','report_type',)
+        	results = Job.objects.filter(id = query).values('report__Sample_no','report__id','client__client__name','client__client__address','clientjob__material__name','suspencejob__field__name','id','job_no','date','site','report_type',)
 	else:
         	results = []
-    	return render_to_response("report/search_report.html", {"results": results,"query": query})
+	temp = {"results": results,"query": query}
+    	return render_to_response("report/search_report.html",dict(temp.items() + tmp.items()))
 
 """
 For re-generating the report
