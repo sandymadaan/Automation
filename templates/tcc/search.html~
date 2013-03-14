@@ -18,21 +18,32 @@
 
   {% if query %}
     <h2>Results for "{{ query|escape }}":</h2>
-
+<table border='1' width='100%'>
+<tr>
+		<th>Sr.No </th>
+		<th>Name of Parties</th>
+                <th>Address</th>
+		<th>Type of organisation</th>
+		<th>Your Activity<th>
+	</tr>
     {% if results %}
-      <ul>
+      
       {% for client in results %}
-        <li>Name : {{ client.name }}</li>
-        <li>Address : {{client.address_1}},{{client.city}}</li>
-        <li>Type of Organisation : {{client.type_of_organisation}}</li>
-        <b><a href="/automation/tcc11_12/addjob/?id={{ client.id }}">ADD JOB</a></b>
-	<b><a href="/automation/tcc11_12/selectfield/?id={{ client.id }}">ADD PERFORMA JOB</a></b>
-	<b><a href="/automation/tcc11_12/prevwork/?id={{ client.id }}">View Previous Work</a></b><br / ><br />
+	<tr>
+	<td>{{forloop.counter}}</td>
+        <td> {{ client.first_name }}</li>
+        <td> {{client.address}},{{client.city}}</td>
+        <td>{{client.type_of_organisation}}</td>
+       <td><a href="/automation/tcc11_12/addjob/?id={{ client.id }}">ADD JOB</a>/
+	<a href="/automation/tcc11_12/selectfield/?id={{ client.id }}">ADD PERFORMA JOB</a>/
+	<a href="/automation/tcc11_12/prevwork/?id={{ client.id }}">View Previous Work</a></td>
+	</tr>
       {% endfor %}
       </ul>
     {% else %}
       <p>No clients found</p>
     {% endif %}
+</table>
   {% endif %}
 </body>
 </html>

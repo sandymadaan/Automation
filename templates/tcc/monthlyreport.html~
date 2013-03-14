@@ -46,7 +46,7 @@
          <td>{{higher_education_tax}}</td>
          <td>{{net_total}}</td>
         </tr>
-    <tr><td colspan='4'></td>
+    <tr><td colspan='5'></td>
     <td colspan='3'><center>{{tax}}</center></td></tr>    
 </table>
 <br></br></br></br>

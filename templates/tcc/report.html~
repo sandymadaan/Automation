@@ -1,27 +1,19 @@
 <html>
-<head>
-<link rel="stylesheet" type="text/css" href="a.css" /><title>Receipt</title></head>
-<div style="font-size:20px" align='center'><b>{{address.name}}</b></div>
-<div style="font-size:20px" align='center'>{{title.name}}</div><br>
-
-</head>
+<head><title>Report</title></head>
 <body>
-<br/>
-{% for users in user %}
-<div style="position:absolute;right:7px;">No. TCC/{{ user.job_no }}</u> </div><BR/>
-<div style="position:absolute;right:7px;">Dated : {{user.date}} </div><br />
-<div style="position:absolute;left:7px;">Director,</div>
-<br/> <br/><br/><br/><br></br>
-Received a sum of Rs. {{amount.unit_price }}/- ( Rupees {{ net_total_eng }} only ) <br/>
+<br>
 
-Vide Cash from : {{users.client__client__first_name }} {{users.client__client__middle_name }} {{users.client__client__last_name }},
- {{users.client__client__address }},{{users.client__client__city}}, {{users.client__client__state}} <br>
-{% endfor %}
-On account of testing/checking of : {{mat}} <br/>
-<div style="position:absolute;left:7px;">Vide Receipt No. : {{user.job_no }}  Dated: {{user.date}}</div><br />
-<div style="position:absolute;left:7px;">Nature of Consultancy :{{ client.type }},  Ratio {{ ratio1 }}:{{ ratio2 }} </div>
+<div style="position:absolute;right:7px;top:55px;">Main/Mat. No :<u>{{ user.job_no }}</u> </div>
+<div style="position:absolute;right:7px;top:75px;">Dated :  </div>
+<div style="position:absolute;left:7px;top:105px;">Director,</div>
+<br/> <br/><br/><br/><br></br>
+Received a sum of Rs. {{amount.unit_price }}/- ( Rupees {{ net_total_eng }} only ) <br/><br>
+Vide Cash from : {{ name }} <br><br>
+On account of testing/checking of : {{mat}} <br/><br>
+<div style="position:absolute;left:7px;top:270px;">Vide Receipt No. : {{user.job_no }}  Dated: </div>
+<div style="position:absolute;left:7px;top:290px;">Nature of Consultancy :{{ client.type }},  Ratio {{ ratio1 }}:{{ ratio2 }} </div>
 <div align= "left">
-<br/><br/>
+<br/><br/><br/></br>
 <table border="1" width="100%">
 <tr>
 	<td colspan="3">THE DISTRIBUTION MAY BE MADE AS</td>

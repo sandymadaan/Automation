@@ -12,8 +12,8 @@
 		<tr><td><b>Lab Work :</b></td>
  	</tr>
 
-{% if material %}
-    {% for materials in material %}	
+{% if mat %}
+    {% for materials in mat %}	
 
 <tr>
 	<td><a class='open' href="{{ LOCAL_URL }}/automation/tcc11_12/rate/?id={{ materials.id }}">{{materials.name}}</a></td>
@@ -27,11 +27,7 @@
     {% for materials in field %}	
 
 <tr>
-	{% if materials.id == mat.id %}
-	<td bgcolor=#00FF00><a class='open' href="{{ LOCAL_URL }}/automation/tcc11_12/rate/?id={{ materials.id }}">{{materials.name}}</a></td>
-	{% else %}
 	<td><a class='open' href="{{ LOCAL_URL }}/automation/tcc11_12/rate/?id={{ materials.id }}">{{materials.name}}</a></td>
-	{% endif %}
 </tr>
 	
 	{% endfor %}
@@ -40,13 +36,9 @@
 </table>
 </td>
 	<td ALIGN=RIGHT VALIGN=TOP>
-		<table  >
-			<tr><td>Rate List for {{mat.name}}</td>
-				<td><img src="{{MEDIA_URL}}/{{mat.image}}" height="80" width="90" align="center" border="2"></td></tr>
-		</table>
-				<table border="1" bordercolor="#e6e6e6" >	<tr>
+				<table border="1" >	<tr>
 		
-		<td><b> <font color="#76B900">{{mat.name}}</font></b></td>
+		<td><b>Test for <font color="#76B900">{{material.name}}</font></b></td>
 		
 		<td><b>Quantity</b></td>
 		

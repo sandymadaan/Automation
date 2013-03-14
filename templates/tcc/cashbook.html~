@@ -47,7 +47,7 @@
          
         <td colspan='4'><center>{{name1}}, {{name2}}, {{name3}}, {{name4}}, {{name5}}</center></td>
          
-	<td colspan='2'>{{amount1}},{{amount2}},{{amount3}},{{amount4}},{{amount5}}</td>
+	<td colspan='2'><center>{{amount1}},{{amount2}},{{amount3}},{{amount4}},{{amount5}}</td>
 	<td ALIGN="right">{{sumamt}}</td>
         </tr>
 	

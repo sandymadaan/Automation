@@ -30,8 +30,8 @@
 			<td>{{ amounts.job__id}}</td> 
 			<td> {{ amounts.job__date }}</td>
 			<td> {{ amounts.job__job_no }}</td>
-			<td> {{amounts.'job__client__client__name'}}</td>
-			<td></td>
+			<td> {{amounts.job__client__client__first_name}}</td>
+			<td>{{amounts.job__clientjob__material__name}}</td>
 			<td>{{amounts.college_income}}</td>
 			<td>{{amounts.admin_charge}}</td>
 			<td>{{amounts.consultancy_asst}}</td>

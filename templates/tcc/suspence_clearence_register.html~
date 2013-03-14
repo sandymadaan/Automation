@@ -26,8 +26,8 @@
     {% for amounts in amount %}
     {% for sus in suspence %}  
     {% for susdetail in suspencedetail %}
-		 {% if amounts.job__id == sus.job_id == susdetail.job_id%}  
-		<!-- {% if sus.job_id == susdetail.job_id %}  -->	
+		 {% if amounts.job__id == sus.job_id %}  
+		 {% if sus.job_id == susdetail.job_id %}  	
          <tr>
 		
             <td>{{forloop.counter}}</td>            
@@ -46,7 +46,7 @@
 			<td>{{amounts.unit_price}}</td>
 			
 		</tr>
-        	
+        	{% endif  %}
 		{% endif  %}
 	{% endfor %}
         {% endfor %}

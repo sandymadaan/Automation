@@ -43,11 +43,11 @@ this.options[this.selectedIndex].value;">
 
     <form action="" method="post">
 	{% csrf_token %}
-           <tr><td><label for="id_sample">No. of similar works:</label></td><td><input id="id_sample" type="number" pattern="[0-9]" min="1" name="sample"  maxlength="11" required="Yes" title="You must enter a no. of samples in the range 1-9." /></td></tr>
 	<tr><td><label for="id_site">Complete Address of Site:</label></td><td><input id="id_site" type="site" name="site"  maxlength="600" required="yes" title="Site is Required!" /></td></tr>
+           <tr><td><label for="id_sample">No. of similar works:</label></td><td><input id="id_sample" type="number" pattern="[0-9]" min="1" name="sample"  maxlength="11" required="Yes" title="You must enter a no. of samples in the range 1-9." /></td></tr>
 	<tr><td><label for="id_letter">Letter No:</label></td><td><input id="id_letter" name="letter_no"  maxlength="11" /></td></tr>
 	<tr><td><label for="id_letterd">Letter Date:</label></td><td><input id="id_letter_date" name="letter_date"  maxlength="11" /></td></tr>	
-	<tr><td><label for="id_tds">TDS:</label></td><td><input id="id_tds" type="number" name="tds"  maxlength="11" /></td></tr>	
+	<tr><td><label for="id_tds">TDS:</label></td><td><input id="id_tds" type="number" name="tds"  maxlength="11" value=0 /></td></tr>		
 	 <tr><td><label for="id_test">Test:</label></td><td><select name="test">
 		<option value="">Select test</option>	
 {% if test %}
@@ -66,7 +66,6 @@ this.options[this.selectedIndex].value;">
 </select></td></tr>
 	<tr><td><label for="id_pay">Mode of Payment:</label></td><td>
 <select name="pay" id="pay" onchange="showfield(this.options[this.selectedIndex].value)">
-<option value=''>---</option>
 <option value='cash'>Cash</option>
 <option value='online'>Online</option>
 <option value='cheque' >Cheque</option>

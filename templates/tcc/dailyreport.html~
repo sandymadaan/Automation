@@ -14,13 +14,13 @@
 {% if client %}
     {% for clients in client %}
     {% for testtotals in testtotal %}
-          {% if clients.job_no == testtotals.job_no %}
+          {% if clients.id == testtotals.job_id %}
          <tr>
 			<td>{{forloop.counter}}</td>
 			<td>{{ clients.job_no }}</td>
 			<td> {{ clients.date }}</td>
-			<td> {{clients.client__client__name}}</td>
-                        <td ALIGN="right"></td>
+			<td> {{clients.client__client__first_name}}</td>
+                        <td ALIGN="right">{{clients.tds}}</td>
 		        <td ALIGN="right">{{testtotals.unit_price}}</td>
 		
 		</tr>
@@ -29,8 +29,8 @@
         {% endfor %}
 {% endif  %}
 	<tr>
-         <td colspan='6'><b><center>SUM</center></td>
-         
+         <td colspan='4'><b><center>SUM</center></td>
+         <td ALIGN="right"><b></td>
          <td ALIGN="right"><b>{{total}}</td>
         </tr>
      

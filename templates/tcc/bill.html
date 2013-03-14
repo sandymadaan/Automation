@@ -2,7 +2,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="a.css" /><title>Report</title></head>
 <div style="font-size:20px" align='center'><b>{{address.name}}</b></div>
-<div style="font-size:15px" align='center'>{{title.address}}, Phone No.:{{title.phone}}, Fax No.:{{title.faxno}}</div>
+<div style="font-size:15px" align='center'>gill road, Ludhiana</div>
 <div style="font-size:20px" align='center'>{{title.name}}</div><br>
 <div align='left'>STC No. G31843A(S)LDH -ST-001<br>PAN No. AAATN1978L</div>
 <br>
@@ -10,11 +10,10 @@
 
 <br/><h2 align="center">BILL</h2>
 
-<div><span style="float:left;">No. : GNDEC/TCC/B/{{ job_no }}</span>
-<span style="float:right;"> Dated : {{client}}</span></div>
+<div align="left">No. : GNDEC/TCC/B/{{ job_no }}</div>
 <br/><br/>
 
-<div align="left">To,<br> {% for add in getadd %}{{ add.client__client__first_name}}, {{ add.client__client__address}}, {{ add.client__client__city}}{% endfor %}</div>
+<div align="left">To,<br>{% for add in getadd %} {{ add.client__client__first_name}}, {{ add.client__client__address_1}}, {{ add.client__client__city}}{% endfor %}</div>
 
 <br/><br/>
 
@@ -26,9 +25,9 @@
 			<td>Rate</td>
 			<td>Amount</td>
 		</tr>
-		<tr><td><b>Charges For</b> {{sample}} sample of {% for mates in mate %}
+		<tr><td><b>Charges For</b> {% for mates in mate %}
 		   
-			{{ mates.name}} <br />
+			 {{ mates.name}},
 			
 			{% endfor%}</td>
 			<td rowspan="6"></td>
@@ -37,7 +36,7 @@
 		</tr>
 		<tr>
 			
-			<td>Site : {% for job in getsite %}{{ job.site}}{% endfor %}</td>
+			<td>Site : {% for add in getsite %}{{ add.site}},{% endfor %}</td>
 			
 		</tr>
 		<tr>

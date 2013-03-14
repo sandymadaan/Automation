@@ -9,7 +9,7 @@
   <h1>Search</h1>
   <form action="." method="GET">
     <label for="q">Type the job_no you want to search: </label>
-    <input type="text" name="q" value="{{ query|escape }}" type="number" pattern="[0-9]" min="1">
+    <input type="text" name="q" value="{{ query|escape }}" type="number" pattern="[0-9]+" min="1">
     <input type="submit" value="Search">
   </form>
 {% if query %}
@@ -30,7 +30,7 @@
 	{% for client in job %}
 	<tr>
 		<td>{{client.id}}
-		<td>{{client.client__client__name}} from {{client.client__client__address_1}},{{client.client__client__city}}</td>
+		<td>{{client.client__client__first_name}} from {{client.client__client__address_1}},{{client.client__client__city}}</td>
 		<td> {{client.clienteditjob__material__name}}</td>	
 		<td>{{client.site}}</td>
 		<td>{{client.testtotalperf__unit_price}}</td>

@@ -19,8 +19,8 @@
          <tr>
 			<td>{{ clients.job_no }}</td>
 			<td> {{ clients.date }}</td>
-			<td> {{clients.client__client__first_name}} {{clients.client__client__middle_name}} {{clients.client__client__last_name}}</td>
-			<td align="right">{{clients.amount__unit_price}}</td>
+			<td> {{clients.client__client__first_name}}</td>
+			<td>{{clients.amount__unit_price}}</td>
 		  
 		
 		</tr>
@@ -29,7 +29,7 @@
 {% endif  %}
 	<tr>
          <td colspan='3'><center>SUM</center></td>
-         <td align="right">{{total}}</td>
+         <td>{{total}}</td>
        
         </tr>   
 </table>

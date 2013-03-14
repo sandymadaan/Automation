@@ -13,7 +13,7 @@
 <div align="left">No. : GNDEC/TCC/B/{{ job_no }}</div>
 <br/><br/>
 
-<div align="left">To<br> {{ client}}</div>
+<div align="left">To,<br>{% for add in getadd %} {{ add.client__client__first_name}}, {{ add.client__client__address_1}}, {{ add.client__client__city}}{% endfor %}</div>
 
 <br/><br/>
 
@@ -27,9 +27,7 @@
 		</tr>
 		<tr><td><b>Charges For</b> {% for mates in mate %}
 		   
-			 {{ mates.name}} [{% for job in getjob %}{% if mates.id == job.clientjob__material_id %}{{job.clientjob__test__name}},{% else %}{{job.suspencejob__test__name}},{% endif %}
-			
-			{% endfor%}]<br />
+			 {{ mates.name}} <br />
 			
 			{% endfor%}</td>
 			<td rowspan="6"></td>
@@ -38,7 +36,7 @@
 		</tr>
 		<tr>
 			
-			<td>Site : {% for job in getjob %}{{ job.site}},{% endfor %}</td>
+			<td>Site : {% for add in getsite %}{{ add.site}},{% endfor %}</td>
 			
 		</tr>
 		<tr>

@@ -32,7 +32,7 @@
 	{% for client in job %}
 	<tr>
 		<td>{{client.id}}
-		<td>{{client.client__client__first_name}} {{client.client__client__middle_name}} {{client.client__client__last_name}} from {{client.client__client__address}},{{client.client__client__city}}</td>
+		<td>{{client.client__client__first_name}} from {{client.client__client__address_1}},{{client.client__client__city}}</td>
 		<td> {{client.clientjob__material__name}}</td>	
 		<td>{{client.site}}</td>
 		<td>{{client.testtotal__unit_price}}</td>

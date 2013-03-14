@@ -9,13 +9,16 @@
 <h1>PERFORMA for {{user.username}}</h1>
 <br>
 <table > 
-     <tr><td>Name :</td><td>{{performa.name}}</td></tr>
-	 <tr><td>Address :</td><td>{{performa.address_1}},{{performa.address_2}}<br>{{performa.city}}({{performa.pin_code}})<br>{{performa.state}}<br>{{performa.country}} </td></tr>
-	 <tr><td>Contact No :</td><td>{{performa.contact_no }}</td></tr>
-	 <tr><td>Website :</td><td>{{performa.website}}</td></tr>
+{% if performa %}
+    {% for performas in performa %}
+     <tr><td>Name :</td><td>{{performas.name}}</td></tr>
+	 <tr><td>Address :</td><td>{{performas.address_1}},{{performas.address_2}}<br>{{performas.city}}({{performas.pin_code}})<br>{{performas.state}}<br>{{performas.country}} </td></tr>
+	 <tr><td>Contact No :</td><td>{{performas.contact_no }}</td></tr>
+	 <tr><td>Website :</td><td>{{performas.website}}</td></tr>
 	 <tr><td>Email_id :</td><td>{{user.email}}</td></tr>
-	 <tr><td>Type of Organisation :</td><td>{{performa.type_of_organisation}}</td></tr>
-     
+	 <tr><td>Type of Organisation :</td><td>{{performas.type_of_organisation}}</td></tr>
+       {% endfor %}
+{%endif %}
      
 </table>	 
 {% endblock %}
