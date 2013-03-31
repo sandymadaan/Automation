@@ -1,21 +1,51 @@
-def retrieve():
-	from Automation.tcc.variable import *
-	#amount = get_object_or_404(Amount, pk=job_no_id)
-	collegeincome = collegeincome
-	admincharge = admincharge
-	servicetaxprint = servicetaxprint
-	educationtaxprint =educationtaxprint
-	highereducationtaxprint = highereducationtaxprint
+"""
+%% functions.py %%
 
+This file is defines some important functions that are then called views.py file.  
+"""
 
+#:::::::::::::::::::::::CONSTANTS:::::::::::::::::::::::::::::::::::#
 individual_ratio1 = 60
 individual_ratio2 = 40
 institutional_ratio1 = 40
 institutional_ratio2 = 60
 routine_ratio1 = 30
 routine_ratio2 = 70
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#
+
+#:::::::::::::::DEFINE THE FUNCTIONS HERE:::::::::::::::::::::::::::#
+
+def retrieve():
+	"""
+	** retrieve **
+
+	Retrieve function is used to retrieve the data defined in variable.py file
+	"""
+
+	from Automation.tcc.variable import *
+	collegeincome = collegeincome
+	admincharge = admincharge
+	servicetaxprint = servicetaxprint
+	educationtaxprint =educationtaxprint
+	highereducationtaxprint = highereducationtaxprint
+
+def dates(start_date, end_date):
+	import datetime
+	from django import forms
+	if start_date > datetime.date.today() or end_date > datetime.date.today():
+		raise forms.ValidationError("The date cannot be in the future!")
+	elif end_date < start_date :
+		raise forms.ValidationError("The start_date is greater than end_date!")
+	else:
+		pass
 
 def ratio1(con_type):
+	"""
+	** ratio1 **
+	
+	ratio1 function is creates the numerator of the ratio depanding upon the consultancy(Individual, Routine) type of the work.
+	"""
+
 	if con_type == 'ROUTINE':
 		ratio1 = routine_ratio1
 		ratio2 = routine_ratio2
@@ -28,6 +58,12 @@ def ratio1(con_type):
 	return ratio1
 
 def ratio2(con_type):
+	"""
+	** ratio2 **
+	
+	ratio2 function is creates the denomenator of the ratio depending upon the consultancy type of the work.
+	"""
+
 	if con_type == 'ROUTINE':
 		
 		ratio2 = routine_ratio2
@@ -39,6 +75,11 @@ def ratio2(con_type):
 	return ratio2
 
 def months(month):
+	"""
+	** months **
+	
+	months Function converts the months name to there number.
+	"""
 	if month =='November':
 		month =11
 	elif month == 'December':

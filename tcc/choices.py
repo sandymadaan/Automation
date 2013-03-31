@@ -1,125 +1,14 @@
+"""
+%% choices.py %%
+
+This file is a static file that shows the choices in a particular Drop down list. This conatin the state choices, year, month and day choices.
+"""
+
+#::::::::::::::IMPORT THE HEADER FILE HERE::::::::::::::::::::::::::::::#
 from django.utils.translation import ugettext as _
-CONSULTANCY_CHOICES = ( 
-	('ROUTINE', _('ROUTINE')), 
-	('INDIVIDUAL', _('INDIVIDUAL')),
-	('INSTITUTIONAL',_('INSTITUTIONAL')),
-	('CDF',_('CDF')),
-       
-   
-)
-LAB_CHOICES = ( 
-	('SOM', _('SOM')),
-	('SOIL', _('SOIL')),
-	('ST.D DESIGN',_('ST.D DESIGN')),
-	('CET', _('CET')),
-	('ELECTRONIC', _('ELECTRONIC')),
-	('IT & COMPUTER', _('IT & COMPUTER')),
-	('ELECTRICAL', _('ELECTRICAL')),
-	('CIVIL', _('CIVIL')),
-	('MECH', _('MECH')),
-	('MBA', _('MBA')),
-	('MCA', _('MCA')),
-	('WORKSHOP', _('WORKSHOP')),
-	('CHEMICAL', _('CHEMICAL')),
-	('SURVEY', _('SURVEY')),
-	('ENVIRONMENT', _('ENVIRONMENT')),
-	('COMPUTATION', _('COMPUTATION')),
-	('OTHER', _('OTHER')),
-)
-PAYMENT_CHOICES = ( 
-	('CASH', _('CASH')),
-	('DD', _('DD')),
-	('ONLINE', _('ONLINE')),
-	('CHEQUE',_('CHEQUE')),
-)
-REPORT_TYPE = ( 
-	('FIELD', _('FIELD')),
-	('LAB', _('LAB')),
-)
-MATERIAL_CHOICES = ( 
-	('Material Letter', _('Material Letter')),
-	('Letter Received', _('Letter Received')),
-)
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#
 
-PREFORMA_CHOICES = ( 
-	('PROFORMA BILL', _('PROFORMA BILL')),
-	('RECEIPT CDF', _('RECEIPT CDF')),
-	('PROFORMA Report', _('PROFORMA Report')),
-)
-REPORT_CHOICES =( 
-	('GENERAL REPORT', _('GENERAL REPORT')),
-	('SUSPENCE', _('SUSPENCE')),
-	('RECEIPT SUSPENCE', _('RECEIPT SUSPENCE')),
-	('RECEIPT GENERAL', _('RECEIPT GENERAL')),
-	('RECEIPT CDF', _('RECEIPT CDF')),
-	('BILL',_('BILL')),
-	('SUSPENCE BILL',_('SUSPENCE BILL')),
-	('SUSPENCE CLERENCE REPEORT',_('SUSPENCE CLERENCE REPEORT')),
-	('SUSPENCE CLERENCE REPEORT(without Charge)', _('SUSPENCE CLERENCE REPEORT(without Charge)')),
-	('OTHER CHARGE BILL',_('OTHER CHARGE BILL')),
-	('TRANSPORT BILL',_('TRANSPORT BILL')),
-        ('DAILYREPORT',_('DAILYREPORT')),
-)
-
-ORGANISATION_CHOICES = (
-	('GOVERNMENT', _('GOVERNMENT')),
-	('SEMI-GOVERNMENT', _('SEMI-GOVERNMENT')),
-	('PRIVATE', _('PRIVATE'))
-)
-
-FIELD_CHOICES = (
-	('CEMENT', _('CEMENT')),
-	('STEEL', _('STEEL')),
-	('BRICKS', _('BRICKS')),
-	('MIX DESIGN', _('MIX DESIGN')),
-	('CUBES', _('CUBES')),
-	('PAVER', _('PAVER')),
-	('BM/PC', _('BM/PC')),
-	('PC', _('PC')),
-	('ABC', _('ABC')),
-	('TILES', _('TILES')),
-	('BM', _('BM')),
-	('BITUMAN', _('BITUMAN')),
-	('PC', _('PC')),
-	('WOOD', _('WOOD')),
-	('CONCRETE PAVERS', _('CONCRETE PAVERS')),
-	('SOIL/SAND', _('SOIL/SAND')),
-	('SOIL SAMPLES', _('SOIL SAMPLES')),
-	('COARSE AGGREGATES', _('COARSE AGGREGATES')),
-	('OHSRS', _('OHSRS')),
-	('SOIL FOR BC', _('SOIL FOR BC')),
-	('SURVEY', _('SURVEY')),
-	('SAND', _('SAND')),
-	('FINE AGGREGATES', _('FINE AGGREGATES')),
-	('COARSE & FINE AGGREGATES', _('COARSE & FINE AGGREGATES')),
-	('C. AGG. & F. AGG(DEL. MATERIAL)', _('C. AGG. & F. AGG(DEL. MATERIAL)')),
-	('C. AGG. (DEL. MATERIAL)', _('C. AGG. (DEL. MATERIAL)')),
-	('F. AGG. (DEL. MATERIAL)', _('F. AGG. (DEL. MATERIAL)')),
-	('ST.D (OHSR)', _('ST.D (OHSR)')),
-	('HAMMER', _('HAMMER')),
-	('ST.D (BUILDING)', _('ST.D (BUILDING)')),
-	('ST.D (BRIDGE)', _('ST.D (BRIDGE)')),
-	('DRINKING WATER', _('DRINKING WATER')),
-	('SEWAGE', _('SEWAGE')),
-	('CABLE TESTING', _('CABLE TESTING')),
-	('METER TESTING', _('METER TESTING')),
-	('MOTOR TESTING', _('MOTOR TESTING')),
-	('6 WEEK TRAINING', _('6 WEEK TRAINING')),
-        ('6 WEEK TRAINING', _('6 WEEK TRAINING')),
-        ('6 WEEK TRAINING(CAD Modelling and Analysis Using Solid Works)', _('6 WEEK TRAINING(CAD Modelling and Analysis Using Solid Works)')),
-        ('6 WEEK TRAINING(Electronic Circuit Design Usin VHDL)', _('6 WEEK TRAINING (Electronic Circuit Design Usin VHDL)')),
-	('2 WEEK TRAINING', _('2 WEEK TRAINING')),
-	('6 MONTH TRAINING', _('6 MONTH TRAINING')),
-	('CRASH COURSE', _('CRASH COURSE')),
-	('PRACTICAL', _('PRACTICAL')),
-	('DESIGN', _('DESIGN')),
-	('DRAWING & DESIGN CHECKING', _('DRAWING & DESIGN CHECKING')),
-	('DESIGN CHECKING', _('DESIGN CHECKING')),
-	('BRIDGE AND CULVETRS', _('BRIDGE AND CULVETRS')),
-	('BUILDINGS', _('BUILDINGS')),
-	('WATER AND SEWAGE', _('WATER AND SEWAGE')),
-	('OTHER', _('OTHER'))
-)
+#:::::::::::::::DEFINE THE CHOICES HERE:::::::::::::::::::::::::::::::::#
 
 STATES_CHOICES = (
     ('Andhra Pradesh', _('Andhra Pradesh')),
@@ -167,8 +56,6 @@ MONTH_CHOICES = (
 	('December',_('December')),
 )
 YEAR_CHOICES = ( 
-	('2011', _('2011')),
-	('2010', _('2010')),
 	('2012', _('2012')),
 	('2013', _('2013')),
 	('2014', _('2014')),
@@ -217,4 +104,10 @@ DAY_CHOICES = (
 DAILY_CHOICES = ( 
 	('CASH', _('CASH')),
 	('CHEQUE/DD/ONLINE',_('CHEQUE/DD/ONLINE')),
+)
+
+ORGANISATION_CHOICES = (
+	('GOVERNMENT', _('GOVERNMENT')),
+	('SEMI-GOVERNMENT', _('SEMI-GOVERNMENT')),
+	('PRIVATE', _('PRIVATE'))
 )

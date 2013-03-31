@@ -1,8 +1,17 @@
+"""
+%% urls.py %%
+
+This file define the urls used in the software for tcc application. In this regular expression are used, which are used to connect the url with the functions defined.
+"""
+
+#::::::::::::::IMPORT THE HEADER FILE HERE::::::::::::::::::::::::::::::#
 from django.conf.urls.defaults import *
 from django.contrib import admin
 admin.autodiscover()
 from Automation.tcc.models import *
+#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::#
 
+#:::::::::::::::DEFINE THE URLS HERE::::::::::::::::::::::::::::::::::::#
 
 urlpatterns = patterns('Automation.tcc.views',
     (r'^index/$', 'index1'),
@@ -10,7 +19,7 @@ urlpatterns = patterns('Automation.tcc.views',
     (r'^previous/$', 'previous'),
     (r'^addprofile/$', 'profile'),
     (r'^performa/$', 'performa'),
-    (r'^rate/$', 'rate'),
+    (r'^rate/hello/$', 'rate'),
     (r'^performa/$', 'performa'),
     (r'^addjob/$', 'selectfield'),
     (r'^select/$', 'select'),
@@ -42,6 +51,10 @@ urlpatterns = patterns('Automation.tcc.views',
     (r'^clientreport/$', 'clientreport'),
     (r'^cashbook/$', 'Cashbook'),
     (r'^labreport/$', 'lab_report'),
+    (r'^contact/$', 'contact'),
+    (r'^othertest/$', 'add_job_other_test'),
+    (r'^gen_report_other/$', 'gen_report_other'),
+    (r'^edit_profile/$', 'edit_profile'),
    
 )
 

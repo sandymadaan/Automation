@@ -1,8 +1,8 @@
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-# ***Views_ext.py***
-# This file is used to create the views for the software. 
-# In order to avoid the confusion with generating the temperory jobe and then making them permanents, I created different views file.
-#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+"""
+%% Views_ext.py %%
+This file is used to create the views for the software. 
+In order to avoid the confusion with generating the temperory jobs and then making them permanents, a different views file is created.
+"""
 
 #::::::::::::::IMPORT THE HEADER FILE HERE::::::::::::::::::::#
 from django.http import HttpResponseRedirect,HttpResponse
@@ -29,9 +29,12 @@ from Automation.tcc.convert_function import *
 
 @login_required
 def perfselectfield(request):
-	#"""
-	#***List the type of work to be done i.e Lab or Field work
-	#"""
+	"""
+	** perfselectfield **
+
+	List the type of work to be done i.e Lab or Field work. Here, if the same client is making the slection 2 times then if condition is 		passed else the client is added in clientadd table.
+	"""
+
 	client =UserProfile.objects.get(id=request.GET['id'])
 	add = editClientadd.objects.aggregate(Max('id'))    # this is in case one clicks on adding more material into a job
 	addid =add['id__max']
@@ -47,9 +50,12 @@ def perfselectfield(request):
 
 @login_required
 def perfselect(request):
-	#"""
-	#***List down the materials or the field work depending on the selection of the type of work
-	#"""	
+	"""
+	** perfselect **
+
+	List down the materials or the field work depending on the selection of the type of work.
+	"""	
+
 	report = Report.objects.all()
 	mat = Material.objects.all()
 	material = Report.objects.get(id=request.GET['id'])
@@ -58,11 +64,13 @@ def perfselect(request):
 
 @login_required
 def add_perf(request):
-	#"""
-	#***This helps the user to add the job
-	#"""
+	"""
+	** add_perf **
+
+	This helps the user to add the job. Depending upon the material selected the tests are listed then. Two forms are defined in a single 		template file, so that there data get stored in different tables one after the other.
+	"""
+
 	report = Report.objects.all()
-	
 	query =request.GET.get('q', '')
 	id = BillPerf.objects.aggregate(Max('job_no'))
 	maxid =id['job_no__max']
@@ -155,9 +163,12 @@ def add_perf(request):
 		return render_to_response('tcc/performa/add_suspence.html', {"form1": form1,"test":test,'field_list':field_list,'payment':payment,'work':work,"report":report}, context_instance=RequestContext(request))
 
 def gen_report_perf(request):
-	#"""
-	#***The jobs which are non suspence comes here
-	#"""
+	"""
+	** gen_report_perf **
+
+	The jobs which are non suspence comes here. Depending on the material type, it is given a type: Routine or Institutional.
+	"""
+
 	mee = EditJob.objects.aggregate(Max('id'))
 	minid =mee['id__max']
 	client = EditJob.objects.get(id=minid)
@@ -181,9 +192,12 @@ def gen_report_perf(request):
 	return HttpResponseRedirect(reverse('Automation.tcc.views_ext.job_submit_perf'))
 
 def add_suspence_perf(request):
-	#"""
-	#***The jobs which are to be kept under suspence comes here 
-	#"""
+	"""
+	** add_suspence_perf **
+
+	The calculation for the price of the material to be tested is calculated here.
+	"""
+
 	mee = editSuspenceJob.objects.aggregate(Max('id'))
 	minid =mee['id__max']
 	client = editSuspenceJob.objects.get(id=minid)
@@ -220,9 +234,12 @@ def add_suspence_perf(request):
 	return HttpResponseRedirect(reverse('Automation.tcc.views_ext.job_submit_perf'))
 
 def job_submit_perf(request):
-	#"""
-	#***The view to ensure that job is successfully saved
-	#"""
+	"""
+	** job_submit_perf **
+
+	The view to ensure that job is successfully saved.
+	"""
+
 	mee = EditJob.objects.aggregate(Max('id'))
 	minid =mee['id__max']
 	client = EditJob.objects.get(id=minid)
@@ -235,9 +252,11 @@ def job_submit_perf(request):
 
 @login_required
 def job_ok_perf(request):
-	#"""
-	#***This is to do the calculation of taxes 
-	#"""
+	"""
+	** job_ok_perf **
+
+	This is to do the calculation of taxes on the total amount of a job. 
+	"""
 	
 	id = EditJob.objects.aggregate(Max('job_no'))
 	maxid =id['job_no__max']
@@ -255,14 +274,17 @@ def job_ok_perf(request):
 
 @login_required
 def billperf(request):
-	#"""
-	#***This shows the bill in HTML format
-	#"""
+	"""
+	** billperf **
+
+	This shows the bill in HTML format. All the taxes, amount, materials tested are defined.
+	"""
+
 	id = EditJob.objects.aggregate(Max('id'))
 	maxid =id['id__max']
 	job = EditJob.objects.get(id = maxid)
 	job_no = job.job_no
-	client = job.client.client.name
+	client = job.client.client.first_name
 	getjob = EditJob.objects.all().filter(job_no=job_no).values('site','clienteditjob__test__name','suspenceeditjob__test__name','clienteditjob__material_id')
 	mat = TestTotalPerf.objects.all().values_list('mat',flat=True).filter(job_no=job_no)
 	mate = Material.objects.all().filter(id__in = mat)
@@ -282,9 +304,14 @@ def billperf(request):
 	return render_to_response('tcc/performa/bill.html', template , context_instance=RequestContext(request))
 
 def search_job(request):
+	"""
+	** search_job **
+
+	Search Job function searches the performa job, for which one wants to get information about or want to confirm that job.
+	"""
 	query =request.GET.get('q', '')
 	if query:
-		job = EditJob.objects.filter(job_no = query).values('id','client__client__name','client__client__address_1','client__client__city','clienteditjob__material__name','suspenceeditjob__field__name','site','testtotalperf__unit_price')
+		job = EditJob.objects.filter(job_no = query).values('id','client__client__first_name','client__client__address_1','client__client__city','clienteditjob__material__name','suspenceeditjob__field__name','site','testtotalperf__unit_price')
 	else:	
 		job =[]	
 	return render_to_response('tcc/performa/searchjob.html',{'job':job,'query':query},context_instance=RequestContext(request))
@@ -292,14 +319,20 @@ def search_job(request):
 
 
 def edit_work(request):
+	"""
+	** edit_work **
+
+	Edit Work function is used to edit or delete a particular performa job id and then confirm the job.
+	"""
+
 	query =request.GET.get('id', '')
 	job = EditJob.objects.get(id = query)
 	if job.report_type_id == 1:
 		clientjob = ClientEditJob.objects.get(job =query)
-    		if request.method == "POST":
+    	if request.method == "POST":
 			jform = JobForm(request.POST)
-        		sform = ClientjobForm(request.POST)
-        		if jform.is_valid() and sform.is_valid():
+			sform = ClientjobForm(request.POST)
+			if jform.is_valid() and sform.is_valid():
 				profile = jform.save(commit=False)
 				profile.client_id = job.client_id
 				id = Job.objects.aggregate(Max('job_no'))
@@ -323,16 +356,16 @@ def edit_work(request):
 					return HttpResponseRedirect(reverse('Automation.tcc.views.add_suspence'))
 				else :
 					return HttpResponseRedirect(reverse('Automation.tcc.views.gen_report'))
-        	else:	
-			jform = JobForm(instance=job)
-			sform = ClientjobForm(instance=clientjob)
-		return render_to_response('tcc/performa/edit_job.html', {'jform': jform,'sform':sform},context_instance=RequestContext(request))
-	else:
+			else:	
+				jform = JobForm(instance=job)
+				sform = ClientjobForm(instance=clientjob)
+			return render_to_response('tcc/performa/edit_job.html', {'jform': jform,'sform':sform}, context_instance=RequestContext(request))
+	else :
 		suspencejob = SuspenceEditJob.objects.get(job = query)
-    		if request.method == "POST":
+		if request.method == "POST":
 			jform = JobForm(request.POST)
-        		sform = SuspencejobForm(request.POST)
-        		if jform.is_valid() and sform.is_valid():
+        	sform = SuspencejobForm(request.POST)
+        	if jform.is_valid() and sform.is_valid():
 				profile = jform.save(commit=False)
 				profile.client_id = job.client_id
 				id = Job.objects.aggregate(Max('job_no'))
