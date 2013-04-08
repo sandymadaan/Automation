@@ -1,0 +1,82 @@
+
+*** These modified files were found in JOE when it aborted on Mon Sep 24 13:32:35 2012
+*** JOE was aborted by UNIX signal 1
+
+*** File '(Unnamed)'
+models.py
+models.py
+models.py
+models.py
+a.patch
+views.py
+views.py
+views.py
+views.py
+views.py
+soil_ohsr.html
+
+*** These modified files were found in JOE when it aborted on Tue Oct 23 11:52:19 2012
+*** JOE was aborted because the terminal closed
+
+*** These modified files were found in JOE when it aborted on Tue Mar 12 01:05:58 2013
+*** JOE was aborted because the terminal closed
+
+*** These modified files were found in JOE when it aborted on Mon Mar 18 15:57:00 2013
+*** JOE was aborted because the terminal closed
+
+*** These modified files were found in JOE when it aborted on Tue Mar 19 13:51:27 2013
+*** JOE was aborted because the terminal closed
+
+*** These modified files were found in JOE when it aborted on Mon Mar 25 14:41:24 2013
+*** JOE was aborted by UNIX signal 15
+
+*** These modified files were found in JOE when it aborted on Mon Mar 25 14:41:24 2013
+*** JOE was aborted by UNIX signal 15
+
+*** File 'steel.html'
+{% extends "report/header.html" %}
+{% load i18n %}
+<html>
+{% block report %}
+<body>
+{% if st %}
+
+	
+	<table align="center" border="1">
+		<tr>
+			<th>S.No</th>
+			<th>Description</th>
+			<th>Acceptable Limit</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+	{% for test in st %}
+	
+		<tr>	
+			<td>{{test.S_No}}</td>
+			<td>{{test.Description_of_Test}}</td>
+			<td>{{test.Acceptable_limit_as_per}}</td>	
+
+*** File '(Unnamed)'
+			<td>{{test.Result_1}}</td>
+			<td>{{test.Result_2}}</td>
+			<td>{{test.result_3}}</td>		
+		</tr>	
+	{% endfor  %}
+{% endif %}
+	</table>	
+</body>
+{% endblock %}
+</html>
+AUTOMATION
+automation
+index
+import
+mail
+email
+email
+EMAIL
+OPC
+
+*** File '(Unnamed)'

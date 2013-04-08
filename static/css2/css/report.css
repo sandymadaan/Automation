@@ -1,0 +1,27 @@
+table {
+  
+   
+    margin:10px auto;
+	cellpadding:10px;
+	border-spacing:5px 5px;
+	width:100%;
+}
+caption {
+    font-variant:small-caps;
+    font-size:24px;
+}
+tr {
+    vertical-align:top;
+}
+th {
+  
+    font-size:18px;
+
+    padding:10px;
+}
+td {
+    padding:2px 10px;
+    font-size:14px;
+    vertical-align:top;
+   
+}

@@ -1,0 +1,28 @@
+{% extends "report/header.html" %}
+{% load i18n %}
+<html>
+{% block report %}
+<body>
+{% if st %}
+
+
+        <table align="center" border="1">
+                <tr>
+                        <th>S.No</th>
+                        <th>Description</th>
+                        <th>Bitumen Content</th>
+                </tr>
+        {% for test in st %}
+
+                <tr>
+                        <td>{{test.S_No}}</td>
+                        <td>{{test.Description}}</td>
+                        <td>{{test.Bitumen_Content}}</td>
+                </tr>
+        {% endfor  %}
+{% endif %}
+        </table>
+</body>
+{% endblock %}
+</html>
+

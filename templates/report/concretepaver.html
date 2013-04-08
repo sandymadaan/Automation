@@ -1,0 +1,29 @@
+{% extends "report/header.html" %}
+{% load i18n %}
+<html>
+{% block report %}
+<body>
+{% if cp %}
+
+
+        <table align="center" border="1">
+                <tr>
+                        <th>S.No</th>
+                        <th>Description</th>
+                        <th>Thickness</th>
+                        <th>Compressive Strength(Mpa)</th>
+                </tr>
+        {% for test in cp %}
+
+                <tr>
+                        <td>{{test.S_No}}</td>
+                        <td>{{test.Description}}</td>
+                        <td>{{test.Thickness}}</td>
+                        <td>{{test.Comp_Strength_MPa}}</td>
+                </tr>
+        {% endfor  %}
+{% endif %}
+        </table>
+</body>
+{% endblock %}
+</html>
