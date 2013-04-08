@@ -1,8 +1,8 @@
-{% extends "base.html" %}
+{% extends base_template|default:"base.html" %}
 {% load i18n %}
 <html>
 <head>
-    <title>Gndec Ludhiana</title>
+    <title>{{title.anme}}</title>
 </head>
 {% block content %}
 <br>

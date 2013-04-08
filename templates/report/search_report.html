@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 {% load i18n %}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
@@ -7,7 +8,7 @@
 </head>
 {% block content %}
 <body>
-  <h1 class="changeBlue">Client Details</h1>
+  <h2 class="changeBlue">Client Details</h2>
   <form action="." method="GET">
     <label for="q">Job Id: </label>
     <input type="text" name="q" value="{{ query|escape }}">
@@ -15,7 +16,7 @@
   </form>
 
   {% if query %}
-    <h2>Results for "{{ query|escape }}":</h2>
+    <h3>Results for "{{ query|escape }}":</h3>
 
     {% if results %}
       <ul>
@@ -24,10 +25,10 @@
         <li>Material : {{job.clientjob__material__name}}</li>
 	<li>Name:{{job.client__client__first_name}}</li>
         <li>Site : {{job.site}}</li>
-        <li>Address : {{job.client__client__address}}</li>
+        <li>Address : {{job.client__client__address_1}}</li>
         <li>Sample No : {{job.report__Sample_no}}</li>
         <li>Report : {{job.report__id}}</li>
-	        <b><a href="{{ LOCAL_URL }}/automation/report/report_gen/?id={{ job.id }}">Get Report</a></b>
+	        <b><a href="{{ LOCAL_URL }}/auto/report/report_gen/?id={{ job.id }}">Get Report</a></b>
 
 <!--
 <form action="" method="POST">{% csrf_token %}

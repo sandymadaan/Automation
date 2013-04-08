@@ -6,15 +6,15 @@ Order deny,allow
 Allow from all
 </Directory>
 
-Alias /static/ mPath/Automation/static/
+Alias /static/ /home/sandy/Music/auto/test/Automation/static/
 
-<Directory mPath/Automation/static/>
+<Directory /home/sandy/Music/auto/test/Automation/static/>
 Order deny,allow
 Allow from all
 </Directory>
 
-WSGIScriptAlias /automation mPath/Automation/apache/django.wsgi
-<Directory mPath/Automation/apache/>
+WSGIScriptAlias /automation /home/sandy/Music/auto/test/Automation/apache/django.wsgi
+<Directory /home/sandy/Music/auto/test/Automation/apache/>
 Order allow,deny
 Allow from all
 </Directory>

@@ -2,26 +2,33 @@
 {% load i18n %}
 <html>
 {% block report %}
+<style>
+
+.Margin {
+text-align:center;
+}
+
+</style>
 <body>
 {% if cubee %}
 
 	
-	<table align="center" border="1">
+	<table width="100%" align="center" border="1">
 		<tr>
 			<th>S.No</th>
 			<th>Description</th>
-			<th>Breaking_load</th>
+			<th>Breaking Load</th>
 			<th>Mix</th>
-			<th>Comp_strength</th>
+			<th>Comp Strength</th>
 		</tr>
 	{% for test in cubee %}
 	
-		<tr>	
-			<td>{{test.S_No}}</td>
-			<td>{{test.Description}}</td>
-			<td>{{test.Breaking_load}}</td>	
-			<td>{{test.Mix}}</td>
-			<td>{{test.Comp_strength}}</td>		
+		<tr >	
+			<td class="Margin">{{test.S_No}}</td>
+			<td class="Margin">{{test.Description}}</td>
+			<td class="Margin">{{test.Breaking_load}}</td>	
+			<td class="Margin">{{test.Mix}}</td>
+			<td class="Margin">{{test.Comp_strength}}</td>		
 		</tr>	
 	{% endfor  %}
 {% endif %}

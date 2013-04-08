@@ -1,12 +1,14 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+{% extends base_template|default:"base.html" %} 
+{% load i18n %} 
+<html>
+{% block content %} 
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <title>GNDEC</title>
-
+<!--
 <style type="text/css">
 html {
-  background-color: #282828;
+  background-color: #404040;
 /*  background-image:url('../build.jpg');
 */
 }
@@ -18,7 +20,7 @@ body {
   margin: 0 auto;
   margin-top: 15px;
   border: 1px solid #ccc;
-  background-color:#585858;
+  background-color:#339933;
 }
 
 h1 {
@@ -61,7 +63,7 @@ p
 color:#FFF000; 
 }
 </style>
-
+-->
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
 
 <script type="text/javascript">
@@ -262,6 +264,55 @@ $(document).ready(function() {
 	</div>
     {% endfor %}
 
+    {{ steel_formset.management_form }}
+    {% for form in steel_formset.forms %}
+    <div class="item">
+                {{ form.as_p }}
+                <p style=""><a class="delete" href="#">Delete</a></p>
+        </div>
+    {% endfor %}
+
+
+    {{ concrete_formset.management_form }}
+    {% for form in concrete_formset.forms %}
+    <div class="item">
+                {{ form.as_p }}
+                <p style=""><a class="delete" href="#">Delete</a></p>
+        </div>
+    {% endfor %}
+
+    {{ tile_formset.management_form }}
+    {% for form in tile_formset.forms %}
+    <div class="item">
+                {{ form.as_p }}
+                <p style=""><a class="delete" href="#">Delete</a></p>
+        </div>
+    {% endfor %}
+
+    {{ pc_formset.management_form }}
+    {% for form in pc_formset.forms %}
+    <div class="item">
+                {{ form.as_p }}
+                <p style=""><a class="delete" href="#">Delete</a></p>
+        </div>
+    {% endfor %}
+
+    {{ hammer_formset.management_form }}
+    {% for form in hammer_formset.forms %}
+    <div class="item">
+                {{ form.as_p }}
+                <p style=""><a class="delete" href="#">Delete</a></p>
+        </div>
+    {% endfor %}
+
+    {{ gw_formset.management_form }}
+    {% for form in gw_formset.forms %}
+    <div class="item">
+                {{ form.as_p }}
+                <p style=""><a class="delete" href="#">Delete</a></p>
+        </div>
+    {% endfor %}
+
     <p><a id="add" href="#">Add Row</a></p>
 
     <input type="submit" value=" Submit " />
@@ -270,3 +321,4 @@ $(document).ready(function() {
 
 </body>
 </html>
+{% endblock %}

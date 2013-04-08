@@ -1,7 +1,0 @@
-{% extends "base.html" %}
-{% load i18n %}
-<html lang="en">
-<head>
-    <title>Automation</title>
-</head>
-<p>Work added successfuly...</p>

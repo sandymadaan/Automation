@@ -12,9 +12,16 @@
  <table align="center">
  <caption><center><b>REPORTS</center></caption>	
 	 <tr>
-		<td><b><center><a href="{{ LOCAL_URL }}/automation/tcc11_12/g_report" target="window">GENERAL REPORT</a> </td></tr>
-		 <tr><td><b><center><a href="{{ LOCAL_URL }}/automation/tcc11_12/bill" target="window">BILL</a> </td></tr>
-		 <tr><td><b><center><a href="{{ LOCAL_URL }}/automation/tcc11_12/receipt" target="window">RECEIPT</a> </td>
+		{% for job in amt %}
+		{% if job.amount__report_type == "Suspence" %}
+			<td><b><center><a href="{{ LOCAL_URL }}/automation/tcc/s_report" target="window">SUSPENCE REPORT</a> 
+			</td></tr>
+		{% else %}
+			<td><b><center><a href="{{ LOCAL_URL }}/automation/tcc/g_report" target="window">GENERAL REPORT</a> </td></tr>
+		{% endif %}
+	{% endfor %}
+		 <tr><td><b><center><a href="{{ LOCAL_URL }}/automation/tcc/bill" target="window">BILL</a> </td></tr>
+		 <tr><td><b><center><a href="{{ LOCAL_URL }}/automation/tcc/receipt" target="window">RECEIPT</a> </td>
 	 </tr>
  </table>
 </body>

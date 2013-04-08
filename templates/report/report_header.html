@@ -10,22 +10,25 @@
 <body>
 <div id="sidebar">
         {% block header %}
-		    {% for organisations in organisation %}
+	            {% for organisations in organisation %} 	   
                     <h1 align="center" style="margin-bottom:0;" >{{organisations.name}}</h1>
-                    <h3 align="center" style="margin-top:0; margin-bottom:0;">{{organisations.address}}</h3>
-		    <h4 align="center" style="margin-top:0; margin-bottom:0;">{{organisations.accrediatoin}}</h4>
+                    <h3 align="center" style="margin-top:0; margin-bottom:0;">{{organisations.status}}</h3>
+                    
+		    <h2 align="center" style="margin-top:0; margin-bottom:0;">TESTING ANG CONSULTANCY CELL{{department.name}}</h2>
+		    
+		    <h4 align="center" style="margin-top:0; margin-bottom:0;">{{organisations.address}}</h4>
 		    <table width="100%" style="margin-top:0;">
 		    	<tr>
-		     		<td align="left">e-mail:{{organisations.e_mail}}</td>
-		    		<td align="center">Fax: {{organisations.fax}}</td>
+		     		<td align="left">e-mail: tcc@gndec.ac.in{{organisations.e_mail}}</td>
+		    		<td align="center">Fax: 0161-5064742{{organisations.fax}}</td>
 		    		<td align="right">Phone: {{organisations.phone}}</td>
                     	</tr>
                     </table>
 <hr/>
 <!--                        <div>{{organisations.director}}</div>
 			<div>{{organisations.logo_upload}}</div>
--->			
-       		   {% endfor %}
+-->			{% endfor %}
+       		   
 </div>	
 {% endblock %}
 {% block columnwrap %}

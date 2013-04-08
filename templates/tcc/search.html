@@ -6,23 +6,27 @@
 </head>
 {% block content %}
 <body>
-  <h1 class="changeBlue">Search a Client</h1>
+  <h2 class="changeBlue">Search a Client</h2>
   <form action="." method="GET">
     <label for="q">Name: </label>
     <input type="text" name="q" value="{{ query|escape }}">
 	<label for="add">Address: </label>
-    <input type="text" name="add" value="{{ addquery|escape }}">
+    <input type="text" name="add" value="{{ addquery|escape }}"><br>
    
     <input type="submit" value="Search">
   </form>
 
   {% if query %}
-    <h2>Results for "{{ query|escape }}":</h2>
+    <h3>Results for "{{ query|escape }}":</h3>
 <table border='1' width='100%'>
 <tr>
 		<th>Sr.No </th>
 		<th>Name of Parties</th>
                 <th>Address</th>
+                <th>Company</th>
+                <th>Email Address</th>
+                <th>Website</th>
+                <th>Phone No</th>
 		<th>Type of organisation</th>
 		<th>Your Activity<th>
 	</tr>
@@ -31,12 +35,16 @@
       {% for client in results %}
 	<tr>
 	<td>{{forloop.counter}}</td>
-        <td> {{ client.first_name }}</li>
+        <td> {{ client.first_name }} {{client.middle_name}} {{client.last_name}}</li>
         <td> {{client.address}},{{client.city}}</td>
+        <td>{{client.company}}</td>
+        <td>{{client.email_address}}</td>
+        <td>{{client.website}}</td>
+        <td>{{client.contact_no}}</td>
         <td>{{client.type_of_organisation}}</td>
-       <td><a href="/automation/tcc11_12/addjob/?id={{ client.id }}">ADD JOB</a>/
-	<a href="/automation/tcc11_12/selectfield/?id={{ client.id }}">ADD PERFORMA JOB</a>/
-	<a href="/automation/tcc11_12/prevwork/?id={{ client.id }}">View Previous Work</a></td>
+       <td><a href="/automation/tcc/addjob/?id={{ client.id }}">ADD JOB</a>/
+	<a href="/automation/tcc/selectfield/?id={{ client.id }}">ADD PERFORMA JOB</a>/
+	<a href="/automation/tcc/prevwork/?id={{ client.id }}">View Previous Work</a></td>
 	</tr>
       {% endfor %}
       </ul>

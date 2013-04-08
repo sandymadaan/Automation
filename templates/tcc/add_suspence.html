@@ -1,8 +1,8 @@
-{% extends "base.html" %}
+{% extends base_template|default:"base.html" %}
 {% load i18n %}
 <html>
 <head>
-    <title>Gndec Ludhiana</title>
+    <title>{{title.name}}</title>
 </head>
 {% block content %}
 <script type="text/javascript" >
@@ -16,24 +16,29 @@
     
     </script>
 <body onload = "hidefield()">
-<h1>Add Field Work</h1>
- <table>
-<tr><td><label for="id_search">Type of work:</label></td><td><select name="form" ONCHANGE="location =
-this.options[this.selectedIndex].value;">
-{% for reports in report %}
-  <option value="/automation/tcc11_12/select/?id={{reports.id}}">{{reports.name}}</option>
-	{% endfor %}
-</select></td></tr>
+<h2 class="changeBlue">Add Field Work</h2>
+  		<table>
+			<tr>
+			<td><label for="id_search">Type of work:</label></td>
+			<td><select name="form" ONCHANGE="location = 
+			this.options[this.selectedIndex].value;">
+	 			<option value="">Select type</option>
+				{% for reports in report %}
+  					<option value="/automation/tcc/select/?id={{reports.id}}">
+  					{{reports.name}}</option>
+				{% endfor %}</select></td>
+				</tr>
+			<br>
 <br>
  <tr><td><label for="id_search">Work:</label></td><td><select name="form" ONCHANGE="location =
 this.options[this.selectedIndex].value;">
 {% for field in field_list %}
 	
-  <option value="/automation/tcc11_12/save/?q={{field.id}}">{{field.name}}</option>
+  <option value="/automation/tcc/save/?q={{field.id}}">{{field.name}}</option>
 	{% endfor %}
 </select></td></tr>
 
- 
+ <tr><td>Mark site here:</td><td><a href="{{ LOCAL_URL }}/automation/tcc/map" >Mark site on map</a> </td></tr>
 <br>
     {% if form.errors %}
         <p style="color: red;">
@@ -43,13 +48,6 @@ this.options[this.selectedIndex].value;">
 
     <form action="" method="post">
 	{% csrf_token %}
-	<tr><td>Mark site here:</td><td><a href="{{ LOCAL_URL }}/automation/tcc11_12/map" >Mark site on map</a> </td></tr>
-		<tr><td><label for="id_site">Complete Address of Site:</label></td><td><input id="id_site" type="site" name="site"  maxlength="600" required="yes" title="Site is Required!" /></td></tr>
-           <tr><td><label for="id_sample">No. of similar works:</label></td><td><input id="id_sample" type="number" pattern="[0-9]" min="1" name="sample"  maxlength="11" required="Yes" title="You must enter a no. of samples in the range 1-9." /></td></tr>
-	
-	<tr><td><label for="id_letter">Letter No:</label></td><td><input id="id_letter" name="letter_no"  maxlength="11" /></td></tr>
-	<tr><td><label for="id_letterd">Letter Date:</label></td><td><input id="id_letter_date" name="letter_date"  maxlength="11" /></td></tr>	
-	<tr><td><label for="id_tds">TDS:</label></td><td><input id="id_tds" type="number" name="tds"  maxlength="11" value=0 /></td></tr>		
 	 <tr><td><label for="id_test">Test:</label></td><td><select name="test">
 		<option value="">Select test</option>	
 {% if test %}
@@ -60,7 +58,28 @@ this.options[this.selectedIndex].value;">
 		
        {% endfor %}      
        {% endif  %}
-	<tr><td><label for="id_other">Your option:</label></td><td><input id="id_other" type="other" name="other"  maxlength="600" /></td></tr>
+       <tr><td><label for="id_other">Your option:</label></td><td><input id="id_other" type="other" name="other"  maxlength="600" /></td></tr>
+       <tr>
+			<td><input type="checkbox" name="other" id="other" value="1" 
+			onclick="return yousendit();"/>
+			<label for="check">Other Test</label>
+			</td></tr>
+		<script>
+			function yousendit(){
+    			if(document.getElementById('other').checked){
+        		window.location='{{ LOCAL_URL }}/automation/tcc/othertest/?q={{ query }}';
+        		return false;
+    			}
+    		return true;
+			}
+		</script>
+	
+	<tr><td><label for="id_site">Complete Address of Site:</label></td><td><input id="id_site" type="site" name="site"  maxlength="600" required="yes" title="Site is Required!" /></td></tr>
+           <tr><td><label for="id_sample">No. of similar works:</label></td><td><input id="id_sample" type="number" pattern="[0-9]" min="1" name="sample"  maxlength="11" required="Yes" title="You must enter a no. of samples in the range 1-9." value=1 /></td></tr>
+	<tr><td><label for="id_letter">Letter No:</label></td><td><input id="id_letter" name="letter_no"  maxlength="11" /></td></tr>
+	<tr><td><label for="id_letterd">Letter Date:</label></td><td><input id="id_letter_date" name="letter_date"  maxlength="11" /></td></tr>	
+	<tr><td><label for="id_tds">TDS:</label></td><td><input id="id_tds" type="number" name="tds"  maxlength="11" value=0 /></td></tr>		
+	
 	<tr><td><label for="id_work">Type of Work:</label></td><td><select name="type_of_work">
 {% for typeofwork in work %}
     <option value="{{typeofwork.id }}">{{ typeofwork.name }}</option>

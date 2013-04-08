@@ -110,5 +110,38 @@ class Cement_OPC_53Form(ModelForm):
 		model = Cement_OPC_53
 		exclude = ('Report_id','ip_address')		
 
+"""Form for Steel"""
+class SteelForm(ModelForm):
+	class Meta:
+		model =Steel
+		exclude = ('Report_id','ip_address')
 
+"""Concrete Paver"""
+class Concrete_PaverForm(ModelForm):
+	class Meta:
+		model = Concrete_Paver
+		exclude = ('Report_id','ip_address')
 
+"""Interlock Tiles"""
+class Interlock_TileForm(ModelForm):
+	class Meta:
+		model = Interlock_Tiles
+		exclude = ('Report_id','ip_address')
+
+"""PC"""
+class PCForm(ModelForm):
+	class Meta:
+		model = PC
+		exclude = ('Report_id','ip_address')
+
+"""Rebound Hammer"""
+class Rebound_Hammer_TestingForm(ModelForm):
+	class Meta:
+		model = Rebound_Hammer_Testing
+		exclude = ('Report_id','ip_address')
+
+"""Ground Water"""
+class Ground_WaterForm(ModelForm):
+	class Meta:
+		model = Ground_Water
+		exclude = ('Report_id','ip_address')

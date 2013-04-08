@@ -32,6 +32,18 @@ urlpatterns = patterns('Automation.report.views',
 	(r'^result_Cement_OPC_43/$', 'result_Cement_OPC_43'),
 	(r'^cement_opc_53/$', 'cement_opc_53'),
 	(r'^result_Cement_OPC_53/$', 'result_Cement_OPC_53'),
+        (r'^steel/$', 'steel'),
+        (r'^result_steel/$', 'result_steel'),
+        (r'^concretePaver/$', 'concretePaver'),
+        (r'^result_concretepaver/$', 'result_concretepaver'),
+        (r'^tile/$', 'tile'),
+        (r'^result_tile/$', 'result_tile'),
+        (r'^pc/$', 'pc'),
+        (r'^result_pc/$', 'result_pc'),
+        (r'^hammer/$', 'hammer'),
+        (r'^result_hammer/$', 'result_hammer'),
+        (r'^groundwater/$', 'groundwater'),
+        (r'^result_groundwater/$', 'result_groundwater'),
 	(r'thanks$',  direct_to_template, {'template': 'report/thanks.html'}),
 )
 
@@ -46,9 +58,10 @@ urlpatterns += patterns('Automation.report.search',
 
 """
 Urls of pdf.py
-
+"""
 urlpatterns += patterns('Automation.report.pdf',
 	(r'^report_pdf/$', 'report_pdf'),
+	(r'^myview/$', 'myview'),
 )
-"""
+
 

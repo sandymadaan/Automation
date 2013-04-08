@@ -6,18 +6,18 @@
 </head>
 {% block content %}
 <body>
-  <h1>Search</h1>
+  <h1 class="changeBlue">Search</h1>
   <form action="." method="GET">
     <label for="q">Type the job_no you want to search: </label>
-    <input type="text" name="q" value="{{ query|escape }}" type="number" pattern="[0-9]+" min="1">
-    <input type="submit" value="Search">
+    <input type="text" name="q" value="{{ query|escape }}" type="number" pattern="[0-9]+" min="1"><br />
+    <input type="submit" value="Search"><br /><br />
   </form>
 {% if query %}
-    <h2>Results for job_no :{{ query|escape }}</h2>
+    <h4>Results for job_no :{{ query|escape }}</h4>
 
     {% if job %}
 	
-	<table border="1">
+	<table border="1" cellpadding="10">
 	
 	<tr>
 		<th>Job Id.</th>
@@ -32,13 +32,13 @@
 	{% for client in job %}
 	<tr>
 		<td>{{client.id}}
-		<td>{{client.client__client__first_name}} {{client.client__client__middle_name}} {{client.client__client__last_name}} from {{client.client__client__address}},{{client.client__client__city}}</td>
+		<td>{{client.client__client__first_name}} from {{client.client__client__address_1}},{{client.client__client__city}}</td>
 		<td> {{client.clientjob__material__name}}</td>	
 		<td>{{client.site}}</td>
 		<td>{{client.testtotal__unit_price}}</td>
-		<td><a href="/automation/tcc11_12/report/?id={{client.id}}">Get Report</a></td>
-		<td><a href="/automation/tcc11_12/bill/?id={{client.id}}">Get Bill</a></td>
-		<td><a href="/automation/tcc11_12/receipt/?id={{client.id}}">Get Receipt</a></td>
+		<td><a href="/automation/tcc/report/?id={{client.id}}">Get Report</a></td>
+		<td><a href="/automation/tcc/bill/?id={{client.id}}">Get Bill</a></td>
+		<td><a href="/automation/tcc/receipt/?id={{client.id}}">Get Receipt</a></td>
     </tr>
 	{% endfor %}
 

@@ -1,17 +1,24 @@
-{% extends "base.html" %}
+{% extends base_template|default:"base.html" %}
 {% load i18n %}
 <html>
-{% block content %}
-	<h1>Add Job</h1>
+	<head>
+		<title>{{title.name}}</title>
+	</head>
 
- <label for="id_search">Type of work:</label><select name="form" ONCHANGE="location =
+{% block content %}
+	
+	<h2 class="changeBlue">Add Job</h2>
+<table>
+ <tr>
+ 	<td><label for="id_search">Type of work:</label></td>
+ 	<td><select name="form" ONCHANGE="location =
 this.options[this.selectedIndex].value;">
 	<option value="">Select Work</option>
 {% for reports in report %}
-  <option value="{{ LOCAL_URL }}/automation/tcc11_12/select/?id={{reports.id}}">{{reports.name}}</option>
+  <option value="{{ LOCAL_URL }}/automation/tcc/select/?id={{reports.id}}">{{reports.name}}</option>
 	{% endfor %}
-</select>
- 
+</select></td>
+ </table>
 <br/><br/><i><b><u>Type of work done (explained in brief)</u></b></i>
 <br/>
 <i><b>Field works are :</b></i><br/>

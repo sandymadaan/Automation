@@ -30,11 +30,11 @@
 	{% for client in job %}
 	<tr>
 		<td>{{client.id}}
-		<td>{{client.client__client__name}} from {{client.client__client__address_1}},{{client.client__client__city}}</td>
+		<td>{{client.client__client__first_name}} from {{client.client__client__address_1}},{{client.client__client__city}}</td>
 		<td> {{client.clienteditjob__material__name}}</td>	
 		<td>{{client.site}}</td>
 		<td>{{client.testtotalperf__unit_price}}</td>
-		<td><a href="/automation/tcc11_12/editwork/?id={{client.id}}">Edit & Add this work</a></td>
+		<td><a href="/automation/tcc/editwork/?id={{client.id}}">Edit & Add this work</a></td>
     </tr>
 	{% endfor %}
 

@@ -1,5 +1,4 @@
 
-<html>
 
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
 		<title>Distance Calculator</title>
@@ -75,13 +74,13 @@
 				<input type ="button" value="Calculate Route" onclick="calcRoute()" />
 			
 				<label for="distance">Distance (km): </label>
-				<input type="text" name="distance" id="distance" readonly="true" />
+				<input type="text" name="distance" id="distance"  />
 			<div id="map_canvas"></div>
 			
     
 <form action="" method="post">{% csrf_token %}
 	<label for="sandy">Distance (km): </label>
-	<input type="hidden" name="sandy" id ="sandy" />
+	<input  name="sandy" id ="sandy" />
 	<input type ="submit" value="submit" >
 </form>
 		

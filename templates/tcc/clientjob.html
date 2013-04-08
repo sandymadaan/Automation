@@ -12,7 +12,7 @@
         </p>
     {% endif %}
 
-    <form action="{{ LOCAL_URL }}/automation/tcc11_12/tests/?job_no = {{maxid}}" method="post">
+    <form action="{{ LOCAL_URL }}/automation/tcc/tests/?job_no = {{maxid}}" method="post">
 	{% csrf_token %}
         <table>
             {{ form.as_table }}

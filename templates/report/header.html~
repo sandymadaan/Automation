@@ -3,14 +3,18 @@
 <html>
 {% block content %}
 <body>
-{% for Heads in report_form1 %}
+{% for Heads in Head %}
 	<table   width="100%"><tr>
-	<td align="left"><a>No.GNDEC/TCC/R/{{Heads.refrence_no}}</td><td align="right"><a>Dated{{Heads.dispatch_report_date}}</a></td>
+	<td align="left"><a>No.GNDEC/TCC/R/{{Heads.job_id}}</td><td align="right"><a>Dated{{Heads.dispatch_report_date}}</a></td>
 	</tr></table>
 <!--	<p><b>Job no:</b><a style="padding-left:30px; position:absolute">{{Heads.job_no}}</a></p>
 -->	<p>To,</p>
-	<p><b>Subject:</b><a style="padding-left:30px; position:absolute">{{Heads.subject}}</a></p>
-	<p><b>Refrence:</b><a style="padding-left:17px; margin-bottom:0;">Your letter No. {{Heads.reference}} dated    {{Heads.dated}}</a></p>
+	{% for add in client %}
+	<p>hjiuhiuo {{ add.client__client__first_name}} {{ add.client__client__middle_name}} {{ add.client__client__last_name}} {{ add.client__client__address}}  {{ add.client__client__city}}</p>
+	{% endfor %}
+		<p></p>
+	<p><b>Subject:</b><a style="padding-left:30px; position:absolute">{{Heads.subject}} The report for the test of the {{Heads.clientjob__material__name}} </a></p>
+	<p><b>Refrence:</b><a style="padding-left:17px; margin-bottom:0;">Your letter No. {{Heads.reference}} dated    {{job.date}}</a></p>
 	<p>{{Heads.Header_column_1}}</p>	
 	<p>{{Heads.Header_column_2}}</p>	
 	<p>Sir,</p>

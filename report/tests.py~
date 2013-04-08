@@ -15,7 +15,7 @@ class SimpleTest(TestCase):
         Tests that 1 + 1 always equals 2.
         """
         self.assertEqual(1 + 1, 2)
-'''
+
 class SeparatedValuesField(models.TextField):
     __metaclass__ = models.SubfieldBase
 
@@ -36,4 +36,4 @@ class SeparatedValuesField(models.TextField):
 
     def value_to_string(self, obj):
         value = self._get_val_from_obj(obj)
-'''
+

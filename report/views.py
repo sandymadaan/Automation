@@ -13,6 +13,26 @@ from django.core.context_processors import csrf
 from Automation.report.forms import *
 
 
+
+
+def headers():
+        #material = Material.objects.all().filter(report=1)
+        #field = Material.objects.all().filter(report=2)
+        #title = Department.objects.get(id=1)
+        #address = get_object_or_404(Organisation, pk='1')
+    	#job = Job.objects.get(id = request.GET['id'])
+	
+        #Id = Report.objects.aggregate(Max('id'))
+        #ID = Id['id__max']
+        #Head = Report.objects.filter(id = ID)
+        #organisation = Organisation.objects.all().filter(id = 1)
+        #department = Department.objects.all().filter(id = 1)
+        #template={'Head':Head,'organisation':organisation,'department':department}
+        #return template
+
+       tmp = headers()
+
+
 """
 Report of SOIL OHSR
 """
@@ -44,11 +64,18 @@ def soil_ohsr(request):
            for form in Soil_ohsr_formset.forms:
                 Soil_ohsr = form.save(commit=False)
                 Soil_ohsr.Report_id = report
-		Soil_ohsr.ip_address = request.META['REMOTE_ADDR']
+                Soil_ohsr.ip_address = request.META['REMOTE_ADDR']
                 Soil_ohsr.save()
-	
-            #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
-	return HttpResponseRedirect(reverse('Automation.report.views.result_Soil_ohsr'))
+                Id = Soil_Ohsr.objects.aggregate(Max('Report_id'))
+                ID = Id['Report_id__max']
+                ohsr = Soil_Ohsr.objects.filter(Report_id = ID)
+                Id = Report.objects.aggregate(Max('id'))
+                ID = Id['id__max']
+                Head = Report.objects.filter(id = ID)
+                organisation = Organisation.objects.all().filter(id = 1)
+                department = Department.objects.all().filter(id = 1)
+		return render_to_response('report/soil_ohsr.html', {'ohsr':ohsr, 'Head':Head,
+		'organisation':organisation,'department':department,'job':job},context_instance=RequestContext(request))
     else:
         report_form = ReportForm()
         Soil_ohsr_formset = Soil_OhsrFormSet()
@@ -68,8 +95,20 @@ def result_Soil_ohsr(request):
 	Id = Report.objects.aggregate(Max('id'))
 	ID = Id['id__max']
 	Head = Report.objects.filter(id = ID)
+
+        
+        Id = Report.objects.aggregate(Max('job'))
+        ID = Id['job__max']
+        job = Report.objects.filter(job = ID)
+
+        client = Job.objects.all().filter(id=ID).values('client__client__first_name',
+        'client__client__middle_name', 'client__client__last_name',
+        'client__client__address', 'client__client__city', 'date', 'letter_no', 	'letter_date','clientjob__material__name',)
+
+
 	organisation = Organisation.objects.all().filter(id = 1)
-	return render_to_response('report/soil_ohsr.html', {'ohsr':ohsr, 'Head':Head, 'organisation':organisation,},context_instance=RequestContext(request))
+	department = Department.objects.all().filter(id = 1)
+	return render_to_response('report/soil_ohsr.html', {'ohsr':ohsr, 'Head':Head, 'organisation':organisation,'department':department,'client':client,},context_instance=RequestContext(request))
 
 """
 To make html file "report_base.html" for a platforms to different reports
@@ -131,11 +170,21 @@ def result_chem(request):
 	Id = Chem_analysis.objects.aggregate(Max('Report_id'))
 	ID = Id['Report_id__max']
 	chem = Chem_analysis.objects.filter(Report_id = ID)
+
+        Id = Report.objects.aggregate(Max('job'))
+        ID = Id['job__max']
+        job = Report.objects.filter(job = ID)
+
+        client = Job.objects.all().filter(id=ID).values('client__client__first_name',
+        'client__client__middle_name', 'client__client__last_name',
+        'client__client__address', 'client__client__city', 'date', 'letter_no', 	'letter_date','clientjob__material__name',)
+
 	organisation = Organisation.objects.all().filter(id = 1)
-	return render_to_response('report/chemical_analysis.html', {'chem': chem, 'Head':Head, 'organisation':organisation,},context_instance=RequestContext(request))
+        department = Department.objects.all().filter(id = 1)
+	return render_to_response('report/chemical_analysis.html', {'chem': chem, 'Head':Head, 'organisation':organisation,'department':department,'client':client,},context_instance=RequestContext(request))
 
 """
-Views for the model cube
+Views for the model Cube
 """
 def index(request):
     # This class is used to make empty formset forms required
@@ -169,7 +218,7 @@ def index(request):
 		todo_item.ip_address = request.META['REMOTE_ADDR']
                 todo_item.save()
 	
-            #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
+            #return HttpResponseRedirect('tanks') # Redirect to a 'success' page
 	return HttpResponseRedirect(reverse('Automation.report.views.result_cube'))
     else:
         report_form = ReportForm()
@@ -185,14 +234,43 @@ def index(request):
     return render_to_response('report/index.html', c)
 
 def result_cube(request):
-	Id = Cube.objects.aggregate(Max('Report_id'))
+        Id = Cube.objects.aggregate(Max('Report_id'))
 	ID = Id['Report_id__max']
 	cubee = Cube.objects.filter(Report_id = ID)
 	Id = Report.objects.aggregate(Max('id'))
 	ID = Id['id__max']
 	Head = Report.objects.filter(id = ID)
 	organisation = Organisation.objects.all().filter(id = 1)
-	return render_to_response('report/cube.html', {'cubee':cubee, 'Head':Head, 'organisation':organisation},context_instance=RequestContext(request))
+	department = Department.objects.all().filter(id = 1)
+        
+        Id = Report.objects.aggregate(Max('job'))
+        ID = Id['job__max']
+        job = Report.objects.filter(job = ID)
+
+        client = Job.objects.all().filter(id=ID).values('client__client__first_name',
+        'client__client__middle_name', 'client__client__last_name',
+        'client__client__address', 'client__client__city', 'date', 'letter_no', 	'letter_date','clientjob__material__name',)
+        #dates = Job.objects.all().filter(job_no=job_no).values('clientjob__material__name',
+        #'suspencejob__field__name','report_type','date').distinct()
+
+	temp = {'client':client, 'cubee':cubee, 'Head':Head,'organisation':organisation,'department':department,}
+	return render_to_response('report/cube.html', temp,
+        context_instance=RequestContext(request))
+
+'''
+class result():
+	Id = Report.objects.aggregate(Max('id'))
+	ID = Id['id__max']
+	Head = Report.objects.filter(id = ID)
+	organisation = Organisation.objects.all().filter(id = 1)
+
+def result_cube(request):
+	Id = Cube.objects.aggregate(Max('Report_id'))
+	ID = Id['Report_id__max']
+	cubee = Cube.objects.filter(Report_id = ID)
+	return render_to_response('report/cube.html', {'cubee':cubee, 'Head':Head,'organisation':organisation,'department':department,'client':client,},context_instance=RequestContext(request))
+'''
+
 
 """
 View For Water 
@@ -249,8 +327,19 @@ def result_water(request):
 	Id = Report.objects.aggregate(Max('id'))
 	ID = Id['id__max']
 	Head = Report.objects.filter(id = ID)
+
+        
+        Id = Report.objects.aggregate(Max('job'))
+        ID = Id['job__max']
+        job = Report.objects.filter(job = ID)
+
+        client = Job.objects.all().filter(id=ID).values('client__client__first_name',
+        'client__client__middle_name', 'client__client__last_name',
+        'client__client__address', 'client__client__city', 'date', 'letter_no', 	'letter_date','clientjob__material__name',)
+
 	organisation = Organisation.objects.all().filter(id = 1)
-	return render_to_response('report/water.html', {'water':water, 'Head':Head, 'organisation':organisation,},context_instance=RequestContext(request))
+        department = Department.objects.all().filter(id = 1)
+	return render_to_response('report/water.html', {'water':water, 'Head':Head, 'organisation':organisation,'department':department,'client':client,},context_instance=RequestContext(request))
 
 """
 View for Brick
@@ -307,8 +396,19 @@ def result_brick(request):
 	Id = Report.objects.aggregate(Max('id'))
 	ID = Id['id__max']
 	Head = Report.objects.filter(id = ID)
+
+        
+        Id = Report.objects.aggregate(Max('job'))
+        ID = Id['job__max']
+        job = Report.objects.filter(job = ID)
+
+        client = Job.objects.all().filter(id=ID).values('client__client__first_name',
+        'client__client__middle_name', 'client__client__last_name',
+        'client__client__address', 'client__client__city', 'date', 'letter_no', 	'letter_date','clientjob__material__name',)
+
 	organisation = Organisation.objects.all().filter(id = 1)
-	return render_to_response('report/brick.html', {'brick':brick, 'Head':Head, 'organisation':organisation,},context_instance=RequestContext(request))
+        department = Department.objects.all().filter(id = 1)
+	return render_to_response('report/brick.html', {'brick':brick, 'Head':Head, 'organisation':organisation,'department':department,'client':client,},context_instance=RequestContext(request))
 
 """
 View for Soil_Building 
@@ -365,8 +465,18 @@ def result_soil_building(request):
 	Id = Report.objects.aggregate(Max('id'))
 	ID = Id['id__max']
 	Head = Report.objects.filter(id = ID)
+
+        Id = Report.objects.aggregate(Max('job'))
+        ID = Id['job__max']
+        job = Report.objects.filter(job = ID)
+
+        client = Job.objects.all().filter(id=ID).values('client__client__first_name',
+        'client__client__middle_name', 'client__client__last_name',
+        'client__client__address', 'client__client__city', 'date', 'letter_no', 	'letter_date','clientjob__material__name',)
+
 	organisation = Organisation.objects.all().filter(id = 1)
-	return render_to_response('report/soil_building.html', {'Soil_building':Soil_building, 'Head':Head, 'organisation':organisation,},context_instance=RequestContext(request))
+        department = Department.objects.all().filter(id = 1)
+	return render_to_response('report/soil_building.html', {'Soil_building':Soil_building, 'Head':Head, 'organisation':organisation,'department':department,'client':client,},context_instance=RequestContext(request))
 
 """
 View for ADMIXTURE 
@@ -423,8 +533,18 @@ def result_Admixture(request):
 	Id = Report.objects.aggregate(Max('id'))
 	ID = Id['id__max']
 	Head = Report.objects.filter(id = ID)
+        
+        Id = Report.objects.aggregate(Max('job'))
+        ID = Id['job__max']
+        job = Report.objects.filter(job = ID)
+
+        client = Job.objects.all().filter(id=ID).values('client__client__first_name',
+        'client__client__middle_name', 'client__client__last_name',
+        'client__client__address', 'client__client__city', 'date', 'letter_no', 	'letter_date','clientjob__material__name',)
+
 	organisation = Organisation.objects.all().filter(id = 1)
-	return render_to_response('report/admixture.html', {'mixture': mixture, 'Head':Head, 'organisation':organisation,},context_instance=RequestContext(request))
+        department = Department.objects.all().filter(id = 1)
+	return render_to_response('report/admixture.html', {'mixture': mixture, 'Head':Head, 'organisation':organisation,'department':department,'client':client,},context_instance=RequestContext(request))
 
 """
 (PPC) IS 1489-1 & 2 Fly Ash Or Clay 
@@ -481,8 +601,18 @@ def result_Cement_PPC(request):
 	Id = Report.objects.aggregate(Max('id'))
 	ID = Id['id__max']
 	Head = Report.objects.filter(id = ID)
+        
+        Id = Report.objects.aggregate(Max('job'))
+        ID = Id['job__max']
+        job = Report.objects.filter(job = ID)
+
+        client = Job.objects.all().filter(id=ID).values('client__client__first_name',
+        'client__client__middle_name', 'client__client__last_name',
+        'client__client__address', 'client__client__city', 'date', 'letter_no', 	'letter_date','clientjob__material__name',)
+
 	organisation = Organisation.objects.all().filter(id = 1)
-	return render_to_response('report/cement_ppc.html', {'ppc': ppc, 'Head':Head, 'organisation':organisation,},context_instance=RequestContext(request))
+        department = Department.objects.all().filter(id = 1)
+	return render_to_response('report/cement_ppc.html', {'ppc': ppc, 'Head':Head, 'organisation':organisation,'department':department,'client':client,},context_instance=RequestContext(request))
 
 """
 (OPC) IS 269 33 GRADE 
@@ -539,8 +669,18 @@ def result_Cement_OPC_33(request):
 	Id = Report.objects.aggregate(Max('id'))
 	ID = Id['id__max']
 	Head = Report.objects.filter(id = ID)
+        
+        Id = Report.objects.aggregate(Max('job'))
+        ID = Id['job__max']
+        job = Report.objects.filter(job = ID)
+
+        client = Job.objects.all().filter(id=ID).values('client__client__first_name',
+        'client__client__middle_name', 'client__client__last_name',
+        'client__client__address', 'client__client__city', 'date', 'letter_no', 	'letter_date','clientjob__material__name',)
+
 	organisation = Organisation.objects.all().filter(id = 1)
-	return render_to_response('report/cement_opc.html', {'opc33': opc33, 'Head':Head, 'organisation':organisation,},context_instance=RequestContext(request))
+        department = Department.objects.all().filter(id = 1)
+	return render_to_response('report/cement_opc.html', {'opc33': opc33, 'Head':Head, 'organisation':organisation,'department':department,'client':client,},context_instance=RequestContext(request))
 
 """
 (OPC) IS 8812 43 GRADE 
@@ -597,8 +737,18 @@ def result_Cement_OPC_43(request):
 	Id = Report.objects.aggregate(Max('id'))
 	ID = Id['id__max']
 	Head = Report.objects.filter(id = ID)
+        
+        Id = Report.objects.aggregate(Max('job'))
+        ID = Id['job__max']
+        job = Report.objects.filter(job = ID)
+
+        client = Job.objects.all().filter(id=ID).values('client__client__first_name',
+        'client__client__middle_name', 'client__client__last_name',
+        'client__client__address', 'client__client__city', 'date', 'letter_no', 	'letter_date','clientjob__material__name',)
+
 	organisation = Organisation.objects.all().filter(id = 1)
-	return render_to_response('report/cement_opc.html', {'opc43': opc43, 'Head':Head, 'organisation':organisation,},context_instance=RequestContext(request))
+        department = Department.objects.all().filter(id = 1)
+	return render_to_response('report/cement_opc.html', {'opc43': opc43, 'Head':Head, 'organisation':organisation,'department':department,'client':client,},context_instance=RequestContext(request))
 
 """
 (OPC) IS 12269 53 GRADE 
@@ -655,6 +805,421 @@ def result_Cement_OPC_53(request):
 	Id = Report.objects.aggregate(Max('id'))
 	ID = Id['id__max']
 	Head = Report.objects.filter(id = ID)
-	organisation = Organisation.objects.all().filter(id = 1)
-	return render_to_response('report/cement_opc.html', {'opc53': opc53, 'Head':Head, 'organisation':organisation,},context_instance=RequestContext(request))
+        
+        Id = Report.objects.aggregate(Max('job'))
+        ID = Id['job__max']
+        job = Report.objects.filter(job = ID)
 
+        client = Job.objects.all().filter(id=ID).values('client__client__first_name',
+        'client__client__middle_name', 'client__client__last_name',
+        'client__client__address', 'client__client__city', 'date', 'letter_no', 	'letter_date','clientjob__material__name',)
+
+	organisation = Organisation.objects.all().filter(id = 1)
+        department = Department.objects.all().filter(id = 1)
+	return render_to_response('report/cement_opc.html', {'opc53': opc53, 'Head':Head, 'organisation':organisation,'department':department,'client':client,},context_instance=RequestContext(request))
+
+"""
+Steel Sample
+"""
+def steel(request):
+    # This class is used to make empty formset forms required
+    class RequiredFormSet(BaseFormSet):
+        def __init__(self, *args, **kwargs):
+            super(RequiredFormSet, self).__init__(*args, **kwargs)
+            for form in self.forms:
+                form.empty_permitted = False
+
+    job =Job.objects.get(id=request.GET['id'])
+    steel_FormSet = formset_factory(SteelForm, max_num=30, formset=RequiredFormSet)
+
+    if request.method == 'POST': # If the form has been submitted...
+        form1 = ReportForm(request.POST) # A form bound to the POST data
+        if form1.is_valid():
+                cd = form1.cleaned_data
+                profile = form1.save(commit=False)
+                profile.job =job
+                profile.save()
+
+        # Create a formset from the submitted data
+        steel_formset = steel_FormSet(request.POST, request.FILES)
+
+        if form1.is_valid() and steel_formset.is_valid():
+           report = form1.save(commit=False)
+           report.save()
+           for form in steel_formset.forms:
+                steel = form.save(commit=False)
+                steel.Report_id = report
+                steel.ip_address = request.META['REMOTE_ADDR']
+                steel.save()
+
+           #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
+           return HttpResponseRedirect(reverse('Automation.report.views.result_steel'))
+    else:
+        report_form = ReportForm()
+        steel_formset = steel_FormSet()
+
+    # For CSRF protection
+    c = {'report_form': report_form,
+         'steel_formset': steel_formset,
+        }
+    c.update(csrf(request))
+    return render_to_response('report/index.html', c)
+
+def result_steel(request):
+        Id = Steel.objects.aggregate(Max('Report_id'))
+        ID = Id['Report_id__max']
+        st  = Steel.objects.filter(Report_id = ID)
+        Id = Report.objects.aggregate(Max('id'))
+        ID = Id['id__max']
+        Head = Report.objects.filter(id = ID)
+        
+        Id = Report.objects.aggregate(Max('job'))
+        ID = Id['job__max']
+        job = Report.objects.filter(job = ID)
+
+        client = Job.objects.all().filter(id=ID).values('client__client__first_name',
+        'client__client__middle_name', 'client__client__last_name',
+        'client__client__address', 'client__client__city', 'date', 'letter_no', 	'letter_date','clientjob__material__name',)
+
+        organisation = Organisation.objects.all().filter(id = 1)
+        department = Department.objects.all().filter(id = 1)
+        return render_to_response('report/steel.html', {'st': st, 'Head':Head, 'organisation':organisation,'department':department,'client':client,},context_instance=RequestContext(request))
+ 
+"""
+Concrete Paver
+"""
+
+def concretePaver(request):
+    # This class is used to make empty formset forms required
+    class RequiredFormSet(BaseFormSet):
+        def __init__(self, *args, **kwargs):
+            super(RequiredFormSet, self).__init__(*args, **kwargs)
+            for form in self.forms:
+                form.empty_permitted = False
+
+    job =Job.objects.get(id=request.GET['id'])
+    concrete_FormSet = formset_factory(Concrete_PaverForm, max_num=30, formset=RequiredFormSet)
+
+    if request.method == 'POST': # If the form has been submitted...
+        form1 = ReportForm(request.POST) # A form bound to the POST data
+        if form1.is_valid():
+                cd = form1.cleaned_data
+                profile = form1.save(commit=False)
+                profile.job =job
+                profile.save()
+
+        # Create a formset from the submitted data
+        concrete_formset = concrete_FormSet(request.POST, request.FILES)
+
+        if form1.is_valid() and concrete_formset.is_valid():
+           report = form1.save(commit=False)
+           report.save()
+           for form in concrete_formset.forms:
+                concrete = form.save(commit=False)
+                concrete.Report_id = report
+                concrete.ip_address = request.META['REMOTE_ADDR']
+                concrete.save()
+
+           #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
+           return HttpResponseRedirect(reverse('Automation.report.views.result_concretepaver'))
+    else:
+        report_form = ReportForm()
+        concrete_formset = concrete_FormSet()
+
+    # For CSRF protection
+    c = {'report_form': report_form,
+         'concrete_formset': concrete_formset,
+        }
+    c.update(csrf(request))
+    return render_to_response('report/index.html', c)
+
+def result_concretepaver(request):
+        Id = Concrete_Paver.objects.aggregate(Max('Report_id'))
+        ID = Id['Report_id__max']
+        cp = Concrete_Paver.filter(Report_id = ID)
+        Id = Report.objects.aggregate(Max('id'))
+        ID = Id['id__max']
+        Head = Report.objects.filter(id = ID)
+        
+        Id = Report.objects.aggregate(Max('job'))
+        ID = Id['job__max']
+        job = Report.objects.filter(job = ID)
+
+        client = Job.objects.all().filter(id=ID).values('client__client__first_name',
+        'client__client__middle_name', 'client__client__last_name',
+        'client__client__address', 'client__client__city', 'date', 'letter_no', 	'letter_date','clientjob__material__name',)
+
+        organisation = Organisation.objects.all().filter(id = 1)
+        department = Department.objects.all().filter(id = 1)
+        return render_to_response('report/concretepaver.html', {'cp': cp, 'Head':Head, 'organisation':organisation,'department':department,'client':client,},context_instance=RequestContext(request))
+
+"""
+Interlock Tiles
+"""
+def tile(request):
+    # This class is used to make empty formset forms required
+    class RequiredFormSet(BaseFormSet):
+        def __init__(self, *args, **kwargs):
+            super(RequiredFormSet, self).__init__(*args, **kwargs)
+            for form in self.forms:
+                form.empty_permitted = False
+
+    job =Job.objects.get(id=request.GET['id'])
+    tile_FormSet = formset_factory(Interlock_TileForm, max_num=30, formset=RequiredFormSet)
+
+    if request.method == 'POST': # If the form has been submitted...
+        form1 = ReportForm(request.POST) # A form bound to the POST data
+        if form1.is_valid():
+                cd = form1.cleaned_data
+                profile = form1.save(commit=False)
+                profile.job =job
+                profile.save()
+
+        # Create a formset from the submitted data
+        tile_formset = tile_FormSet(request.POST, request.FILES)
+
+        if form1.is_valid() and tile_formset.is_valid():
+           report = form1.save(commit=False)
+           report.save()
+           for form in tile_formset.forms:
+                tile = form.save(commit=False)
+                tile.Report_id = report
+                tile.ip_address = request.META['REMOTE_ADDR']
+                tile.save()
+
+           #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
+           return HttpResponseRedirect(reverse('Automation.report.views.result_tile'))
+    else:
+        report_form = ReportForm()
+        tile_formset = tile_FormSet()
+
+    # For CSRF protection
+    c = {'report_form': report_form,
+         'tile_formset': tile_formset,
+        }
+    c.update(csrf(request))
+    return render_to_response('report/index.html', c)
+
+def result_tile(request):
+        Id = Interlock_Tiles.objects.aggregate(Max('Report_id'))
+        ID = Id['Report_id__max']
+        st = Interlock_Tiles.objects.filter(Report_id = ID)
+        Id = Report.objects.aggregate(Max('id'))
+        ID = Id['id__max']
+        Head = Report.objects.filter(id = ID)
+        
+        Id = Report.objects.aggregate(Max('job'))
+        ID = Id['job__max']
+        job = Report.objects.filter(job = ID)
+
+        client = Job.objects.all().filter(id=ID).values('client__client__first_name',
+        'client__client__middle_name', 'client__client__last_name',
+        'client__client__address', 'client__client__city', 'date', 'letter_no', 	'letter_date','clientjob__material__name',)
+
+        organisation = Organisation.objects.all().filter(id = 1)
+        department = Department.objects.all().filter(id = 1)
+        return render_to_response('report/tile.html', {'st': st, 'Head':Head, 'organisation':organisation,'department':department,'client':client,},context_instance=RequestContext(request))
+"""
+PC
+""" 
+
+def pc(request):
+    # This class is used to make empty formset forms required
+    class RequiredFormSet(BaseFormSet):
+        def __init__(self, *args, **kwargs):
+            super(RequiredFormSet, self).__init__(*args, **kwargs)
+            for form in self.forms:
+                form.empty_permitted = False
+
+    job =Job.objects.get(id=request.GET['id'])
+    pc_FormSet = formset_factory(PCForm, max_num=30, formset=RequiredFormSet)
+
+    if request.method == 'POST': # If the form has been submitted...
+        form1 = ReportForm(request.POST) # A form bound to the POST data
+        if form1.is_valid():
+                cd = form1.cleaned_data
+                profile = form1.save(commit=False)
+                profile.job =job
+                profile.save()
+
+        # Create a formset from the submitted data
+        pc_formset = pc_FormSet(request.POST, request.FILES)
+
+        if form1.is_valid() and pc_formset.is_valid():
+           report = form1.save(commit=False)
+           report.save()
+           for form in pc_formset.forms:
+                pc = form.save(commit=False)
+                pc.Report_id = report
+                pc.ip_address = request.META['REMOTE_ADDR']
+                pc.save()
+
+           #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
+           return HttpResponseRedirect(reverse('Automation.report.views.result_pc'))
+    else:
+        report_form = ReportForm()
+        pc_formset = pc_FormSet()
+
+    # For CSRF protection
+    c = {'report_form': report_form,
+         'pc_formset': pc_formset,
+        }
+    c.update(csrf(request))
+    return render_to_response('report/index.html', c)
+
+def result_pc(request):
+        Id = PC.objects.aggregate(Max('Report_id'))
+        ID = Id['Report_id__max']
+        st = PC.objects.filter(Report_id = ID)
+        Id = Report.objects.aggregate(Max('id'))
+        ID = Id['id__max']
+        Head = Report.objects.filter(id = ID)
+        
+        Id = Report.objects.aggregate(Max('job'))
+        ID = Id['job__max']
+        job = Report.objects.filter(job = ID)
+
+        client = Job.objects.all().filter(id=ID).values('client__client__first_name',
+        'client__client__middle_name', 'client__client__last_name',
+        'client__client__address', 'client__client__city', 'date', 'letter_no', 	'letter_date','clientjob__material__name',)
+
+        organisation = Organisation.objects.all().filter(id = 1)
+        department = Department.objects.all().filter(id = 1)
+        return render_to_response('report/pc.html', {'st': st, 'Head':Head, 'organisation':organisation,'department':department,'client':client,},context_instance=RequestContext(request))
+
+"""
+Rebound Hammering
+""" 
+
+def hammer(request):
+    # This class is used to make empty formset forms required
+    class RequiredFormSet(BaseFormSet):
+        def __init__(self, *args, **kwargs):
+            super(RequiredFormSet, self).__init__(*args, **kwargs)
+            for form in self.forms:
+                form.empty_permitted = False
+
+    job =Job.objects.get(id=request.GET['id'])
+    hammer_FormSet = formset_factory(Rebound_Hammer_TestingForm, max_num=30, formset=RequiredFormSet)
+
+    if request.method == 'POST': # If the form has been submitted...
+        form1 = ReportForm(request.POST) # A form bound to the POST data
+        if form1.is_valid():
+                cd = form1.cleaned_data
+                profile = form1.save(commit=False)
+                profile.job =job
+                profile.save()
+
+        # Create a formset from the submitted data
+        hammer_formset = hammer_FormSet(request.POST, request.FILES)
+
+        if form1.is_valid() and hammer_formset.is_valid():
+           report = form1.save(commit=False)
+           report.save()
+           for form in hammer_formset.forms:
+                hammer = form.save(commit=False)
+                hammer.Report_id = report
+                hammer.ip_address = request.META['REMOTE_ADDR']
+                hammer.save()
+
+           #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
+           return HttpResponseRedirect(reverse('Automation.report.views.result_hammer'))
+    else:
+        report_form = ReportForm()
+        hammer_formset = hammer_FormSet()
+
+    # For CSRF protection
+    c = {'report_form': report_form,
+         'hammer_formset': hammer_formset,
+        }
+    c.update(csrf(request))
+    return render_to_response('report/index.html', c)
+
+def result_hammer(request):
+        Id = Rebound_Hammer_Testing.objects.aggregate(Max('Report_id'))
+        ID = Id['Report_id__max']
+        st = Rebound_Hammer_Testing.objects.filter(Report_id = ID)
+        Id = Report.objects.aggregate(Max('id'))
+        ID = Id['id__max']
+        Head = Report.objects.filter(id = ID)
+        
+        Id = Report.objects.aggregate(Max('job'))
+        ID = Id['job__max']
+        job = Report.objects.filter(job = ID)
+
+        client = Job.objects.all().filter(id=ID).values('client__client__first_name',
+        'client__client__middle_name', 'client__client__last_name',
+        'client__client__address', 'client__client__city', 'date', 'letter_no', 	'letter_date','clientjob__material__name',)
+
+        organisation = Organisation.objects.all().filter(id = 1)
+        department = Department.objects.all().filter(id = 1)
+        return render_to_response('report/hammer.html', {'st': st, 'Head':Head, 'organisation':organisation,'department':department,'client':client,},context_instance=RequestContext(request))
+
+"""
+Ground Water
+""" 
+
+def groundwater(request):
+    # This class is used to make empty formset forms required
+    class RequiredFormSet(BaseFormSet):
+        def __init__(self, *args, **kwargs):
+            super(RequiredFormSet, self).__init__(*args, **kwargs)
+            for form in self.forms:
+                form.empty_permitted = False
+
+    job =Job.objects.get(id=request.GET['id'])
+    gw_FormSet = formset_factory(Ground_WaterForm, max_num=30, formset=RequiredFormSet)
+
+    if request.method == 'POST': # If the form has been submitted...
+        form1 = ReportForm(request.POST) # A form bound to the POST data
+        if form1.is_valid():
+                cd = form1.cleaned_data
+                profile = form1.save(commit=False)
+                profile.job =job
+                profile.save()
+
+        # Create a formset from the submitted data
+        gw_formset = gw_FormSet(request.POST, request.FILES)
+
+        if form1.is_valid() and gw_formset.is_valid():
+           gw = form1.save(commit=False)
+           gw.save()
+           for form in gw_formset.forms:
+                gw = form.save(commit=False)
+                gw.Report_id = report
+                gw.ip_address = request.META['REMOTE_ADDR']
+                gw.save()
+
+           #return HttpResponseRedirect('thanks') # Redirect to a 'success' page
+           return HttpResponseRedirect(reverse('Automation.report.views.result_groundwater'))
+    else:
+        report_form = ReportForm()
+        gw_formset = gw_FormSet()
+
+    # For CSRF protection
+    c = {'report_form': report_form,
+         'gw_formset': gw_formset,
+        }
+    c.update(csrf(request))
+    return render_to_response('report/index.html', c)
+
+def result_groundwater(request):
+        Id = Ground_Water.objects.aggregate(Max('Report_id'))
+        ID = Id['Report_id__max']
+        st = Ground_Water.objects.filter(Report_id = ID)
+        Id = Report.objects.aggregate(Max('id'))
+        ID = Id['id__max']
+        
+        Id = Report.objects.aggregate(Max('job'))
+        ID = Id['job__max']
+        job = Report.objects.filter(job = ID)
+
+        client = Job.objects.all().filter(id=ID).values('client__client__first_name',
+        'client__client__middle_name', 'client__client__last_name',
+        'client__client__address', 'client__client__city', 'date', 'letter_no', 	'letter_date','clientjob__material__name',)
+
+        Head = Report.objects.filter(id = ID)
+        organisation = Organisation.objects.all().filter(id = 1)
+        department = Department.objects.all().filter(id = 1)
+        return render_to_response('report/groundwater.html', {'st': st, 'Head':Head, 'organisation':organisation,'department':department,'client':client,},context_instance=RequestContext(request))
+ 

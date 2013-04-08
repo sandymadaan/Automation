@@ -26,15 +26,15 @@
     {% for amounts in amount %}
     {% for sus in suspence %}  
     {% for susdetail in suspencedetail %}
-		
-		
+		 {% if amounts.job__id == sus.job_id %}  
+		 {% if sus.job_id == susdetail.job_id %}  	
          <tr>
 		
             <td>{{forloop.counter}}</td>            
 			<td>{{amounts.job__id}}</td> 
 			<td> {{ amounts.job__date  }}</td>
 			<td> {{ amounts.job__job_no }}</td>
-			<td> {{amounts.job__client__client__first_name}} {{amounts.job__client__client__middle_name}} {{amounts.job__client__client__last_name}}</td>
+			<td> {{amounts.job__client__client__first_name}}</td>
 			<td> {{ sus.field__name }}</td>
 			<td>{{amounts.college_income}}</td>
 			<td>{{amounts.admin_charge}}</td>
@@ -46,8 +46,8 @@
 			<td>{{amounts.unit_price}}</td>
 			
 		</tr>
-        	
-		
+        	{% endif  %}
+		{% endif  %}
 	{% endfor %}
         {% endfor %}
 	{% endfor %}

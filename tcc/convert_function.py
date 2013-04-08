@@ -1,15 +1,15 @@
 def num2eng(n):
   words = ''
 
-  units = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine','ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
-  tens = ['','ten', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
+  units = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine','Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen']
+  tens = ['','Ten', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety']
 
 
-  for group in ['', 'hundred', 'thousand', 'lakh', 'crore']:
+  for group in ['', 'Hundred', 'Thousand', 'Lakh', 'Crore']:
 
-    if group in ['', 'thousand', 'lakh']:
+    if group in ['', 'Thousand', 'Lakh']:
       n, digits = n // 100, n % 100
-    elif group == 'hundred':
+    elif group == 'Hundred':
       n, digits = n // 10, n % 10
     else:
       digits = n

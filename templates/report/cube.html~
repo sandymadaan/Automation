@@ -25,10 +25,7 @@
 		</tr>	
 	{% endfor  %}
 {% endif %}
-	</table>
-
-		<td><b><center><a href="{{ LOCAL_URL }}/automation/report/myview">myview</a></td>
-	
+	</table>	
 </body>
 {% endblock %}
 </html>

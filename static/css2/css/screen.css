@@ -3,7 +3,36 @@ html { height: 100%; font-size: 13px; font-family: arial; color: #404040; backgr
 
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td { margin: 0; padding: 0; }
 
-table {  border-spacing:5px 5px;border-collapse: separate;cellpadding:10px; }
+table {
+    background-color:#f6f6cd;
+    border-collapse:collapse;
+    margin:10px auto;
+	cellpadding:10px;
+	border-spacing:5px 5px;
+	width:100%;
+}
+caption {
+    font-variant:small-caps;
+    font-size:24px;
+}
+tr {
+    vertical-align:top;
+}
+th {
+    background-color:#bdde84;
+    color:#000;
+    font-size:18px;
+    align:center;
+    padding:10px;
+}
+td {
+    padding:2px 10px;
+    font-size:14px;
+    align:center;
+}
+tr:nth-child(even) {
+    background-color: #daf1b2;
+}
 
 td {padding:6px;}
 

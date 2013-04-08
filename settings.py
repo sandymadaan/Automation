@@ -12,9 +12,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'db_name',                      # Or path to database file if using sqlite3.
-        'USER': 'db_user',                      # Not used with sqlite3.
-        'PASSWORD': 'db_password',
+        'NAME': 'tcc_automation',                      # Or path to database file if using sqlite3.
+        'USER': 'root',                      # Not used with sqlite3.
+        'PASSWORD': 'q',
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -34,10 +34,10 @@ TIME_ZONE = 'Asia/Kolkata'
 LANGUAGE_CODE = 'en-us'
 
 SITE_ID = 1
-DEFAULT_FROM_EMAIL = 'email_add'
-EMAIL_HOST = 'localhost'
-EMAIL_HOST_USER = 'email_user'
-EMAIL_HOST_PASSWORD = 'email_pass'
+DEFAULT_FROM_EMAIL = 'tccludhiana@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'tccludhiana@gmail.com'
+EMAIL_HOST_PASSWORD = 'tcc@gndec'
 EMAIL_USE_TLS = True 
 EMAIL_PORT = "587"
 
@@ -54,13 +54,14 @@ USE_L10N = True
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
 MEDIA_ROOT = '/usr/local/lib/python2.7/dist-packages/django/contrib/admin/media/'
+STATIC_ROOT = '/home/tcc/Automation/static/'
 
 LOCAL_URL = 'http://localhost/'
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = 'http://localhost/media/'
-#MEDIA_URL = 'http://localhost/media/'
+MEDIA_URL = '/media/'
+STATIC_URL = '/static'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -95,6 +96,11 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+	"django.contrib.auth.context_processors.auth",
+	"Automation.tcc.context_processors.base_template",
+)
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -108,7 +114,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'Automation.urls'
 
-TEMPLATE_DIRS = ("mPath/Automation/templates"
+TEMPLATE_DIRS = ("/home/tcc/Automation/templates"
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -125,6 +131,7 @@ INSTALLED_APPS =(
     'django.contrib.admin',
     'registration',
     'Automation.tcc',
+    'Automation.report',
     'tagging',
 )
 
@@ -132,4 +139,4 @@ INSTALLED_APPS =(
 ACCOUNT_ACTIVATION_DAYS = 2
 
 
-LOGIN_REDIRECT_URL = '/automation/tcc11_12/index'
+LOGIN_REDIRECT_URL = '/automation/tcc/index'

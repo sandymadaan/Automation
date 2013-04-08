@@ -1,5 +1,5 @@
 """
-Models for the TCC-Auto is described in this file
+Models for the TCC-Automation is described in this file
 """
 from django.db import models
 from django.forms import ModelForm, TextInput, ModelChoiceField
@@ -430,8 +430,8 @@ class Cement_PPC(models.Model):
 	Fineness = models.CharField(max_length=100,blank=True)
 	Unaerated_Cement_Le = models.CharField(max_length=100,blank=True) 	#for Le-chat expansion(MM)
 	After_7_Days_Areation_Le = models.CharField(max_length=100,blank=True)
-	Unaerated_Cement_Auto = models.CharField(max_length=100,blank=True)	#for Auto Clave expansion(%)
-	After_7_Days_Areation_Auto = models.CharField(max_length=100,blank=True)	
+	Unaerated_Cement_Automation = models.CharField(max_length=100,blank=True)	#for Automation Clave expansion(%)
+	After_7_Days_Areation_Automation = models.CharField(max_length=100,blank=True)	
 	Consistency = models.CharField(max_length=100,blank=True)	
 	Hours_72 = models.CharField(max_length=100,blank=True) 			#Compressive Strength(MPa)	
 	Hours_168 = models.CharField(max_length=100,blank=True)	
@@ -451,8 +451,8 @@ class Cement_OPC_33(models.Model):
 	Fineness = models.CharField(max_length=100,blank=True)
 	Unaerated_Cement_Le = models.CharField(max_length=100,blank=True) 	#for Le-chat expansion(MM)
 	After_7_Days_Areation_Le = models.CharField(max_length=100,blank=True)
-	Unaerated_Cement_Auto = models.CharField(max_length=100,blank=True)	#for Auto Clave expansion(%)
-	After_7_Days_Areation_Auto = models.CharField(max_length=100,blank=True)	
+	Unaerated_Cement_Automation = models.CharField(max_length=100,blank=True)	#for Automation Clave expansion(%)
+	After_7_Days_Areation_Automation = models.CharField(max_length=100,blank=True)	
 	Consistency = models.CharField(max_length=100,blank=True)	
 	Hours_72 = models.CharField(max_length=100,blank=True) 			#Compressive Strength(MPa)	
 	Hours_168 = models.CharField(max_length=100,blank=True)	
@@ -473,8 +473,8 @@ class Cement_OPC_43(models.Model):
 	Fineness = models.CharField(max_length=100,blank=True)
 	Unaerated_Cement_Le = models.CharField(max_length=100,blank=True) 	#for Le-chat expansion(MM)
 	After_7_Days_Areation_Le = models.CharField(max_length=100,blank=True)
-	Unaerated_Cement_Auto = models.CharField(max_length=100,blank=True)	#for Auto Clave expansion(%)
-	After_7_Days_Areation_Auto = models.CharField(max_length=100,blank=True)	
+	Unaerated_Cement_Automation = models.CharField(max_length=100,blank=True)	#for Automation Clave expansion(%)
+	After_7_Days_Areation_Automation = models.CharField(max_length=100,blank=True)	
 	Consistency = models.CharField(max_length=100,blank=True)	
 	Hours_72 = models.CharField(max_length=100,blank=True) 			#Compressive Strength(MPa)	
 	Hours_168 = models.CharField(max_length=100,blank=True)	
@@ -495,8 +495,8 @@ class Cement_OPC_53(models.Model):
 	Fineness = models.CharField(max_length=100,blank=True)
 	Unaerated_Cement_Le = models.CharField(max_length=100,blank=True) 	#for Le-chat expansion(MM)
 	After_7_Days_Areation_Le = models.CharField(max_length=100,blank=True)
-	Unaerated_Cement_Auto = models.CharField(max_length=100,blank=True)	#for Auto Clave expansion(%)
-	After_7_Days_Areation_Auto = models.CharField(max_length=100,blank=True)	
+	Unaerated_Cement_Automation = models.CharField(max_length=100,blank=True)	#for Automation Clave expansion(%)
+	After_7_Days_Areation_Automation = models.CharField(max_length=100,blank=True)	
 	Consistency = models.CharField(max_length=100,blank=True)	
 	Hours_72 = models.CharField(max_length=100,blank=True) 			#Compressive Strength(MPa)	
 	Hours_168 = models.CharField(max_length=100,blank=True)	

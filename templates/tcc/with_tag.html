@@ -4,7 +4,7 @@
 {% if entries %}
 {% for entry in entries %}
 <div class="row-{% cycle odd,even %}">
-<h2><a href="{{ LOCAL_URL }}/automation/tcc11_12/{{entry.slug}}/">{{entry.title}}</a></h2>
+<h2><a href="{{ LOCAL_URL }}/automation/tcc/{{entry.slug}}/">{{entry.title}}</a></h2>
 <h3>{{entry.date|date:"jS F Y"}}</h3>
 {{entry.precis|safe|linebreaks}}
 {% if entry.content %}
