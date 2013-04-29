@@ -95,6 +95,11 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+	"Automation.tcc.context_processors.base_template",
+)
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -121,6 +126,7 @@ INSTALLED_APPS =(
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
+    'django.contrib.humanize',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'registration',
@@ -132,4 +138,4 @@ INSTALLED_APPS =(
 ACCOUNT_ACTIVATION_DAYS = 2
 
 
-LOGIN_REDIRECT_URL = '/automation/tcc11_12/index'
+LOGIN_REDIRECT_URL = '/automation/tcc/index'
