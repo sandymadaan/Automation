@@ -1,8 +1,0 @@
-<html>
-<body>
-
-Welcome <?php echo $_POST["site"]; ?>!<br />
-You are <?php echo $_POST["test"]; ?> years old.
-
-</body>
-</html> 
