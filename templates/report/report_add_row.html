@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+<html>
+<head>
+    <title>Gndec Ludhiana</title>
+
+</head>
+{% block content %}
+
+       <script type="text/javascript" src="add_row.js"></script>
+    
+
+<!--
+<SCRIPT language="javascript">
+        function addRow(tableID) {
+ 
+            var table = document.getElementById(tableID);
+ 
+            var rowCount = table.rows.length;
+            var row = table.insertRow(rowCount);
+ 
+            var cell1 = row.insertCell(0);
+            var element1 = document.createElement("input");
+            element1.type = "text";
+            cell1.appendChild(element1);
+ 
+//            var cell2 = row.insertCell(1);
+//            cell2.innerHTML = rowCount + 1;
+ 
+	    var cell2 = row.insertCell(1);
+            var element2 = document.createElement("input");
+            element2.type = "text";
+            cell2.appendChild(element2);
+
+            var cell3 = row.insertCell(2);
+            var element3 = document.createElement("input");
+            element3.type = "text";
+            cell3.appendChild(element3);
+
+	    var cell4 = row.insertCell(3);
+            var element4 = document.createElement("input");
+            element4.type = "checkbox";
+            cell4.appendChild(element4);
+	
+	    var cell5 = row.insertCell(4);
+            cell5.innerHTML = rowCount + 1;
+ 
+ 
+        }
+	 function deleteRow(tableID) {
+            try {
+            var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+ 
+            for(var i=0; i<rowCount; i++) {
+                var row = table.rows[i];
+                var chkbox = row.cells[3].childNodes[0];
+                if(null != chkbox && true == chkbox.checked) {
+                    table.deleteRow(i);
+                    rowCount--;
+                    i--;
+                }
+ 
+ 
+            }
+            }catch(e) {
+                alert(e);
+            }
+        }
+ 
+    </SCRIPT>
+ -->
+<br>
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post">
+	{% csrf_token %}
+	{{ formset.management_form }}	
+	{% for form in formset %}
+<table width = "528px"> <tr>
+			<th>S.No.</th>
+			<th>Description</th>
+			<th>Result</th>
+		</tr> </table>       
+
+ <table id="dataTable" width="350px" border="">
+		
+		<tr>
+
+			<td>{{ form.s_no}}</td>
+			<td>{{ form.description}}</td>
+			<td>{{ form.result}}</td>
+			<TD><INPUT type="checkbox" name="chk"/></TD>
+			<td>1</td>
+		</tr>
+	</table>
+		<ul>
+          {% if formset.can_delete %}
+                <li>{{ form.DELETE }}</li>
+            {% endif %}
+        </ul>
+    {% endfor %}
+	<INPUT type="button" value="Add Row" onclick="addRow('dataTable')" />
+ 
+	<INPUT type="button" value="Delete Row" onclick="deleteRow('dataTable')" />
+	
+        <input type="submit" value="Submit">
+	
+    </form>
+
+</html>
+{% endblock %}

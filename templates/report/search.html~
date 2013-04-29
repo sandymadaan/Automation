@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load i18n %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>Search{% if query %} Results{% endif %}</title>
+</head>
+{% block content %}
+<body>
+  <h2 class="changeBlue">Client Details</h2>
+  <form action="." method="GET">
+    <label for="q">Job Id: </label>
+    <input type="text" name="q" value="{{ query|escape }}">
+    <input type="submit" value="Search">
+  </form>
+
+  {% if query %}
+    <h2>Results for "{{ query|escape }}":</h2>
+
+    {% if results %}
+      <ul>
+      {% for job in results %}
+        <li>Job Id : {{ job.id }}</li>
+		<li>Name:{{job.client__client__first_name}}</li>
+        <li>Job No. : {{job.job_no}}</li>
+        <li>Site : {{job.site}}</li>
+        <li>Reference Letter No : {{job.Reference_Letter_no}}</li>
+        <li>Letter Date : {{job.Letter_date}}</li>
+        <li>Address : {{job.client__client__address}}</li>
+        <li>Material : {{job.clientjob__material__name}}</li>
+
+
+	{% if job.clientjob__material__name == "Chemical testing" %}
+	        <b><a href="{{ LOCAL_URL }}/auto/report/chemical_analysis/?id={{ job.id }}">Report</a></b>
+	{% elif job.clientjob__material__name == "Bricks" %}
+	        <b><a href="{{ LOCAL_URL }}/auto/report/brick_test/?id={{ job.id }}">Report</a></b>
+	{% elif job.clientjob__material__name == "OHSR" %}
+	        <b><a href="{{ LOCAL_URL }}/auto/report/soil_ohsr/?id={{ job.id }}">Report</a></b>
+	{% elif job.clientjob__material__name == "Soil Building" %}
+	        <b><a href="{{ LOCAL_URL }}/auto/report/soil_building/?id={{ job.id }}">Report</a></b>
+	{% elif job.clientjob__material__name == "Cubes" %}
+	        <b><a href="{{ LOCAL_URL }}/auto/report/index/?id={{ job.id }}">Report</a></b>
+	{% elif job.clientjob__material__name == "Water/Waster Water" %}
+	        <b><a href="{{ LOCAL_URL }}/auto/report/water_test/?id={{ job.id }}">Report</a></b>
+	{% elif job.clientjob__material__name == "Admixture" %}
+	        <b><a href="{{ LOCAL_URL }}/auto/report/admixture/?id={{ job.id }}">Report</a></b>
+	{% elif job.clientjob__material__name == "Cement PPC" %}
+	        <b><a href="{{ LOCAL_URL }}/auto/report/cement_ppc/?id={{ job.id }}">Report</a></b>
+	{% elif job.clientjob__material__name == "OPC 33 Grade" %}
+	        <b><a href="{{ LOCAL_URL }}/auto/report/cement_opc_33/?id={{ job.id }}">Report</a></b>
+	{% elif job.clientjob__material__name == "OPC 43 Garde" %}
+	        <b><a href="{{ LOCAL_URL }}/auto/report/cement_opc_43/?id={{ job.id }}">Report</a></b>
+	{% elif job.clientjob__material__name == "OPC 53 Grade" %}
+	        <b><a href="{{ LOCAL_URL }}/auto/report/cement_opc_53/?id={{ job.id }}">Report</a></b>
+	{% elif job.clientjob__material__name == "Coarse Aggregate ( Soil)" %}
+	        <b><a href="{{ LOCAL_URL }}/auto/report/coarse aggregate/?id={{ job.id }}">Report</a></b>
+	{% elif job.clientjob__material__name == "Fine Aggregate (Soil)" %}
+	        <b><a href="{{ LOCAL_URL }}/auto/report/fine aggregate/?id={{ job.id }}">Report</a></b>
+        {% elif job.clientjob__material__name == "Steel" %}
+                <b><a href="{{ LOCAL_URL }}/auto/report/steel/?id={{ job.id }}">Report</a></b>
+        {% elif job.clientjob__material__name == "Concrete Paver" %}
+                <b><a href="{{ LOCAL_URL }}/auto/report/concretePaver/?id={{ job.id }}">Report</a></b>
+        {% else %}
+		<h3>please select a material </h3>
+	{% endif %}
+
+
+
+	<!--	<b><a href="{{ LOCAL_URL }}/auto/report/search_report">Search Report</a>
+				<b><a href="{{ LOCAL_URL }}/auto/report/graph">Graph</a>
+	-->
+
+	{% endfor %}
+      </ul>
+    {% else %}
+      <p>No Job Found</p>
+    {% endif %}
+  {% endif %}
+</body>
+</html>
+{% endblock %}

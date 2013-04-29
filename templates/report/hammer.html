@@ -1,0 +1,32 @@
+{% extends "report/header.html" %}
+{% load i18n %}
+<html>
+{% block report %}
+<body>
+{% if st %}
+
+
+        <table align="center" border="1">
+                <tr>
+                        <th>S.No</th>
+                        <th>Location</th>
+                        <th>Striking Angle</th>
+                        <th>Average Rebound No.</th>
+                        <th>Compressive Strength(MPa)</th>
+                </tr>
+        {% for test in st %}
+
+                <tr>
+                        <td>{{test.S_No}}</td>
+                        <td>{{test.Location}}</td>
+                        <td>{{test.Striking_Angle}}</td>
+                        <td>{{test.Average_Rebound_No}}</td>
+                        <td>{{test.Comp_Strength_MPa}}</td>
+                </tr>
+        {% endfor  %}
+{% endif %}
+        </table>
+</body>
+{% endblock %}
+</html>
+

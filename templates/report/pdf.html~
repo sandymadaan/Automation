@@ -1,0 +1,57 @@
+{% extends "report/header.html" %}
+{% load i18n %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>My Title</title>
+        <style type="text/css">
+            @page {
+                size: {{ pagesize }};
+                margin: 1cm;
+                @frame footer {
+                    -pdf-frame-content: footerContent;
+                    bottom: 0cm;
+                    margin-left: 9cm;
+                    margin-right: 9cm;
+                    height: 1cm;
+                }
+            }
+        </style>
+    </head>
+{% block report %}
+    <body>
+  
+{% if cubee %}
+
+	
+	<table align="center" border="1">
+		<tr>
+			<th>S.No</th>
+			<th>Description</th>
+			<th>Breaking_load</th>
+			<th>Mix</th>
+			<th>Comp_strength</th>
+		</tr>
+	{% for test in cubee %}
+	
+		<tr>	
+			<td>{{test.S_No}}</td>
+			<td>{{test.Description}}</td>
+			<td>{{test.Breaking_load}}</td>	
+			<td>{{test.Mix}}</td>
+			<td>{{test.Comp_strength}}</td>		
+		</tr>	
+	{% endfor  %}
+{% endif %}
+	</table>	
+
+{% endblock %}
+        <div id="footerContent">
+            {%block page_foot%}
+                Page <pdf:pagenumber>
+		 <pdf:barcode>
+            {%endblock%}
+        </div>
+    </body>
+</html>
+

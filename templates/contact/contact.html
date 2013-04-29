@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<html>
+<head>
+    <title>Credit & feedback</title>
+</head>
+<body>
+<table><h2><center>CREDIT</center></h2>
+	<tr>
+		<td><div class="span-16"> 
+				<strong>{% trans "Contributors  " %}</strong><br/></td>
+				<td><div class="span-16"> 
+				<strong>{% trans "Language and Tool Used: - " %}</strong><br/></td>
+				<td>Support</td>
+				<tr><td>         <a href="http://sandymadaan.wordpress.com">{% trans "Sandeep Kaur" %} </a><br/>
+                                    	 <a href="">{% trans "Sukhdeep Kaur" %}</a><br/>			
+				   	 <a href="">{% trans "Damanpreet Singh" %}</a><br/>
+					 <a href="">{% trans "Satinderpal Singh" %}</a><br/>
+				   <strong>{% trans "Under Guidance : - " %}</strong><br/>
+                                    <a href="http://hs.raiandrai.com/">{% trans "H. S. Rai" %}</a></td>
+                                    <td> <a href="http://python.org/">Python</a><br/><a href="http://www.djangoproject.com/">Django</a><br/>Css<br/>JavaScript<br/>Html</td>
+	
+	  </table>
+	  <hr/>
+    <h2><center>FEED BACK</center></h2>
+<br>
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post">
+	{% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+
+</html>
+{% endblock %}
+

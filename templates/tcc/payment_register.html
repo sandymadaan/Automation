@@ -1,0 +1,60 @@
+<html>
+<head>
+    <title>Payment Register</title>
+</head>
+<body>
+
+<div align="center"> Payment Register
+<table border='1'>
+	<tr>
+		<td>S.No</td>
+		<td>Receipt No.</td>
+		<td>Job No </td>
+		<td>Name & Address</td>
+		<td>Total</td>
+		<td>TDS</td>
+		<td>Service Tax</td>
+		<td>Education Tax</td>
+		<td>Higher Education Tax</td>
+		<td>Net Total</td>
+	</tr>
+{% if job %}
+    {% for jobs in job %}
+    {% for bills in bill %}  
+   		 {% if bills.job_no == jobs.job_no %}  	
+         <tr>
+		
+            <td>{{forloop.counter}}</td>           
+			<td>{{jobs.job_no}}</td>
+			<td>{{jobs.id}}</td> 
+			<td>{{jobs.client__client__first_name}}  {{jobs.client__client__middle_name}}
+			 {{jobs.client__client__last_name}},  {{jobs.client__client__address}}, 
+			 {{jobs.client__client__city}}</td>
+			<td>{{bills.price}}</td>
+			<td>{{jobs.tds}}</td>
+			<td>{{bills.service_tax}}</td>
+			<td>{{bills.education_tax}}</td>
+			<td>{{bills.higher_education_tax}}</td>
+			<td>{{bills.net_total}}</td>
+		
+		</tr>
+        	{% endif  %}
+    {% endfor %}
+	{% endfor %}
+{% endif  %}
+
+		<tr>
+			<td colspan="4">></td>
+			<td><b> {{price_total}} </b></td>
+			<td><b>{{tds_total}} </b></td>
+	        <td><b>{{service_tax_total}}</b></td>
+	        <td><b>	{{edu_tax_total}} </b></td>
+	        <td><b> {{high_edu_tax_total}}</b></td>
+	        <td><b>{{net_total}} </b></td>
+		</tr>
+</table>
+</div>
+</body>
+</html>	
+
+

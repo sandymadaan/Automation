@@ -1,0 +1,95 @@
+{% extends base_template|default:"base.html" %}
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{title.name}}</title>
+	</head>
+
+	{% block content %}
+	<script type="text/javascript" >
+    	function showfield(name){
+    		if(name=='cheque' || name=='dd')document.getElementById('div1').style.display 
+    		="block";
+    		else document.getElementById('div1').style.display='none';
+    		}
+    	function hidefield() {
+    		document.getElementById('div1').style.display='none';
+    		}
+    
+    </script>
+	<body onload = "hidefield()">
+		<h2 class="changeBlue">Add Advance Job</h2>
+ 		
+			
+	    {% if form.errors %}
+	        <p style="color: red;">
+	            Please correct the error{{ form.errors|pluralize }} below.
+	        </p>
+	    {% endif %}
+	
+	    <form action="" method="post">
+			{% csrf_token %}
+			 
+		<table><tr>
+			<td><label for="id_net_total">Amount:</label></td>
+			<td><input id="id_net_total" type="number" name="net_total"  maxlength="11" required="Yes" />
+			</td>
+		</tr>	
+		<tr>
+			<td><label for="id_work">Type of Work:</label></td>
+			<td><select name="type_of_work">
+					{% for typeofwork in work %}
+    					<option value="{{typeofwork.id }}">{{ typeofwork.name }}
+    					</option>
+					{% endfor %}
+			</select></td>
+		</tr>
+		<tr>
+         	
+         	<td>
+         	<input id="id_sample" type="hidden" min="1" name="sample"  
+         	 value=1 />
+         	</td>
+        </tr>
+		<tr>
+			
+			<td><input id="id_site" type="hidden" name="site"  maxlength="600" 
+			/></td>
+		</tr>
+		<tr>
+			
+			<td><input id="id_letter" type="hidden" name="letter_no"  maxlength="11" /></td>
+		</tr>
+		<tr>
+			
+			<td><input id="id_letter_date" type="hidden" name="letter_date"  maxlength="11" />
+			</td>
+		</tr>	
+		<tr>
+			
+			<td><input id="id_tds" type="hidden" name="tds"  maxlength="11" value=0 />
+			</td>
+		</tr>	
+		<tr>
+			<td><label for="id_pay">Mode of Payment:</label></td>
+			<td><select name="pay" id="pay" onchange = "showfield(this.options[this.
+			selectedIndex].value)">
+					<option value="cash">Cash</option>
+					<option value="online">Online</option>
+					<option value="cheque" >Cheque</option>
+					<option value="dd" >DD</option>
+				</select></td>
+		</tr> 
+		</table>
+		<div id="div1">Enter Cheque/DD No. : 
+			<input type="text" name="check_number" /> </br>
+			Enter Cheque/DD Date : <input type="text" name="check_dd_date" id=
+			"id_cheque/dd_date" /> 
+			</div>
+		</table>
+			<input type="submit" value="Submit">
+    </form>
+    </body>
+</html>
+{% endblock %}

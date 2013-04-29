@@ -1,0 +1,44 @@
+{% extends "report/report_header.html" %}
+{% load i18n %}
+<html>
+{% block content %}
+<body>
+{% for Heads in Head %}
+	<table   width="100%"><tr>
+	<td align="left"><a>No.GNDEC/TCC/R/{{Heads.refrence_no}}</td><td align="right"><a>Dated{{Heads.dispatch_report_date}}</a></td>
+	</tr></table>
+<!--	<p><b>Job no:</b><a style="padding-left:30px; position:absolute">{{Heads.job_no}}</a></p>
+-->	<p>To,</p>
+	<p><b>Subject:</b><a style="padding-left:30px; position:absolute">{{Heads.subject}}</a></p>
+	<p><b>Refrence:</b><a style="padding-left:17px; margin-bottom:0;">Your letter No. {{Heads.reference}} dated    {{Heads.dated}}</a></p>
+	<p>{{Heads.Header_column_1}}</p>	
+	<p>{{Heads.Header_column_2}}</p>	
+	<p>Sir,</p>
+	<p style="padding-left:85px; margin-top:0; margin-bottom:0;">The result of  sent by you on {{Heads.date_of_testing}} are as under:</p>	
+{% endfor  %}
+<div id="report">
+	{% block report %}{% endblock %}
+</div>
+{% for Heads in Head %}
+	<p>{{Heads.Footer_column_3}}</p>
+{% endfor  %}
+{% block footer %}
+	<h3>Conditions:</h3>
+	<p>1. This test report refers only to the samples submitted for the test.</p>
+	<p>2. This test report not be used for any sales promotions or advertisements without permission.</p>
+	<p>3. This test report is not to be used for legal purpose and will not be produce in the Court of Law.</p>
+
+	<table  width="100%">
+		<tr>	
+			<td align="left"><h4>(Co-Ordinator)</h4></td>
+			<td align="right"><h4>Dean Testing & Consultancy<br/>Guru Nanak Dev Engg College<br/>Ludhiana</h4></td>
+		</tr>
+	</table>
+{% endblock %}
+<hr/>
+	<table align="center">
+		<td><a href="{{ LOCAL_URL }}/automation/report/myview"><input type="submit" value="PDF" /></a></td>
+	</table>
+</body>	
+</html>
+{% endblock %}

@@ -1,0 +1,43 @@
+<html>
+<head>
+	<title>Daily Report</title>
+</head>
+<body>
+
+<div>Daily Report Of {{start_date}} to {{end_date}} for {{type}} payment
+<table border='1' width='100%'>
+	<tr>
+		<th>Sr.No </th>
+		<th>Receipt No.</th>
+		<th>Date</th>
+		<th>Name of Parties</th>
+		<th>Agency</th>
+        <th>Total</th>
+	</tr>
+{% load humanize %}
+    {% for clients in client %}
+    {% for bills in bill %}
+          {% if clients.job_no == bills.job_no %}
+	<tr>
+		<td>{{forloop.counter}}</td>
+		<td>{{ clients.job_no }}</td>
+		<td> {{ clients.date }}</td>
+		<td> {{clients.client__client__first_name}} {{clients.client__client__middle_name}} 
+		{{clients.client__client__last_name}} {{clients.client__client__address}} 
+		{{clients.client__client__city}}</td>
+        <td> {{ clients.client__client__company }}</td>
+		<td ALIGN="right">{{bills.net_total|intcomma}}</td>
+	</tr>
+    	{% endif  %}
+    {% endfor %}
+    {% endfor %}
+
+	<tr>
+        <td colspan='5'><b><center>SUM</center></td>
+        <td ALIGN="right"><b>{{ net_total|intcomma }}</td>
+    </tr>
+</table>
+</div>
+
+</body>
+</html>

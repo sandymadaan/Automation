@@ -1,0 +1,126 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="http://192.168.15.178/static/css2/css/report.css " />
+	<title>Bill</title>
+</head>
+	<div style="font-size:24px" align='center'><b>{{address.name}}</b></div>
+	<div style="font-size:14px" align='center'>{{address.status}}</div>
+	<div style="font-size:24px" align='center'>{{title.name}}</div>
+	<div style="font-size:14px" align='center'>{{address.address}}</div>
+	<div style="font-size:14px" align='center'>
+		<i>Website :</i> {{title.url}}  <i>Email 
+		:</i> {{title.url}}  <i>Ph :</i> {{title.phone}}  
+		<i>Fax :</i> {{title.faxno}}
+	</div><br><br>
+	<div align='left'>STC No. AAATN1978LSD001<br>PAN No. AAATN1978L</div>
+<body>
+<h2 align="center">BILL</h2>
+{% load humanize %}
+<div style="top:290px;float:left;">No. : GNDEC/TCC/B/{{ job_no }}</div>
+<div style="top:290px;float:right;">Dated : {{job_date}} </div>
+<br/><br/>
+
+<div align="left">To,
+<br><br>
+{% for add in getadd %} 
+	{{ add.client__client__first_name}} {{ add.client__client__middle_name}} 
+	{{ add.client__client__last_name}} {{ add.client__client__address}}  
+	{{ add.client__client__city}}
+	<br/> {% if add.client__client__company != ""%}
+			Agency: {{add.client__client__company}}
+		  {% endif %}
+{% endfor %}
+<br/><br/>
+Ref.: Your Letter No. 
+{% for letter in getadd %}
+	{{letter.letter_no}} dated {{letter.letter_date}}
+{% endfor %}</div>
+
+<div align= "left">
+	<table border="1" width="100%">
+		<tr>
+			<td>Details</td>
+		<!--	<th>Per. </th>
+			<th>Rate</th>-->
+
+			<td  colspan="2" rowspan="8" valign="top">
+				<table width="100%"  style="margin:0px; padding:0px;">
+					<tr>
+						<td style="border:1px solid #000;">Description</td>
+						<td style="border:1px solid #000;" >Rate</td>
+					</tr>
+
+					{% for test in getjob %}
+					<tr>
+						<td style="border:1px solid #ccc;" >
+
+							{{test.sample}}
+							{% if test.suspencejob__field__name == "Soil for BC" %}
+		 						Bore Hole 
+							{% elif test.clientjob__material__name == "Cubes" %}
+								set
+							{% elif test.suspencejob__field__name == "Survey" or test.clientjob__material__name == "Structural Design (OHSR)" %}
+								works of
+							{% elif test.clientjob__material__name == "Mix Design" %}
+								No.
+							{% else %}
+		 						sample/s 
+							{% endif %}
+						</td>
+						<td style="border:1px solid #ccc;"> 
+							{% widthratio test.testtotal__unit_price test.sample 1 %} 
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
+			</td>	
+			<td>Amount</td>
+		</tr>
+		<tr>
+			<td> 
+		   		<b>Charges For </b>
+				{% for material in getjob %}
+					{% if material.report_type == 1 %} 
+						{{material.clientjob__material__matcomment__name}}
+						{{material.clientjob__material__name}}
+						
+					{% else %}
+						{{material.suspencejob__field__matcomment__name}}
+						{{material.suspencejob__field__name}}
+					{% endif %}<br>
+				{% endfor%}
+			</td>
+			<td align="right" rowspan="2">
+				{{ bill.price|intcomma }}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Site : 
+				{% for add in getjob %}
+					{{ add.site}} 
+				{% endfor %}
+			</td>
+		</tr>
+		<tr>
+			<td>Service Tax:  @ {{ servicetaxprint }}% </td>
+			<td  align="right">{{ bill.service_tax|intcomma }}</td>
+		<tr>
+			<td>Education Cess  @ {{ educationtaxprint }}% </td>
+			<td  align="right">{{ bill.education_tax|intcomma }}</td>
+		</tr>
+		<tr>
+			<td>Higher Education Cess  @ {{ highereducationtaxprint }}% </td>
+			<td  align="right">{{ bill.higher_education_tax|intcomma }}</td>
+		</tr>
+		<tr>
+			<td>Total (Rupees {{ net_total_eng }} only) </td>
+			<td  align="right">{{ cdftotal }} {{ bill.net_total|intcomma}}</td>
+		</tr>	
+	</table>
+
+<div style="position:absolute;right:50px;top:900px;">
+	DEAN TESTING AND CONSULTANCY
+</div>
+</body>
+</html>

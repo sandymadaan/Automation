@@ -1,0 +1,160 @@
+%PDF-1.4
+%“Œ‹ž ReportLab Generated PDF document http://www.reportlab.com
+% 'BasicFonts': class PDFDictionary 
+1 0 obj
+% The standard fonts dictionary
+<< /F1 2 0 R
+ /F2 3 0 R >>
+endobj
+% 'F1': class PDFType1Font 
+2 0 obj
+% Font Helvetica
+<< /BaseFont /Helvetica
+ /Encoding /WinAnsiEncoding
+ /Name /F1
+ /Subtype /Type1
+ /Type /Font >>
+endobj
+% 'F2': class PDFType1Font 
+3 0 obj
+% Font Helvetica-Bold
+<< /BaseFont /Helvetica-Bold
+ /Encoding /WinAnsiEncoding
+ /Name /F2
+ /Subtype /Type1
+ /Type /Font >>
+endobj
+% 'Page1': class PDFPage 
+4 0 obj
+% Page dictionary
+<< /Contents 14 0 R
+ /MediaBox [ 0
+ 0
+ 595.2756
+ 841.8898 ]
+ /Parent 13 0 R
+ /Resources << /Font 1 0 R
+ /ProcSet [ /PDF
+ /Text
+ /ImageB
+ /ImageC
+ /ImageI ] >>
+ /Rotate 0
+ /Trans <<  >>
+ /Type /Page >>
+endobj
+% 'R5': class PDFCatalog 
+5 0 obj
+% Document Root
+<< /Outlines 7 0 R
+ /PageMode /UseNone
+ /Pages 13 0 R
+ /Type /Catalog >>
+endobj
+% 'R6': class PDFInfo 
+6 0 obj
+<< /Author ()
+ /CreationDate (D:20130220232537-05'00')
+ /Creator (\(unspecified\))
+ /Keywords ()
+ /Producer (pisa HTML to PDF <http://www.htmltopdf.org>)
+ /Subject ()
+ /Title () >>
+endobj
+% 'R7': class PDFOutlines 
+7 0 obj
+<< /Count 4
+ /First 8 0 R
+ /Last 8 0 R
+ /Type /Outlines >>
+endobj
+% 'Outline.0': class OutlineEntryObject 
+8 0 obj
+<< /Count -1
+ /Dest [ 4 0 R
+ /Fit ]
+ /First 9 0 R
+ /Last 9 0 R
+ /Parent 7 0 R
+ /Title (Conditions:) >>
+endobj
+% 'Outline.2.0': class OutlineEntryObject 
+9 0 obj
+<< /Count -1
+ /Dest [ 4 0 R
+ /Fit ]
+ /First 10 0 R
+ /Last 10 0 R
+ /Parent 8 0 R
+ /Title (Conditions:) >>
+endobj
+% 'Outline.3.0': class OutlineEntryObject 
+10 0 obj
+<< /Count -2
+ /Dest [ 4 0 R
+ /Fit ]
+ /First 11 0 R
+ /Last 12 0 R
+ /Parent 9 0 R
+ /Title (Conditions:) >>
+endobj
+% 'Outline.4.0': class OutlineEntryObject 
+11 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Next 12 0 R
+ /Parent 10 0 R
+ /Title (\(Co-Ordinator\)) >>
+endobj
+% 'Outline.4.1': class OutlineEntryObject 
+12 0 obj
+<< /Dest [ 4 0 R
+ /Fit ]
+ /Parent 10 0 R
+ /Prev 11 0 R
+ /Title (Dean Testing & ConsultancyGuru Nanak Dev Engg CollegeLudhiana) >>
+endobj
+% 'R13': class PDFPages 
+13 0 obj
+% page tree
+<< /Count 1
+ /Kids [ 4 0 R ]
+ /Type /Pages >>
+endobj
+% 'R14': class PDFStream 
+14 0 obj
+% page stream
+<< /Filter [ /ASCII85Decode
+ /FlateDecode ]
+ /Length 1311 >>
+stream
+GauHLD,8qH&H7]ss'\m+-[IgICaW!+NsCp7KK'#.E`/`6fQ_VhB'm:M.CVYApDZ3k$7Td>.4^+jcIh_NoAZ07nF/s(FYj3q1P+R^'I\TE%+HXg,StEc$kE7W**g$)>tV>WE*rAA,0qJbjrEK,?D)7*=(<NJ3+W-G%1[=^]&#7hOU*(t!MopsEA+qN8-6E:kC2Lq%e&;-r6Ip!<Ud/UF'Y6pk21,-dnH'<C1bFHGlId=AtdZ^EZ1q=o510khdE5p/msuT@pQra'WiKZmKU]r5k5YQh]:FO(##]1_@E?.GlA?L8lZ,B&a24VfbSuTe41SMllUXL=_!0+N&>\.kCWkjGA*0_$3NQ=GYA5Neft@R4JFcZM-fK2^!u-@o(;;03&ruZ^-99GGLV^PN_??@EiAWJ^?gXmI=^s]JOo_>M%tCGl$D$2TWZ5\!ndss:K&LE(#1@Dk,B4mLJ-7AE,pU.BQr9U)P6I7&bR.iM>j9N$i@Gi^UI+q7Ue)lL(J,>73S@@CZMIOg2O9o3,\$9YB"/;3\[[J>?S%BhV?jGf=74kiVpjL`m&oE`*9/X$V2i*!qu:Bg7H.ZO02,(UbT.XN*4d?<9[p8*l*)=[[qJ7h>-TZ-FNN2d?b2hG56JEdR?;t6eY[C&I#ii5-:ijm]$W/9=2B%eXO5<RKJ5h>@R]!7;mXej><,ub,R'&kV6'1,edR"6J%m\NjfMkG\CW!E]$.$:.kn-"gp\Z5B]K8]iMl)(n%L#<+ZMqc6\.:i@h."ReipBe541The'+)`h)(7ApBO)/;X))apXiK2Oh@p46M;_YeK_G[Z>;uiiuG[(#8Z_'`:8@_l!k%)Vet#@n,\Y1lM^rebDP5/2t+?<S+GcBLLj/l(eHFBjQA8;ld]SB5iRXXB:##?ngJ<l"j\I$F!3lji/@becL$7$BgFZr"r#jf:uIV/u::$9;nnfqPdX@0FMZ&lBufB!^!!%Q_heS3Q'WY_-LrU\i)7/jXdSbI&f'[0I2+^G2t6"n^0Zm'5jQtj<Q<b?C,_=iJF?c"BZ?gEfc-Z*_Dj'XE@=C9QS807=*Q'2&@2^GO$^tXF%?Z0/eY=p$!9OaeQVo/6Agujd-MV2MCJ,4*k,VQAUT^#d:)dCOpIT;[#`k@)-\o.qOX%</hY'ODFLl&YU9SeuX(??C*NSVCMNKVt)p>WQ>;)$M4Y8Q3jfV`*U5dMHnZa1e3CFpW,>f#m$+F<SaFr=Pl.+Vof(uIOX!un'58=>.O.fgP(D''9[mJ,7F%Xoh%GTQ,ik.oo$)ZlPgW/+`,&@(''CD&cI3sg5B>U*;g=3P>+g~>endstream
+endobj
+xref
+0 15
+0000000000 65535 f
+0000000113 00000 n
+0000000221 00000 n
+0000000386 00000 n
+0000000559 00000 n
+0000000838 00000 n
+0000000973 00000 n
+0000001206 00000 n
+0000001328 00000 n
+0000001499 00000 n
+0000001672 00000 n
+0000001846 00000 n
+0000001998 00000 n
+0000002177 00000 n
+0000002284 00000 n
+trailer
+<< /ID 
+ % ReportLab generated PDF document -- digest (http://www.reportlab.com) 
+ [(\314\305\304s\204\322i4\315\273\351\374W\(\3546) (\314\305\304s\204\322i4\315\273\351\374W\(\3546)] 
+
+ /Info 6 0 R
+ /Root 5 0 R
+ /Size 15 >>
+startxref
+3711
+%%EOF

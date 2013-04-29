@@ -1,0 +1,108 @@
+{% extends "report/report_header.html" %}
+{% load i18n %}
+<html>
+{% block content %}
+<head>
+<style>
+.extraMargin {
+padding-left:0px;
+}
+
+.conditionListing {
+text-align:center;
+}
+
+</style>
+</head>
+
+<body>
+{% for Heads in Head %}
+	<table   width="100%"><tr>
+	<td align="left"><a>No.GNDEC/TCC/R/{{Heads.job_id}}</td><td align="right"><a>Dated{{Heads.dispatch_report_date}}</a></td>
+	</tr></table>
+<!--	<p><b>Job no:</b><a style="padding-left:30px; position:absolute">{{Heads.job_no}}</a></p>
+-->	
+	<table border="0" width="100%">
+	<tr>
+	<td width="80px"><p>To</p></td>
+	</tr>
+	{% for add in client %}
+ 
+	<tr><td>	</td>
+	<td class="extraMargin">{{ add.client__client__first_name}} {{ add.client__client__middle_name}} {{add.client__client__last_name}}</td>
+	</tr>	
+	
+
+	<tr><td></td>	
+	<td class="extraMargin">{{add.client__client__address}}</td>
+	</tr>	
+
+	<tr><td></td>	
+	<td class="extraMargin">{{ add.client__client__city}}</td>
+	</tr>
+	
+	<tr>
+	<td><b>Subject:</b></td>
+	<td class="extraMargin">The report of the {{add.clientjob__material__name}}.</td>
+	</tr>
+	
+	<tr>
+	<td>
+	<b>Refrence:</b>
+	</td>	
+	<td class="extraMargin">Your letter No. {{add.letter_no}} dated    {{add.date}}</td>
+	</tr>
+	
+	<tr><td></td>
+	<td class="extraMargin">{{Heads.Header_column_1}}</td>	
+	</tr>
+	<tr><td></td>	
+	<td class="extraMargin">{{Heads.Header_column_2}}</td>	
+	</tr>	
+
+	<tr>		
+	<td>Sir</td></tr>
+	<tr><td></td	>		
+	<td class="extraMargin">The result of {{add.clientjob__material__name}}
+	sent by you are as under:</td>
+	</tr>
+	</table	
+>	
+	{% endfor %}
+{% endfor  %}
+<div id="report">
+	{% block report %}{% endblock %}
+</div>
+{% for Heads in Head %}
+	
+	<table border="0" width="100%">
+	<tr><td></td>
+	<td class="extraMargin">
+	{{Heads.Footer_column_3}}</td>
+	</tr>
+{% endfor  %}
+{% block footer %}
+
+	<tr><td width="80px">Conditions:</td></tr>
+	<tr><td class="conditionListing">1.</td>
+	<td class="extraMargin"> This test report refers only to the samples submitted for the test.</td></tr>
+	<tr><td class="conditionListing">2.</td>
+	<td class="extraMargin"> This test report not be used for any sales promotions or advertisements without permission.</td></tr>
+	<tr><td class="conditionListing">3.</td>
+	<td class="extraMargin"> This test report is not to be used for legal purpose and will not be produce in the Court of Law.</td></tr>
+</table>
+
+	<table  width="100%">
+		<tr>	
+			<td align="left"><h4>(Co-Ordinator)</h4></td>
+			<td align="right"><h4>Dean Testing & Consultancy</h4></td>
+		</tr>
+	</table>
+{% endblock %}
+<hr/>
+	<table align="center">
+		<td><a href="{{ LOCAL_URL }}/automation/report/myview"><input type="submit" value="PDF" /></a></td>
+	</table>
+</body>	
+</html>
+{% endblock %}
