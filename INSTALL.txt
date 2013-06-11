@@ -1,0 +1,87 @@
+""""""""""""""""""""""""
+AUTOMATION INSTALLATION
+""""""""""""""""""""""""
+
+NOTE:
+# For installing TCC Automation software, make sure that your computer has MYSQL and Django installed.
+# This application is tested for Django version 1.4.
+
+In case Django is not installed, install it using :
+
+ wget http://www.djangoproject.com/m/releases/1.4/Django-1.4.2.tar.gz     # download tar folder of django
+ tar xzvf Django-1.4.2.tar.gz                                             # opens the tar file
+ cd Django-1.4.2                                                          # get into the django folder
+ sudo python setup.py install 
+       
+# In this documentation, replace the "mPath" with the path at which Automation folder is placed.
+# Also run following command commands in the terminal :
+
+sudo apt-get install apache2 libapache2-mod-wsgi 
+sudo apt-get install python-mysqldb
+sudo apt-get install python-setuptools
+sudo easy_install pip
+sudo pip install django-registration
+sudo pip install django-tagging
+
+
+1. First step to install the TCC Auto software is to download the software from the 
+https://github.com/sandeepmadaan/Automation.git
+This can be done using command :
+sudo git clone https://github.com/sandeepmadaan/Automation.git
+
+Then, extract it and place the extracted folder in the home folder.
+
+2. Open the Automation folder and make the changes in the apache folder and settings.py file. In apache folder there is a “django.wsgi” file which contains sys.path.append(‘mPath’). Here replace mPath with the path at which the Automation folder is placed. Eg. in my case it was in '/home/tcc/'.
+
+Now create a database name automation in your database engine like in my case MySQL.
+
+Now edit the file 'Automation/settings.py'.
+
+Here on line no. 12, it goes like :
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'db_name',                      # Or path to database file if using sqlite3.
+        'USER': 'db_user',                      # Not used with sqlite3.
+        'PASSWORD': 'db_password',
+        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    }
+}
+
+replace db_name with automation or your database name, db_user with your MySQL username, db_password with your MySQL password.
+Also change 'HOST':'' to 'HOST': 'localhost', in the above database.
+
+In the settings.py file change please Ensure the following things should be right
+LOCAL_URL = 'http://localhost/'
+and
+MEDIA_URL = 'http://localhost/media/'
+
+    MEDIA_ROOT = '/usr/local/lib/python2.7/dist-packages/django/contrib/admin/media/'
+    {Change the path of media folder to your own path that you follow instead of the path given.)
+
+    Give the path in TEMPLATE_DIRS = ("mPath") in settings.py file of your templates of Automation project as:
+    Eg :
+    TEMPLATE_DIRS = ("/home/tcc/Automation/templates")
+   
+There are 2 methods by which you have tables in the software ;
+a). Fresh install. i.e create new tables and make all new entries by yourself. This can be done using these commands :
+cd Automation
+python manage.py syncdb
+b). Using this method you can use the demo.sql file already provided by the software and import it in the database created.
+ 
+Now you need to configure the software with apache configuration.
+For this you need to make following changes :
+There is a file named hhtp_cont in 'Automation/other_files'. Edit this file so that 'mPath' is replaced by your path. Then copy the content and paste it in the file as :
+
+sudo vim /etc/apache2/httpd.conf
+
+Then save this file and restart the apache using follwing command :
+
+sudo /etc/init.d/apache2 restart
+
+Now the software is installed. You can open it on browser :
+http://localhost/automation
+
+If you have made a fresh install, then you need to make the entry into the tables like tcc_organisation and tcc_department, manually by yourself. 
+
