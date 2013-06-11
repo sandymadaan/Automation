@@ -1,0 +1,66 @@
+<html>
+	<head>
+	<title>TDS Register</title>
+	</head>
+<body>
+
+<div>TDS Register from {{s_date}} to {{e_date}} 
+<table border='1' width='100%'>
+	<tr>
+		<td><b>Sr.No </b></td>
+		<td><b>Receipt No.</b></td>
+		<td><b>Date</b></td>
+		<td><b>Name of Parties</b></td>
+       <td>Bill Amount</td>
+		<td>Service Tax</td>
+		<td>Edu. Cess
+		<td>H. Edu. Cess</td>
+		<td>Total Amount</td>
+		<td>TDS</td>
+		<td>Received Amount</td>
+        
+	</tr>
+{% load humanize %}
+   
+			{% if job %}
+    {% for jobs in job %}
+    {% for bills in bill %}  
+   		 {% if bills.job_no == jobs.job_no %}  	
+         <tr>
+		
+            <td>{{forloop.counter}}</td>            
+			<td>{{jobs.job_no}}</td> 
+			<td>{{jobs.date}}</td>
+			<td> {{jobs.client__client__first_name}}  {{jobs.client__client__middle_name}}
+			 {{jobs.client__client__last_name}},  {{jobs.client__client__address}}, 
+			 {{jobs.client__client__city}}</td>
+			<td> {{ bills.price|intcomma }}</td>
+			<td>{{bills.service_tax|intcomma}}</td>
+			<td>{{bills.education_tax|intcomma}}</td>
+			<td>{{bills.higher_education_tax|intcomma}}</td>
+			<td>{{bills.net_total|intcomma|intcomma}}</td>
+            <td>{{jobs.tds|intcomma}}</td>
+			<td>{{bills.balance|intcomma}} </td>
+		       
+		
+		</tr>
+       		{% endif  %}
+        {% endfor %}
+        {% endfor %}
+{% endif  %}
+	<tr>
+	<td colspan="4">Total</td>
+	
+	<td>{{total|intcomma}}</td>
+	<td>{{service_tax|intcomma}}</td>
+	<td>{{education_tax|intcomma}}</td>
+	<td>{{higher_education_tax|intcomma}}</td>
+	<td>{{net_total|intcomma}}</td>	
+	<td>{{tds|intcomma}}</td>
+	<td>{{balance|intcomma}}</td>
+</table>
+<br></br></br></br>
+</div>
+
+</body>
+</html>

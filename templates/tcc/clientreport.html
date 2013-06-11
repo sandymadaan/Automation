@@ -1,0 +1,73 @@
+                                                                                                                                                                                          {% extends "base.html" %}
+{% load i18n %}
+<html lang="en">
+<head>
+    <title>Search{% if query %} Results{% endif %}</title>
+</head>
+{% block content %}
+<body>
+  <h2 class="changeBlue">Search</h2>
+  <form action="." method="GET">
+    <label for="q">Type the job_no you want to search: </label>
+    <input type="text" name="q" value="{{ query|escape }}" type="number" pattern="[0-9]+" min="1"><br />
+    <input type="submit" value="Search"><br /><br />
+  </form>
+{% if query %}
+    <h4>Results for job_no :{{ query|escape }}</h4>
+
+    {% if job %}
+	
+	<table border="1" cellpadding="10">
+	
+	<tr>
+		<th>Job Id.</th>
+		<th>Name & Address</th>
+		<th>Work Done</th>
+		<th>Site</th>
+		<th>Amount</th>
+		<th>Report</th>
+		<th>Bill</th>
+		<th>Receipt</th>
+		<th>Additional</th>
+	</tr>
+	{% load humanize %}
+	{% for client in job %}
+	<tr>
+		<td>{{client.id}}
+		<td>{{client.client__client__first_name}} from {{client.client__client__address_1}},{{client.client__client__city}}</td>
+		<td> {% if client.report_type == 3 %} Advanced Payment
+		{% else %}{{client.clientjob__material__name}}{% endif %}</td>	
+		<td>{{client.site}}</td>
+		<td> {% if client.report_type == 3 %}{% for bills in bill %}{{bills.balance|intcomma}}{% endfor %}
+		{% else %}{{client.testtotal__unit_price|intcomma}}{% endif %}</td>
+		 {% if client.report_type == 3 %}
+		 <td></td>
+		 <td></td>
+		 {% else %}
+		
+		{% if client.amount__report_type == "Suspence" %}
+			<td><b><center><a href="/automation/tcc/s_report/?id={{client.id}}" target="window">SUSPENCE REPORT.{{forloop.counter}}</a> 
+			</td>
+		{% else %}
+			<td><b><center><a href="/automation/tcc/report/?id={{client.id}}" target="window">GENERAL REPORT.{{forloop.counter}}</a> </td>
+		{% endif %}
+	
+		
+		<td><a href="/automation/tcc/bill/?id={{client.id}}">Get Bill</a></td>
+		{% endif %}
+		<td><a href="/automation/tcc/receipt/?id={{client.id}}">Get Receipt</a></td>
+		<td><a href="/automation/tcc/additional/?id={{client.id}}">Get Additional detail</a></td>
+		
+    </tr>
+	{% endfor %}
+
+
+	</table>
+
+	{% else %}
+	<p>This Job no does not exist.</p>
+	{% endif %}
+{% endif %}
+</body>
+</html>
+{% endblock %}

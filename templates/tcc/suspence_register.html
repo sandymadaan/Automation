@@ -1,0 +1,99 @@
+<html>
+<head>
+    <title>Suspence Register</title>
+</head>
+<body>
+
+<div align="center"> Suspence Register of {{s_date}} to {{e_date}}
+<table border='1'>
+	<tr>
+		<td>S.No</td>
+		<td>Ref No.</td>
+		<td>Job No </td>
+		<td>Address</td>
+		<td>Amount</td>
+		<td>Bill Amount</td>
+		<td>Service Tax</td>
+		<td>Edu. Cess
+		<td>H. Edu. Cess</td>
+		<td>Total Amount</td>
+		<td>TDS</td>
+		<td>Transportation</td>
+		<td>Received Amount</td>
+		<td>Type of Material</td>
+		<td>Receipt No.</td>
+		<td>Receipt Date</td>
+		<td>D.O.T</td>
+		<td>Mode of Payment</td>
+		<td>DD/Check No.</td>
+		<td>DD/Check Date</td>
+		<td>Clear Amount</td>
+		<td>No. & Date</td>
+	</tr>
+{% if job %}
+    {% for jobs in job %}
+    {% for bills in bill %}  
+   		 {% if bills.job_no == jobs.job_no %}  	
+         <tr>
+		
+            <td>{{forloop.parentloop.counter}}</td>    
+            <td>{{jobs.id}}</td>        
+			<td>{{jobs.job_no}}</td> 
+			<td> {{jobs.client__client__first_name}}  {{jobs.client__client__middle_name}}
+			 {{jobs.client__client__last_name}},  {{jobs.client__client__address}}, 
+			 {{jobs.client__client__city}}</td>
+			 <td>{{jobs.testtotal__unit_price}}</td>
+			<td> {{ bills.price }}</td>
+			<td>{{bills.service_tax}}</td>
+			<td>{{bills.education_tax}}</td>
+			<td>{{bills.higher_education_tax}}</td>
+			<td>{{bills.net_total}}</td>
+            <td></td>
+            <td>{{bills.trans_total}}</td>
+			<td>{{bills.balance}} </td>
+			<td>{% if jobs.report_type == 1 %} {{jobs.clientjob__material__name}}
+			{% else %}{{jobs.suspencejob__field__name}}{% endif %}</td>
+			<td>{{jobs.job_no}}</td>
+			<td>{{jobs.date}}</td>
+			<td></td>
+			<td>{{jobs.pay}}</td>
+			<td>{{jobs.check_number}}</td>
+			<td>{{jobs.check_dd_date}}</td>
+			<td></td>
+			<td></td>
+			
+			
+		</tr>
+        	{% endif  %}
+		
+	
+        {% endfor %}
+	{% endfor %}
+{% endif  %}
+
+		<tr>
+			<td><b>  </b></td>
+			<td><b> </b></td>
+			 <td><b></b></td>
+			<td><b>  </b></td>
+			<td><b> </b></td>
+			<td><b> </b></td>
+			<td><b> {{college_income}} </b></td>
+	         <td><b>{{admin_charge}}</b></td>
+	        <td><b>	{{consultancy_asst}} </b></td>
+	        <td><b> {{development_fund}}</b></td>
+                <td><b> </b></td>
+              <td><b> </b></td>
+               <td><b> </b></td>
+              
+	        
+	         <td><b>{{total}} </b></td>
+	</tr>	
+</table>
+</div>
+
+
+</body>
+	
+
+

@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>Client Register</title>
+</head>
+<body>
+<div align="center"> Client Register 
+<table border='1' width='100%'>
+	<tr>
+		<td>S No.</td>
+        <td>Name</td>
+		<td>Address</td>
+		<td>Company</td>
+		<td>City</td>
+		<td>Pin Code</td>
+		<td>State</td>
+		<td>Website</td>
+		<td>Email Address</td>
+		<td>Contact No.</td>
+		<td>Organization</td>
+		<td>Date</td>
+	</tr>
+
+{% if cr_obj %}
+    
+    {% for obs in cr_obj %}
+    
+       
+	 
+         <tr>
+		 	<td>{{forloop.counter}}</td>
+            <td>{{ obs.first_name}} {{ obs.middle_name}} {{ obs.last_name}}</td> 
+			<td>{{obs.address}} </td>
+			<td>{{ obs.company }} </td>
+			<td>{{ obs.city }} </td>
+			<td>{{ obs.pin_code }}</td>
+			<td>{{ obs.state }}</td>
+			<td>{{ obs.website }}</td>
+			<td>{{ obs.email_address }}</td>
+			<td>{{ obs.contact_no }}</td>
+			<td>{{ obs.type_of_organisation }} </td>
+			<td>{{ obs.date }}</td>
+		
+			
+		</tr>
+        
+        
+        {% endfor %}
+{% endif  %}
+	       
+</table>
+</div>
+
+
+</body>

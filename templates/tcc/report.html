@@ -1,0 +1,112 @@
+<html>
+<head><title>Report</title></head>
+<div style="font-size:24px" align='center'><b>{{address.name}}</b></div>
+<div style="font-size:24px" align='center'>{{title.name}}</div><br>
+<body>
+<br>
+
+<div style="position:absolute;right:0px;top:75px;">No.TCC Job/Voucher : {{ user.job_no }}/{{user.id}} </div>
+<div style="position:absolute;right:0px;top:95px;">Dated : {{user.date}} </div>
+<div style="position:absolute;left:7px;top:105px;">Director,</div>
+<br></br><br/>
+Received a sum of Rs. {{amount.unit_price }}/- ( Rupees {{net_total_eng}} only ) 
+Vide Cash from {% for names in name %}{{ names.client__client__first_name }} 
+{{ names.client__client__middle_name }} {{ names.client__client__last_name }}
+{{ names.client__client__address }} {{ names.client__client__city }},
+{% if names.client__client__company != ""%}
+Agency: {{names.client__client__company}}
+{% endif %} {% endfor %}on account of 
+{% for names in name %}
+	{% for comments in matcomment %}
+			{% if comments.id == names.clientjob__material__matcomment_id %}
+			{{comments.name|lower }}
+			{% endif %}
+		{% endfor %}
+		{% endfor %}{{mat}}. <br/><br/><br/>
+<div >Vide Receipt No. : {{user.job_no }}  Dated: {{user.date}} </div>
+<div >Nature of Consultancy : {{ con_type }},  Ratio {{ ratio1 }}:{{ ratio2 }} </div>
+<div align= "left">
+<br/><br/>
+<table border="1" width="100%">
+<tr>
+	<td colspan="3">THE DISTRIBUTION MAY BE MADE AS</td>
+</tr>
+
+  {% load humanize %}
+<tr>
+	<td rowspan="9">CREDITS</td>
+	<td>COLLEGE INCOME {{ collegeincome }}% </td>
+	<td  align="right">{{ amount.college_income|intcomma }}</td>
+</tr>
+<tr>
+	<td>ADMN. CHARGES {{ admincharge }}% </td>
+	<td  align="right">{{ amount.admin_charge|intcomma }}</td>
+</tr>
+<tr>
+	<td>CONSULTANCY ASST. </td>
+	<td  align="right">{{ amount.consultancy_asst|intcomma }}</td>
+</tr>
+<tr>
+	<td>DEV. FUND (CONSULTANCY) </td>
+	<td  align="right">{{ amount.development_fund|intcomma }}</td>
+</tr>
+<tr>
+	<td>TOTAL (Rs.) </td>
+	<td  align="right">{{ amount.unit_price|intcomma }}</td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<div>
+<table border="1" width="100%">
+<tr>
+	<td colspan="3"></TD>
+</TR>
+<tr>
+	<TD>NAME OF EMPLOYEES</TD>
+	<TD>DESIGNATION</TD>
+</tr>
+{% if staff  %}
+    {% for part in staff %}
+<tr>
+	
+	<TD> {{ part.name }}</TD>
+	<td> {{ part.position }}</TD>
+</tr>
+	{% endfor %}
+{% endif %}
+</TABLE>
+</div>
+<div align="left">THE WORK HAS BEEN EXECUTED BY ABOVE PERSONS AS MENTIONED ABOVE. </div>
+<br><br>
+<div style="right: 50px;top: 800px;float: right;margin-top: 10px;">DEAN TESTING AND CONSULTANCY</div>
+<div align="left">
+Account Clerk (Consultancy)</div>
+<br><br><br>
+<table border="1" width="100%">
+{% if user.id == job.id %}
+<tr>
+			<td>Service Tax:  @ {{ servicetaxprint }}% </td>
+			
+			<td  align="right">{{ bill.service_tax|intcomma }}</td>
+		<tr>
+			<td>Education Cess  @ {{ educationtaxprint }}% </td>
+			
+			<td  align="right">{{ bill.education_tax|intcomma }}</td>
+		</tr>
+		<tr>
+			<td >Higher Education Cess  @ {{ highereducationtaxprint }}% </td>
+			
+			<td  align="right">{{ bill.higher_education_tax|intcomma }}</td>
+		</tr>
+		<tr>
+				<td>Total </td>
+				
+			<td  align="right">{{ bill.net_total|intcomma}}</td>
+		</tr>	
+	</table>
+{% endif %}
+</body>
+</html>
+

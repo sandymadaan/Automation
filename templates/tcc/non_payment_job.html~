@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+<html>
+
+{% block content %}
+<br>
+<h2 class="changeBlue">Add Non Payment Job</h2>
+<<<<<<< HEAD
+<h3>Job_no : {{maxid}}</h3>
+=======
+<h3> Job No. {{maxid}}</h3>
+>>>>>>> 9a61b84fdb6ccc2f69d04c831b7a450111d94503
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post">
+	{% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+
+</html>
+{% endblock %}

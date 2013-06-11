@@ -1,0 +1,97 @@
+<html>
+<head>
+    <title>Payment Register</title>
+</head>
+<body>
+
+<div align="center"> Payment Register
+<table border='1' class="fixed">
+	<tr>
+		<th>S.No</th>
+		<th>Receipt No.</th>
+		<th>Job No </th>
+		<th>Date</th>
+		<th>Name</th> 
+
+		<th>Address</th>
+		<th>City</th>
+		<th>Company</th>
+
+		<th>Material</th>
+
+		<th>Contact No.</th>
+		<th>Email Address</th>
+		<th>Total</th>
+		<th>TDS</th>
+		<th>Service Tax</th>
+		<th>Education Tax</th>
+		<th>Higher Education Tax</th>
+		<th>Net Total</th>
+	</tr>
+{% if job %}
+    {% for jobs in job %}
+    {% for bills in bill %}  
+   		 {% if bills.job_no == jobs.job_no %}  	
+         <tr>
+		
+            <td>{{forloop.counter}}</td>           
+			<td>{{jobs.job_no}}</td>
+			<td>{{jobs.id}}</td> 
+			<td>{{jobs.date}}</td>
+			<td>{{jobs.client__client__first_name}}  {{jobs.client__client__middle_name}}
+			 {{jobs.client__client__last_name}}</td>
+			<td>{{jobs.client__client__address}}</td>
+			<td>{{jobs.client__client__city}}</td>
+			<td>{{jobs.client__client__company}}</td>
+			<td>
+			{% if jobs.report_type == 1 %}
+			{{jobs.clientjob__material__name}}
+			{% else %}
+			{{jobs.suspencejob__field__name}}
+			{% endif %}
+			</td>
+			<td>{{jobs.client__client__contact_no}}</td>
+			<td>{{jobs.client__client__email_address}}</td>
+
+			<td>{{bills.price}}</td>
+			<td>{{jobs.tds}}</td>
+			<td>{{bills.service_tax}}</td>
+			<td>{{bills.education_tax}}</td>
+			<td>{{bills.higher_education_tax}}</td>
+			<td>{{bills.net_total}}</td>
+		
+		</tr>
+        	{% endif  %}
+		
+	
+        {% endfor %}
+	{% endfor %}
+{% endif  %}
+
+		<tr>
+			 <td><b></b></td>
+			<td><b>  </b></td>
+			<td><b> </b></td>
+			<td></td>
+			<td></td>	
+			<td><b> </b></td>
+			<td><b> </b></td>
+			<td><b> </b></td>
+			<td><b> </b></td>
+			<td><b> </b></td>
+			<td><b> </b></td>
+			<td><b> {{price_total}} </b></td>
+			<td><b>{{tds_total}} </b></td>
+	         <td><b>{{service_tax_total}}</b></td>
+	        <td><b>	{{edu_tax_total}} </b></td>
+	        <td><b> {{high_edu_tax_total}}</b></td>
+	        <td><b>{{net_total}} </b></td>
+	</tr>
+</table>
+</div>
+
+
+</body>
+	
+
+

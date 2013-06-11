@@ -1,0 +1,14 @@
+{% extends base_template|default:"base.html" %}
+{% load i18n %}
+
+<html>
+<head>
+    <title>{{title.name}}</title>
+</head>
+{% block content %}
+
+<p>Thanks, for Adding Client </p><br/>
+Want to add job for this client ?<br/><br/><br/>
+<a href="{{ LOCAL_URL }}/automation/tcc/addjob/?id={{maxid}}" ><div style="font-size:24px" >Add Job</div></a> 
+
+{% endblock %}

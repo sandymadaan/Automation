@@ -1,0 +1,32 @@
+<html>
+<body>
+<h2>Job No. {{job_no}}</h2>
+<table border="1" width="100%">
+{% load humanize %}
+{% if bill %}
+{% for bills in bill %}
+<tr>
+			<td>Service Tax:  @ {{ servicetaxprint }}% </td>
+			
+			<td  align="right">{{ bills.service_tax|intcomma }}</td>
+		<tr>
+			<td>Education Cess  @ {{ educationtaxprint }}% </td>
+			
+			<td  align="right">{{ bills.education_tax|intcomma }}</td>
+		</tr>
+		<tr>
+			<td >Higher Education Cess  @ {{ highereducationtaxprint }}% </td>
+			
+			<td  align="right">{{ bills.higher_education_tax|intcomma }}</td>
+		</tr>
+		<tr>
+				<td>Total </td>
+				
+			<td  align="right">{{ bills.net_total|intcomma}}</td>
+		</tr>	
+		{% endfor %}
+		{% endif %}
+		</table>
+		</html>
+	</body>
+	</html>

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+<html>
+<head>
+    <title>{{title.name}}</title>
+</head>
+{% block content %}
+<body> 
+ <h3>Thanks for Adding job no. : {{ maxid }}</h3>
+ <br/>
+ <table align="center">
+ <caption><center><b>REPORTS</center></caption>	
+	 <tr>
+		{% for job in amt %}
+		{% if job.amount__report_type == "Suspence" %}
+			<td><b><center><a href="{{ LOCAL_URL }}/automation/tcc/s_report" target="window">SUSPENCE REPORT</a> 
+			</td></tr>
+		{% else %}
+			<td><b><center><a href="{{ LOCAL_URL }}/automation/tcc/g_report" target="window">GENERAL REPORT</a> </td></tr>
+		{% endif %}
+	{% endfor %}
+		 <tr><td><b><center><a href="{{ LOCAL_URL }}/automation/tcc/bill" target="window">BILL</a> </td></tr>
+		 <tr><td><b><center><a href="{{ LOCAL_URL }}/automation/tcc/receipt" target="window">RECEIPT</a> </td> </tr>
+		 <tr><td><b><centeR><a href="{{ LOCAL_URL }}/automation/tcc/additional" target="window">ADDITIONAL</a></td></tr>
+	
+ </table>
+</body>
+{% endblock %}
