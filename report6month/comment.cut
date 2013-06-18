@@ -1,0 +1,9 @@
+\usepackage{lastpage}
+
+%\renewcommand{\abstractname}{\textbf{\Large Abstract}}
+
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\lhead{\large\bfseries TCC Automation Software}
+\usepackage[left=2.5cm, right=1.5cm, top=2.5cm, bottom=1.5cm]{geometry}
+\pagestyle{fancy}

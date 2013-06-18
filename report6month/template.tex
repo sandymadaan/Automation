@@ -1,0 +1,112 @@
+%%-------------------------------------------------- READ THE COMMENTS CAREFULLY ------------------------------------------%%
+%%%%%%%%%%%%%%% Template for generating Report and Presentation according to G.N.D.E.C., Ludhiana's format %%%%%%%%%%%%%%%%%%%%%%%
+%% Here myclass is the class name
+%% print is used for making a report
+%% screen is used for making a presentation
+%% If you want the content common in print and screen, then don't specify the content in screen or print environment.
+%%----------------------------------------------------------------------------------------------------------------------------
+\documentclass[12pt]{myclass}
+\usepackage[print,sectionbreak]{pdfscreen}             %% If you want to produce presesntation then use screen, otherwise use print
+%---------------------------------------------------
+\usepackage{setspace}
+\linespread{1.5}
+
+\renewcommand{\rmdefault}{ptm}				%% font style Times New Roman
+%----------------------------------------------------
+%%%%%%%%%%%%%%%%%%%% Page Setting %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lhead{\large\bfseries TCC Automation Software}                         %% Here replace your project name
+\usepackage[left=2.5cm, right=1.5cm, top=2.5cm, bottom=1.5cm]{geometry}
+\pagestyle{fancy}
+
+%-----------------------------------------%% These commands are used in first page after titlepage
+\newcommand{\student}{\vskip 2.5cm}
+\newcommand{\supervisor}{\vskip 2cm}
+\newcommand{\stamp}{\vskip 2.5cm}                                
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%% Title page %%%%%%%%%%%%%%%%%%%%%%%%%
+
+\uppercase{ \title{TCC Automation Software}}
+\subtitle{subtitle}
+\branch{IT} 
+
+\author{Sandeep Kaur}
+\class{ D$4$ IT}              %% e.g D$3$ CSE
+\classrollno{96011}
+\unirollno{90370821211}
+
+\name{Prof. Pankaj Bhambri}
+
+\branch{Information Technology}     %%INFORMATION TECHNOLOGY
+
+
+%%----------------------------------------------------------------------%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%------------------- Body of document----------------------------------%%
+\begin{document}
+
+
+ \maketitle                                 %%% Title page for report
+
+
+\pagenumbering{Roman}                  %% Pagenumering can be in Roman or arabic
+\cfoot{\thepage}                       %% cfoot means centered footer(page no.)
+
+%-------------------------------------------------------------------
+\begin{abstract}
+Content here....
+\end{abstract}
+%---------------------------------------------------------------------------
+\include{acknowledge}
+%----------------------------------------------------------------------------------------
+%---------------------------------------------------------
+%\include{ToWhomitmayconcern}
+%---------------------------------------------------------------
+
+
+
+
+\tableofcontents                       %% This command automatically generates Index page
+
+\listoffigures                         %% This command creates a list of figures in the document
+\newpage
+
+\pagenumbering{arabic}                  %% now onwards arabic page numbeing is required
+\cfoot{\thepage}                        %% centered footer (page no.)
+
+%------------------------------------------------------
+\include{organisation}
+%-----------------------------------------------------------
+
+%-------------------------------------------------
+\section{Introduction To Organisation}
+\input{Organsation.tex}
+\newpage
+\section{Latex}
+\input{latex.tex}
+\newpage
+\section{Project Preview}
+\input{preview.tex}
+\newpage
+\section{TCC Automation software}
+\input{automation.tex}
+\newpage
+\section{About My Project}
+\input{reports.tex}
+
+                               %% More section can be added as per requirement
+
+
+%-------------------------------------------------------------
+\include{bibliography} 		%Referrences
+%------------------------------------------------------------------------
+
+
+\end{document}
+%%------------------------End document-------------------------%%

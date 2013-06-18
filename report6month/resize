@@ -1,0 +1,5 @@
+for images in *.png;
+do echo $images;
+convert $images -resize 1100x1000 ${images%.*}.png;
+done
+

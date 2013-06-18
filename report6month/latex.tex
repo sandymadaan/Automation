@@ -1,0 +1,27 @@
+\subsection{Introduction to \LaTeX}
+
+\LaTeX, I had never heard about this term before doing this project, but when I came to know about it's features, it is just excellent. LaTeX (pronounced /ˈleɪtɛk/, /ˈleɪtɛx/, /ˈlɑːtɛx/, or /ˈlɑːtɛk/) is a document markup language and document preparation system for the \TeX{} typesetting  program. Within the typesetting system, its name is styled as \LaTeX.\\\\
+Within the typesetting system, its name is styled as \LaTeX. The term \LaTeX{} refers only to the language in which documents are written, not to the editor used to write those documents. In order to create a document in \LaTeX, a .tex file must be created using some form of text editor. While most text editors can be used to create a \LaTeX{} document, a number of editors have been created specifically for working with \LaTeX.\\\\
+\par \LaTeX{} is most widely used by mathematicians, scientists, engineers, philosophers, linguists, economists and other scholars in academia. As a primary or intermediate format, e.g., translating DocBook and other XML-based formats to PDF, \LaTeX{} is used because of the high quality of typesetting achievable by \TeX. The typesetting system offers programmable desktop publishing features and extensive facilities for automating most aspects of typesetting and desktop publishing, including numbering and cross-referencing, tables and figures, page layout and bibliographies.\\\\
+\par \LaTeX{} is intended to provide a high-level language that accesses the power of \TeX. \LaTeX{} essentially comprises a collection of \TeX{} macros and a program to process LaTeX documents. Because the \TeX{} formatting commands are very low-level, it is usually much simpler for end-users to use \LaTeX{}.
+
+
+\subsection{Typesetting}
+\LaTeX{} is based on the idea that authors should be able to focus on the content of what they are writing without being distracted by its visual presentation. in preparing a \LaTeX{} document, the author specifies the logical structure using familiar concepts such as chapter, section, table, figure, etc., and lets the \LaTeX{} system worry about the presentation of these structures. it therefore encourages the separation of layout from content while still allowing manual typesetting adjustments where needed. 
+
+\newpage
+
+\begin{verbatim}
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\title{\LaTeX}
+\date{}
+\begin{document}
+  \maketitle 
+  \LaTeX{} is a document preparation system 
+  for the \TeX{} typesetting program.
+   \par 
+   $E=mc^2$
+\end{document}
+\end{verbatim}
+

@@ -1,0 +1,35 @@
+\contentsline {section}{\numberline {1}Introduction To Organisation}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}TESTING AND CONSULTANCY CELL}{1}{subsection.1.1}
+\contentsline {section}{\numberline {2}Latex}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Introduction to \LaTeX }{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Typesetting}{3}{subsection.2.2}
+\contentsline {section}{\numberline {3}Project Preview}{5}{section.3}
+\contentsline {subsection}{\numberline {3.1}The Existing System}{5}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Software Functions Provided in Proposed system}{6}{subsection.3.2}
+\contentsline {section}{\numberline {4}My Project}{7}{section.4}
+\contentsline {subsection}{\numberline {4.1}Introduction to Automation}{7}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Enterprise Resource Planing}{8}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Product Definition}{9}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Software Requirement Analysis}{10}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Introduction to Django}{13}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.6}Introduction to Python}{18}{subsection.4.6}
+\contentsline {subsection}{\numberline {4.7}MySQL Database Server}{19}{subsection.4.7}
+\contentsline {subsection}{\numberline {4.8}Debconf}{21}{subsection.4.8}
+\contentsline {subsection}{\numberline {4.9}Apache Web Server}{22}{subsection.4.9}
+\contentsline {subsection}{\numberline {4.10}Doxygen}{23}{subsection.4.10}
+\contentsline {subsection}{\numberline {4.11}Shell Scripting}{26}{subsection.4.11}
+\contentsline {subsection}{\numberline {4.12}Design}{28}{subsection.4.12}
+\contentsline {subsection}{\numberline {4.13}Introduction to TCC Automation Software}{40}{subsection.4.13}
+\contentsline {subsection}{\numberline {4.14}Modules of the Software}{41}{subsection.4.14}
+\contentsline {subsection}{\numberline {4.15}Automation Sofware in Detail}{42}{subsection.4.15}
+\contentsline {subsection}{\numberline {4.16}Testing}{57}{subsection.4.16}
+\contentsline {subsection}{\numberline {4.17}Implementation}{58}{subsection.4.17}
+\contentsline {subsection}{\numberline {4.18}Post-Implementation and Software Maintenance}{60}{subsection.4.18}
+\contentsline {section}{\numberline {5}My Others Work}{62}{section.5}
+\contentsline {subsection}{\numberline {5.1}IGS Ludhiana Website}{62}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Operating UDF Disks}{65}{subsection.5.2}
+\contentsline {section}{\numberline {6}Project legacy}{67}{section.6}
+\contentsline {subsection}{\numberline {6.1}Technical and Managerial Lesson Learnt}{67}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Current status}{68}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.3}Future Scope}{69}{subsection.6.3}
+\contentsline {section}{\numberline {7}Bibliography}{70}{section.7}

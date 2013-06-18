@@ -1,0 +1,70 @@
+\subsection{Requirment Analysis}
+{\large \bf {Introduction :}}
+Currently there is no central environment as Imperial Finance where people involved in financial system
+can get information from and manage their tasks. The existing system involves managing their
+corresponding information manually, and people are getting information regarding different plans and
+policies by directly interacting with the concerned person.
+{\large \bf {Limitations of Current System :}}
+\begin{itemize}
+\item Currently, there is no central environment where the clients can register themselves online and order for a Job or can get information from and manage their own tasks. The existing system involves the employers of Consultacy Cell managing information by interacting directly with the clients about there Jobs.
+\item Moreover, there is a need for a Search module that searches the previously registered Client, so that redundancy can be reduced to the maximum. 
+\item Also the current Software requires the proper Normlisation of Database.
+\item Apart from all these there is a need to make the calculation of total amount of Job done to be automated by Software itself. The current system requires the manual calculation. 
+\item There is also a need of proper Developer Documentation.  
+\item There should be a single click installation procedure for the Software.
+\item Reports are not generated in the Software.
+\end{itemize}
+
+\newpage
+
+\subsection{Introduction to Django}
+
+Django is a web framework designed to help you build complex web applications simply and quickly. It’s written in the Python programming language.
+
+Django takes it name from the early jazz guitarist Django Reinhardt, a gypsy savant who managed to play dazzling and electrifying runs on his instrument even though two of the fingers on his left hand were paralyzed in an accident when he was young.
+
+Thus, it’s a fitting name for the framework: Django can do some very complex things with less code and a simpler execution than you’d expect. It doesn’t take a heavy hand to build with Django. The framework does the repetitive work for you, allowing you to get a working website up quickly and easily.
+
+\subsection{Django's DRY pledge}
+
+Django was designed from the ground up to handle two common web developer challenges: intensive deadlines and strict adherence to the Don’t Repeat Yourself (DRY) principle. DRY sounds exactly like what it is: Why write the same code over and over again?
+
+The result is a fast framework, nimble and capable of generating full site mockups in a very short time. Django’s slogan captures its essence quite nicely: “The web framework for perfectionists with deadlines.”
+
+\subsection{What Django is}
+
+Perhaps the most common misconception about Django is that it’s a content management system. It’s not. It’s a web framework. It is a tool in which to build a CMS, like Drupal or other systems, but not one in itself.
+
+\newpage 
+
+\subsection{Getting started with Django}
+
+{\large \bf{Models :}}
+Data is at the center of most modern Web applications, and Django aims to provide support for a variety of data structures and persistence options. Models are the primary aspect of the traditional MVC model that Django maintains intact. Models are an essential part of any application that needs to persist data across multiple requests, sessions or even server instances.\\ 
+     Django models are defined as standard Python classes, with a wealth of additional features added in automatically. Behind the scenes, an object-relational mapper (ORM) allows these classes and their instances access to databases. Without this ORM, developers would be required to deal with the database directly, using Structured Query Language (SQL), the standard way to access content in databases. The primary goal of SQL is to describe and access the relationships that are stored in a relational database.\\
+
+
+{\large \bf {Urls :}}
+URLs are addresses from a small set of connection schemes whosebpath portions all conform to a single format. Included in this set are such common protocols as HTTP, HTTPS and FTP—essentially the common protocols found on the Web today.
+     Django doesn’t provide any features for automatically discovering or generating a URL structure for any site. Instead, each site and application is expected to explicitly declare whatever addressing scheme is most appropriate using URL configurations.\\
+
+
+{\large \bf{Views :}}
+Django’s views do perform the basic function of the output interface, because they’re responsible for the response that is sent to the browser. In a strict sense, this response is the entire output, and it contains all the information about what the user will see. This is often too much work to do in Python while still making it readable, so most views rely on templates to generate the bulk of the content.\\
+     A view is a function that takes an HTTP request and returns an HTTP response. That is a bit simplistic, given the potential power of views, but that’s really all there is to it. A view always receives, as its first argument, the HttpRequest created by Django, and it should always return an HttpRequest, unless something went wrong.\\
+
+
+{\large \bf{Forms :}}
+One of the key ingredients to modern Web applications is interactivity—the ability to accept input from users, which helps shape their experience. That input can be just about anything, from a simple search term to entire user-submitted novels. The key is the ability to process this input and turn it into a meaningful feature that enriches the experience for all the users of the site.\\
+     The process begins by sending an HTML form to the Web browser, where a user can fill it in and submit it back to the server. When the data arrives, it must be validated to make sure the user didn’t forget any fields or enter anything inappropriate. Once all the data is known to be valid, the application can finally perform a meaningful task with it.\\
+
+
+{\large \bf{Templates :}}
+Templates are Django’s provided way of generating text-based output, such as HTML or emails, where the people editing those docu-
+ments may not have any experience with Python. Therefore, templates are designed to avoid using Python directly, instead favoring an extensible, easy-to-use custom language built just for Django.
+
+
+
+
+
+

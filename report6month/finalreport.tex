@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+\usepackage[print,nopanel]{pdfscreen}
+\begin{print}
+\usepackage{lastpage}
+
+%\renewcommand{\abstractname}{\textbf{\Large Abstract}}
+
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+\lhead{\large\bfseries TCC Automation Software}
+\usepackage[left=2.5cm, right=1.5cm, top=2.5cm, bottom=1.5cm]{geometry}
+\pagestyle{fancy}
+\end{print}
+\margins{.5cm}{.5cm}{.5cm}{.5cm}
+\begin{screen}
+
+\renewcommand{\encodingdefault}{T1}
+\usepackage{setspace}
+\linespread{1.5}
+\renewcommand{\rmdefault}{ptm}
+\end{screen}
+\screensize{8cm}{9cm}
+\overlay{overlay8.pdf}
+\usepackage{graphicx}
+\input{style.tex}
+\begin{document}
+\begin{screen}
+\ppttitle
+\end{screen}
+
+\thispagestyle{empty} 
+\pagetitle
+\newpage
+\pagenumbering{Roman}
+\cfoot{\thepage}
+
+
+\newpage
+\input{acknowledgement}
+\newpage
+
+\input{abstract.tex}
+
+\newpage
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+
+
+\pagenumbering{arabic}
+\cfoot{\thepage}
+
+
+\newpage
+\section{Introduction To Organisation}
+\input{Organsation.tex}
+\newpage
+\section{Latex}
+\input{latex.tex}
+\newpage
+\section{Project Preview}
+\input{preview.tex}
+\newpage
+\section{My Project}
+\input{automation.tex}
+\newpage
+\section{My Others Work}
+\input{extra.tex}
+\newpage
+\section{Project legacy}
+\input{conclusion.tex}
+\newpage
+\section{Bibliography}
+\input{refrence.tex}
+\begin{screen}
+\newpage
+\input{link}
+\end{screen}
+
+\end{document}
+
