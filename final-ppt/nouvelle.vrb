@@ -1,0 +1,23 @@
+\frametitle {Other options}\begin {itemize}
+\item The \verb!pageofpages! option defines the string between the current
+      page number and the total page count
+  \begin{itemize}
+  \item The default is ``/''
+  \item The example files set \verb!pageofpages! to ``of''
+  \end{itemize}
+\item The \verb!bullet! option can be used to choose the symbol used in
+      bullet lists
+  \begin{itemize}
+  \item \verb!square!: A filled square
+        ({\usebeamercolor[fg]{item}\tiny\raise0.2ex\hbox{$\blacksquare$}}) for
+        first and third level items, an empty square
+        ({\usebeamercolor[fg]{item}\tiny\raise0.2ex\hbox{$\square$}}) for
+        second level items
+  \item \verb!circle!: A filled circle ({\usebeamercolor[fg]{item}$\bullet$})
+        for first and third level items, an empty circle
+        ({\usebeamercolor[fg]{item}$\circ$}) for second level items
+  \item The default value is \verb!square!
+  \end{itemize}
+\item If the \verb!titleline! option is set to \verb!true!, a horizontal line
+      is drawn below the title
+\end{itemize}
